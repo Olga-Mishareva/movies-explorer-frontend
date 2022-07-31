@@ -14,3 +14,15 @@
   flex-direction: row;
   align-items: center;
 }
+
+@media screen and (max-width: 767px) {
+  .header__container {
+    margin: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .header__container {
+    margin: 18px 14px;
+  }
+}
