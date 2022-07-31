@@ -10,10 +10,10 @@ function Main() {
   return (
     <div className="main">
       <Promo />
-      {/* <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio /> */}
+      <AboutProject />
+      {/* <Techs /> */}
+      {/* <AboutMe /> */}
+      {/* <Portfolio /> */}
     </div>
   );
 }

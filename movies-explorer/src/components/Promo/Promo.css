@@ -25,6 +25,8 @@
   }
 }
 
+/* ---------------------------------- */
+
 .promo__container {
   max-width: 640px;
   display: flex;
@@ -37,6 +39,8 @@
     align-items: center;
   }
 }
+
+/* ---------------------------------- */
 
 .promo__title {
   margin: 0;
@@ -63,6 +67,8 @@
   }
 }
 
+/* ---------------------------------- */
+
 .promo__subtitle {
   margin: 36px 0 0 0;
   font-weight: 400;
@@ -84,6 +90,8 @@
     margin-top: 24px;
   }
 }
+
+/* ---------------------------------- */
 
 .promo__link {
   font-weight: 500;
@@ -114,6 +122,8 @@
     margin-top: 80px;
   }
 }
+
+/* ---------------------------------- */
 
 .promo__langing-logo {
   width: 310px;
