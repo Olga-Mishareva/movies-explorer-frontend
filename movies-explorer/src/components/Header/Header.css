@@ -1,7 +1,6 @@
 .header {
   min-width: 320px;
   max-width: 1280px;
-  border: 1px solid red;
   height: 74px;
   margin: 0 auto;
 }
@@ -9,7 +8,7 @@
 /* ---------------------------------- */
 
 .header__container {
-  margin: 18px 70px;
+  padding: 18px 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,12 +16,12 @@
 
 @media screen and (max-width: 767px) {
   .header__container {
-    margin: 18px 30px;
+    padding: 18px 30px;
   }
 }
 
 @media screen and (max-width: 460px) {
   .header__container {
-    margin: 18px 14px;
+    padding: 18px 14px;
   }
 }

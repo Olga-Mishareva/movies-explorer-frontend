@@ -191,11 +191,15 @@
 
 .navigation__link_type_movies {
   margin-left: 44px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 13px;
   line-height: 18px;
   margin-bottom: 18px;
 }
+
+/* .navigation__link_type_movies.active {
+  font-weight: 500;
+} */
 
 @media screen and (max-width: 767px) {
   .navigation__link_type_movies {
@@ -213,6 +217,10 @@
   font-size: 13px;
   line-height: 18px;
 }
+
+/* .navigation__link_type_saved-movies.active {
+  font-weight: 500;
+} */
 
 @media screen and (max-width: 767px) {
   .navigation__link_type_saved-movies {

@@ -4,7 +4,7 @@ import Navigation from '../Navigation/Navigation';
 
 function Header() {
   return (
-    <div className="header">
+    <div className="header"> {/* background-color меняется состоянием если не залогинен */}
       <div className="header__container">
         <img className="logo" src={logo} alt="Логотип"></img>
         <Navigation /> 
