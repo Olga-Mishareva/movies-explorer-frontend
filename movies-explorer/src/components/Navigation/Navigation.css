@@ -1,0 +1,234 @@
+.navigation {
+  min-width: 100%;
+  position: relative;
+}
+
+/* @media screen and (max-width: 767px) {
+  .navigation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    background-color: #000000;
+  }
+} */
+
+/* ---------------------------------- */
+
+.navigation__button {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__button {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border: none;
+    position: absolute;
+    top: -22px;
+    right: -12px;
+    /* top: 0;
+    right: 0; */
+    background-image: url(../../images/close-icon.svg);
+    /* background-image: url(../../images/menu-icon.svg); */
+    background-repeat: no-repeat;
+    background-color: #202020;
+    background-position: center;
+    padding: 0;
+    z-index: 1;
+  }
+  .navigation__button_invisible {
+    display: none;
+  }
+}
+
+/* ---------------------------------- */
+
+@media screen and (max-width: 767px) {
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: rgba(0, 0, 0, .3);
+  }
+  .overlay_invisible {
+    display: none;
+  }
+}
+
+/* ---------------------------------- */
+
+.navigation_type_logged-in {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 100%;
+  align-items: center;
+  
+}
+
+@media screen and (max-width: 767px) {
+  .navigation_type_logged-in {
+    min-height: 100vh;
+    min-width: 65vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #202020;
+  }
+}
+
+/* ---------------------------------- */
+
+.navigation_type_logged-out {
+  
+}
+
+/* ---------------------------------- */
+
+.navigation_invisible {
+  display: none;
+}
+
+/* ---------------------------------- */
+
+@media screen and (max-width: 767px) {
+  .navigation__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30%;
+  }
+}
+
+/* ---------------------------------- */
+
+.navigation__link {
+  display: inline;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 10px 0;
+}
+
+/* .navigation__link_visible {
+  display: inline;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 10px 0;
+} */
+
+@media screen and (max-width: 767px) {
+  .navigation__link {
+    padding: 4px 0;
+    
+  }
+  /* .navigation__link.active {              подумать 
+    border-bottom: 2px solid #FFFFFF;
+  } */
+}
+
+/* ---------------------------------- */
+
+.navigation__link_type_register {
+  display: none;
+}
+
+/* ---------------------------------- */
+
+.navigation__link_type_login {
+  display: none;
+}
+
+/* ---------------------------------- */
+
+.navigation__link_type_home {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__link_type_home {
+    display: inline;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 18px;
+  }
+}
+
+/* ---------------------------------- */
+
+.navigation__link_type_movies {
+  margin-left: 44px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 18px;
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__link_type_movies {
+    margin-left: 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+/* ---------------------------------- */
+
+.navigation__link_type_saved-movies {
+  margin-left: 16px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__link_type_saved-movies {
+    margin-left: 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+/* ---------------------------------- */
+
+.navigation__link_type_profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__link_type_profile {
+    margin: 0 0 9% 0;
+  }
+}
+
+/* ---------------------------------- */
+
+.navigation__user-profile {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+/* ---------------------------------- */
+
+.navigation__user-icon {
+  width: 10px;
+  height: 10px;
+  margin-left: 13px;
+  border: 1px solid #313131;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #313131;
+}
