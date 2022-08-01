@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
 import './AboutProject.css';
 
 function AboutProject() {
   return (
     <div className="project">
-      <div className="project__wrapper">
-        <h2 className="project__title">О проекте</h2>
+        <h2 className="project__heading">О проекте</h2>
         <div className="project__description">
           <div className="project__about">
             <h3 className="project__subtitle">Дипломный проект включал 5 этапов</h3>
@@ -26,7 +24,6 @@ function AboutProject() {
             <p className="project__topic">Front-end</p>
           </div>
         </div>
-      </div>
     </div>
   );
 }
