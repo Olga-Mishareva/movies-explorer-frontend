@@ -8,13 +8,13 @@ import './Main.css';
 
 function Main() {
   return (
-    <div className="main">
+    <main className="main">
       <Promo />
       <AboutProject />
       <Techs />
-      {/* <AboutMe /> */}
+      <AboutMe />
       {/* <Portfolio /> */}
-    </div>
+    </main>
   );
 }
 

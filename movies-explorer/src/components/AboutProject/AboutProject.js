@@ -2,15 +2,15 @@ import './AboutProject.css';
 
 function AboutProject() {
   return (
-    <div className="project">
-        <h2 className="project__heading">О проекте</h2>
+    <section className="project">
+        <h2 className="section-heading">О проекте</h2>
         <div className="project__description">
           <div className="project__about">
-            <h3 className="project__subtitle">Дипломный проект включал 5 этапов</h3>
+            <h3 className="project__title">Дипломный проект включал 5 этапов</h3>
             <p className="project__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
           </div>
           <div className="project__about">
-            <h3 className="project__subtitle">На выполнение диплома ушло 5 недель</h3>
+            <h3 className="project__title">На выполнение диплома ушло 5 недель</h3>
             <p className="project__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
           </div>
         </div>
@@ -24,7 +24,7 @@ function AboutProject() {
             <p className="project__topic">Front-end</p>
           </div>
         </div>
-    </div>
+    </section>
   );
 }
 

@@ -4,12 +4,12 @@ import Navigation from '../Navigation/Navigation';
 
 function Header() {
   return (
-    <div className="header"> 
+    <header className="header"> 
       <div className="header__container"> {/* background-color меняется состоянием если залогинен */}
         <img className="logo" src={logo} alt="Логотип"></img>
         <Navigation /> 
       </div>
-    </div>
+    </header>
   );
 }
 
