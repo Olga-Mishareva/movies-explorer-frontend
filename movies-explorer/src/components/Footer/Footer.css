@@ -89,6 +89,7 @@
   color: #FFFFFF;
   text-decoration: none;
   padding: 10px;
+  transition: opacity .2s ease-in;
 }
 
 .footer__link:hover {

@@ -139,10 +139,10 @@
   list-style: none;
   display: flex;
   flex-direction: row;
-  column-gap: 20px;
+  column-gap: 10px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 620px) {
   .about-me__links {
     column-gap: 26px;
     margin-top: 40px;
@@ -152,9 +152,18 @@
 /* ---------------------------------- */
 
 .about-me__link {
+  color: #FFFFFF;
+  text-decoration: none;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
+  padding: 5px;
+  transition: opacity .2s ease-in;
+}
+
+.about-me__link:hover {
+  opacity: .7;
+  cursor: pointer;
 }
 
 /* ---------------------------------- */

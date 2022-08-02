@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import './Navigation.css';
 import userIcon from '../../images/user-icon.svg';
 
-const setActive = ({ isActive }) =>(isActive ? "active" : "");
+const setActive = ({ isActive }) =>(isActive ? "_active" : "");
 
 function Navigation() {
   return (
@@ -19,12 +19,12 @@ function Navigation() {
         {/* navigation_invisible добавл. состоянием, если не залогинен */}
         <nav className="navigation navigation_type_logged-in navigation_invisible "> 
           <div className="navigation__container">
-            <NavLink to="" className={`navigation__link navigation__link_type_home navigation__link_${setActive}`}>Главная</NavLink>
+            <NavLink to="" className={`navigation__link navigation__link_type_home navigation__link${setActive}`}>Главная</NavLink>
             <NavLink to="" className="navigation__link navigation__link_type_movies">Фильмы</NavLink>
             <NavLink to="" className="navigation__link navigation__link_type_saved-movies">Сохранённые фильмы</NavLink>
           </div>
           <NavLink to="" className="navigation__link navigation__link_type_profile">
-            <p className="navigation__user-profile">Аккаунт</p>
+            <span className="navigation__user-profile">Аккаунт</span>
             <img className="navigation__user-icon" src={userIcon} alt="Иконка пользователя"></img>
           </NavLink>
         </nav>

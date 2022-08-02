@@ -14,8 +14,6 @@
 
 /* ---------------------------------- */
 
-
-
 .navigation__button {
   display: none;
 }
@@ -114,6 +112,12 @@
   color: #FFFFFF;
   text-decoration: none;
   padding: 10px 0;
+  transition: opacity .2s ease-in;
+}
+
+.navigation__link:hover {
+  opacity: .7;
+  cursor: pointer;
 }
 
 /* .navigation__link_visible {
@@ -128,9 +132,9 @@
     padding: 4px 0;
     
   }
-  /* .navigation__link.active {              подумать 
+  .navigation__link_active {          
     border-bottom: 2px solid #FFFFFF;
-  } */
+  }
 }
 
 /* ---------------------------------- */
@@ -140,11 +144,6 @@
   font-size: 12px;
   line-height: 16px;
   margin-right: 30px;
-}
-
-.navigation__link_type_register:hover { 
-  color: rgba(255, 255, 255, .7);
-  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
@@ -173,11 +172,6 @@
   color: #000000;
 }
 
-.navigation__link_type_login:hover {
-  cursor: pointer;
-  opacity: .8;
-}
-
 @media screen and (max-width: 460px) {
   .navigation__link_type_login {
     padding: 5px 12px;
@@ -188,11 +182,6 @@
 
 .navigation__link_type_home {
   display: none;
-}
-
-.navigation__link_type_home:hover { 
-  color: rgba(255, 255, 255, .7);
-  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
@@ -215,15 +204,6 @@
   margin-bottom: 18px;
 }
 
-.navigation__link_type_movies:hover { 
-  color: rgba(255, 255, 255, .7);
-  cursor: pointer;
-}
-
-/* .navigation__link_type_movies.active {
-  font-weight: 500;
-} */
-
 @media screen and (max-width: 767px) {
   .navigation__link_type_movies {
     margin-left: 0;
@@ -241,15 +221,6 @@
   line-height: 18px;
 }
 
-.navigation__link_type_saved-movies:hover { 
-  color: rgba(255, 255, 255, .7);
-  cursor: pointer;
-}
-
-/* .navigation__link_type_saved-movies.active {
-  font-weight: 500;
-} */
-
 @media screen and (max-width: 767px) {
   .navigation__link_type_saved-movies {
     margin-left: 0;
@@ -265,11 +236,6 @@
   flex-direction: row;
   align-items: center;
   padding: 0;
-}
-
-.navigation__link_type_profile:hover { 
-  opacity: .7;
-  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {

@@ -100,10 +100,10 @@
   color: #FFFFFF;
   text-decoration: none;
   margin-top: 146px;
+  transition: color .2s ease-in;
 }
 .promo__link:hover {
-  border: 1px solid rgba(255, 255, 255, .5);
-  color: rgba(255, 255, 255, .5);
+  color: rgba(255, 255, 255, .6);
   cursor: pointer;
 }
 
