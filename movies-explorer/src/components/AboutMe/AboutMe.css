@@ -134,7 +134,9 @@
 /* ---------------------------------- */
 
 .about-me__links {
-  margin-top: auto;
+  margin: auto 0 0 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: row;
   column-gap: 20px;
