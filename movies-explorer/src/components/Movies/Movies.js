@@ -1,12 +1,15 @@
 import './Movies.css';
+import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 function Movies() {
   return (
-    <header className='movies'> 
-      <div className=''> {/* background-color меняется состоянием если залогинен */}
-     
-      </div>
-    </header>
+    <div className='movies'> 
+      <SearchForm />
+      {/* <Preloader /> */}
+      {/* <MoviesCardList /> */}
+    </div>
   );
 }
 
