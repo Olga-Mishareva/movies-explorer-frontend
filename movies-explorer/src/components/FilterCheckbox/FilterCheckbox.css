@@ -1,0 +1,36 @@
+.filter__title {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  transition: opacity .2s ease-in;
+}
+
+@media screen and (max-width: 480px) {
+  .filter__title {
+    font-size: 11px;
+  }
+}
+
+.filter__title:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.filter__checkbox {
+  position: relative;
+  margin-right: 24px;
+}
+
+.filter__checkbox::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -11px;
+  width: 36px;
+  height: 20px;
+  background-image: url(../../images/smalltumboff.svg);
+}
+
+.filter__checkbox:checked::before {
+  background-image: url(../../images/smalltumb.svg);
+}
