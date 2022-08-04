@@ -1,0 +1,82 @@
+.movie {
+  background-color: #222222;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
+}
+
+.movie__image {
+  min-width: 100%;
+  max-height: 151px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .movie__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movie__image {
+    height: 168px;
+  }
+}
+
+.movie__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  padding: 14px 12px 10px;
+}
+
+.movie__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie__duration {
+  margin: 0;
+  padding: 0 0 14px 12px;
+  color: #8B8B8B;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.movie__like {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  background-color: #313131;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
+}
+
+.movie__like:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.movie__like_type_liked {
+  background-color: #3DDC84;
+}
+
+.movie__like_type_saved {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  background-image: url(../../images/del_btn.svg);
+  padding: 10px;
+  background-position: 50% 50%;
+}
