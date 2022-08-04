@@ -32,7 +32,7 @@
     /* background-image: url(../../images/close-icon.svg); */
     background-image: url(../../images/menu-icon.svg);
     background-repeat: no-repeat;
-    background-color: #202020;
+    background-color: transparent;
     background-position: center;
     padding: 0;
     z-index: 1;
@@ -88,7 +88,7 @@
   }
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 480px) {
   .navigation_type_logged-in {
     min-width: 100vw;
   }
@@ -152,7 +152,7 @@
   }
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 480px) {
   .navigation__link_type_register {
     font-size: 10px;
     margin-right: 14px;
@@ -172,7 +172,7 @@
   color: #000000;
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 480px) {
   .navigation__link_type_login {
     padding: 5px 12px;
   }

@@ -15,7 +15,7 @@ function Navigation() {
       {/* background-image меняется состоянием при нажатии, invisible добавл. если не залог. */}
       <button className="navigation__button navigation__button_ " type="button"></button> 
       {/* overlay_invisible добавляется состоянием при нажатии на navigation__button, меню скрывается */}
-      <div className="overlay overlay_ "> 
+      <div className="overlay overlay_invisible "> 
         {/* navigation_invisible добавл. состоянием, если не залогинен */}
         <nav className="navigation navigation_type_logged-in navigation_ "> 
           <div className="navigation__container">

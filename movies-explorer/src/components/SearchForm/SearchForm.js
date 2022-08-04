@@ -13,6 +13,7 @@ function SearchForm() {
           <FilterCheckbox />
         </form>
       </div> 
+      
     </section>
   );
 }
