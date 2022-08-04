@@ -5,10 +5,10 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 function Movies() {
   return (
-    <div className='movies'> 
+    <div className='all-movies'> 
       <SearchForm />
       {/* <Preloader /> */}
-      {/* <MoviesCardList /> */}
+      <MoviesCardList />
     </div>
   );
 }
