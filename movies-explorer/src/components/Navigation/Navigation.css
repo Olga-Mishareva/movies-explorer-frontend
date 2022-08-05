@@ -35,7 +35,7 @@
     background-color: transparent;
     background-position: center;
     padding: 0;
-    z-index: 1;
+    z-index: 2;
   }
   .navigation__button:hover { 
     opacity: .7;
@@ -57,6 +57,7 @@
     min-height: 100vh;
     min-width: 100vw;
     background-color: rgba(0, 0, 0, .3);
+    z-index: 1;
   }
   .overlay_invisible {
     display: none;
@@ -132,7 +133,7 @@
     padding: 4px 0;
     
   }
-  .navigation__link_active {          
+  .navigation__link.active {          
     border-bottom: 2px solid #FFFFFF;
   }
 }
@@ -190,7 +191,7 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
-    margin-bottom: 18px;
+    margin-bottom: 9px;
   }
 }
 
@@ -206,9 +207,9 @@
 
 @media screen and (max-width: 767px) {
   .navigation__link_type_movies {
-    margin-left: 0;
     font-size: 18px;
     line-height: 22px;
+    margin: 9px 0;
   }
 }
 
@@ -223,7 +224,7 @@
 
 @media screen and (max-width: 767px) {
   .navigation__link_type_saved-movies {
-    margin-left: 0;
+    margin: 9px 0 0;
     font-size: 18px;
     line-height: 22px;
   }

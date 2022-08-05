@@ -2,24 +2,22 @@ import { Link, NavLink } from "react-router-dom";
 import './Navigation.css';
 import userIcon from '../../images/user-icon.svg';
 
-const setActive = ({ isActive }) =>(isActive ? "_active" : "");
-
 function Navigation() {
   return (
     <div className="navigation">
       {/* navigation_invisible добавл. состоянием, если залогинен */}
-      <nav className="navigation navigation_type_logged-out navigation_invisible "> 
+      <nav className="navigation navigation_type_logged-out navigation_ "> 
         <Link to="/signup" className="navigation__link navigation__link_type_register">Регистрация</Link>
         <Link to="/signin" className="navigation__link navigation__link_type_login">Войти</Link>
       </nav>
       {/* background-image меняется состоянием при нажатии, invisible добавл. если не залог. */}
-      <button className="navigation__button navigation__button_ " type="button"></button> 
+      <button className="navigation__button navigation__button_invisible " type="button"></button> 
       {/* overlay_invisible добавляется состоянием при нажатии на navigation__button, меню скрывается */}
       <div className="overlay overlay_invisible "> 
         {/* navigation_invisible добавл. состоянием, если не залогинен */}
-        <nav className="navigation navigation_type_logged-in navigation_ "> 
+        <nav className="navigation navigation_type_logged-in navigation_invisible "> 
           <div className="navigation__container">
-            <NavLink exact to="/" className={`navigation__link navigation__link_type_home navigation__link${setActive}`}>Главная</NavLink>
+            <NavLink exact to="/" className='navigation__link navigation__link_type_home'>Главная</NavLink>
             <NavLink to="/movies" className="navigation__link navigation__link_type_movies">Фильмы</NavLink>
             <NavLink to="/saved-movies" className="navigation__link navigation__link_type_saved-movies">Сохранённые фильмы</NavLink>
           </div>
