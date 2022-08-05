@@ -6,7 +6,7 @@ import Paganation from '../Paganation/Paganation';
 
 function Movies() {
   return (
-    <div className='all-movies'> 
+    <div className='movies'> 
       <SearchForm />
       {/* <Preloader /> */}
       <MoviesCardList />

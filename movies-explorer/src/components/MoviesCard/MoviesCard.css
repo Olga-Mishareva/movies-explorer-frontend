@@ -1,4 +1,4 @@
-.movie {
+.card {
   background-color: #222222;
   border-radius: 10px;
   display: flex;
@@ -6,7 +6,7 @@
   box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
 }
 
-.movie__image {
+.card__image {
   min-width: 100%;
   max-height: 151px;
   object-fit: cover;
@@ -15,18 +15,18 @@
 }
 
 @media screen and (max-width: 800px) {
-  .movie__image {
+  .card__image {
     height: 190px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .movie__image {
+  .card__image {
     height: 168px;
   }
 }
 
-.movie__container {
+.card__container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -35,7 +35,7 @@
   padding: 14px 12px 10px;
 }
 
-.movie__title {
+.card__title {
   margin: 0;
   font-weight: 500;
   font-size: 13px;
@@ -45,7 +45,7 @@
   text-overflow: ellipsis;
 }
 
-.movie__duration {
+.card__duration {
   margin: 0;
   padding: 0 0 14px 12px;
   color: #8B8B8B;
@@ -54,7 +54,7 @@
   line-height: 14px;
 }
 
-.movie__like {
+.card__like {
   width: 16px;
   height: 16px;
   border: 2px solid #FFFFFF;
@@ -63,16 +63,16 @@
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
 }
 
-.movie__like:hover {
+.card__like:hover {
   cursor: pointer;
   opacity: .7;
 }
 
-.movie__like_type_liked {
+.card__like_type_liked {
   background-color: #3DDC84;
 }
 
-.movie__like_type_saved {
+.card__like_type_saved {
   border: none;
   background-color: transparent;
   box-shadow: none;
