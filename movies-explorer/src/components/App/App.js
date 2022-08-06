@@ -7,6 +7,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import NoMatch from '../NoMatch/NoMatch';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/profile' element={<Profile />}/>
         <Route path='/signup' element={<Register />}/>
         <Route path='/signin' element={<Login />}/>
+        <Route path='*' element={<NoMatch />}/>
       </Routes>
       <Footer />
     </div>
