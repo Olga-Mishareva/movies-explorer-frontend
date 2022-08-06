@@ -6,11 +6,11 @@ function Profile() {
       <form className='profile__form' name='profile' id='profile'>
         <h2 className='profile__greeting'>Привет, Оля!</h2>
         <label className='profile__label profile__label_type_name'>Имя
-          <input className='profile__input profile__input_type_name' type='text' value={''} placeholder='Оля'
+          <input className='profile__input profile__input_type_name' type='text' defaultValue='Оля'
             required minLength="2" maxLength="30" disabled={false}></input>
         </label>
         <label className='profile__label profile__label_type_email'>Email
-          <input className='profile__input profile__input_type_email' type='email' value={''} placeholder='om@gmail.com'
+          <input className='profile__input profile__input_type_email' type='email' defaultValue='om@gmail.com'
             required disabled={false}></input>
         </label>
       </form>
