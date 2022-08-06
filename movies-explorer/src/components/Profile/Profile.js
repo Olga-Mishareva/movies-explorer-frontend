@@ -18,7 +18,7 @@ function Profile() {
         <span className='profile__error profile__error_invisible'>При обновлении профиля произошла ошибка.</span>
         <button className='profile__button profile__button_type_submit profile__button_' type='submit' form='profile' disabled={false}>Сохранить</button>
         <button className='profile__button profile__button_type_edit profile__button_invisible' type='button'>Редактировать</button>
-        <button className='profile__button profile__button_type_exit profile__button_invisible' type='button'>Выйти из аккаунта</button>
+        <button className='profile__button profile__button_type_logout profile__button_invisible' type='button'>Выйти из аккаунта</button>
       </div>
       
     </section>

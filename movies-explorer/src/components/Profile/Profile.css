@@ -76,10 +76,6 @@
   outline: none;
 }
 
-.profile__input_type_name:disabled {
-  /* color: #FFFFFF; */
-}
-
 .profile__edit-container {
   width: 410px;
   height: 80px;
@@ -146,7 +142,7 @@
 
 }
 
-.profile__button_type_exit {
+.profile__button_type_logout {
   color: #EE3465;
 }
 
