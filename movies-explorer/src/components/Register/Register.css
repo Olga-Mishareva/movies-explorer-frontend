@@ -21,8 +21,8 @@
 
 @media screen and (max-width: 821px) {
   .register__container {
-    min-height: calc(100vh - 46vh);
-    padding: 23vh 0; 
+    min-height: calc(100vh - 40vh);
+    padding: 20vh 0; 
   }
 }
 
@@ -93,9 +93,19 @@
 }
 
 .register__error {
+  display: block;
   margin-top: 5px;
   min-height: 18px;
   color: #EE3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+@media screen and (max-width: 480px) {
+  .register__error {
+    align-self: start;
+  }
 }
 
 .register__submit-container {
@@ -104,9 +114,10 @@
   align-items: center;
 }
 
-.register__button_type_submit {
+.register__submit-button {
   min-width: 100%;
   height: 45px;
+  margin-top: 46px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -117,12 +128,12 @@
   transition: opacity .2s ease-in;
 }
 
-.register__button_type_submit:hover {
+.register__submit-button:hover {
   cursor: pointer;
   opacity: .7;
 }
 
-.register__button_type_submit:disabled {
+.register__submit-button:disabled {
   cursor: auto;
   background-color: #DADADA;
   opacity: 1;
@@ -130,7 +141,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .register__button_type_submit {
+  .register__submit-button {
     min-width: 260px;
     font-size: 12px;
     line-height: 15px;
@@ -152,24 +163,23 @@
   }
 }
 
-.register__button_type_login {
+.register__login-link {
   padding: 6px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #4285F4;
-  border: none;
-  background-color: transparent;
+  text-decoration: none;
   transition: opacity .2s ease-in;
 }
 
-.register__button_type_login:hover {
+.register__login-link:hover {
   cursor: pointer;
   opacity: .7;
 }
 
 @media screen and (max-width: 480px) {
-  .register__button_type_login {
+  .register__login-link {
     font-size: 12px;
     line-height: 15px;
   }

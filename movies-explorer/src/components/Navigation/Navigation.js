@@ -15,9 +15,9 @@ function Navigation() {
       {/* overlay_invisible добавляется состоянием при нажатии на navigation__button, меню скрывается */}
       <div className="overlay overlay_invisible "> 
         {/* navigation_invisible добавл. состоянием, если не залогинен */}
-        <nav className="navigation navigation_type_logged-in navigation_invisible "> 
+        <nav className="navigation navigation_type_logged-in navigation_invisible"> 
           <div className="navigation__container">
-            <NavLink exact to="/" className='navigation__link navigation__link_type_home'>Главная</NavLink>
+            <NavLink to="/" className='navigation__link navigation__link_type_home'>Главная</NavLink>
             <NavLink to="/movies" className="navigation__link navigation__link_type_movies">Фильмы</NavLink>
             <NavLink to="/saved-movies" className="navigation__link navigation__link_type_saved-movies">Сохранённые фильмы</NavLink>
           </div>
