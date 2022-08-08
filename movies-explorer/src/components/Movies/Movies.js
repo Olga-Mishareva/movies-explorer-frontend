@@ -1,6 +1,7 @@
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 // import Preloader from '../Preloader/Preloader';
+import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Paganation from '../Paganation/Paganation';
 
@@ -9,8 +10,9 @@ function Movies() {
     <div className='movies'> 
       <SearchForm />
       {/* <Preloader /> */}
-      <MoviesCardList />
-      <Paganation />
+      <WithoutResult />
+      {/* <MoviesCardList /> */}
+      {/* <Paganation /> */}
     </div>
   );
 }
