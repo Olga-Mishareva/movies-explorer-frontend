@@ -1,9 +1,10 @@
 import './Profile.css';
 
-function Profile() {
+function Profile({ loggedIn, logout }) {
+
   return (
     <section className='profile'>
-      <form className='profile__form' name='profile' id='profile'>
+      <form className='profile__form' name='profile' id='profile' noValidate>
         <h2 className='profile__greeting'>Привет, Оля!</h2>
         <label className='profile__label profile__label_type_name'>Имя
           <input className='profile__input profile__input_type_name' type='text' defaultValue='Оля'
@@ -18,7 +19,8 @@ function Profile() {
         <span className='profile__error'></span>
         <button className='profile__button profile__button_type_submit profile__button_invisible' type='submit' form='profile' disabled={false}>Сохранить</button>
         <button className='profile__button profile__button_type_edit profile__button_' type='button'>Редактировать</button>
-        <button className='profile__button profile__button_type_logout profile__button_' type='button'>Выйти из аккаунта</button>
+        <button className='profile__button profile__button_type_logout profile__button_' 
+          type='button' onMouseDown={logout}>Выйти из аккаунта</button>
       </div>
     </section>
   );

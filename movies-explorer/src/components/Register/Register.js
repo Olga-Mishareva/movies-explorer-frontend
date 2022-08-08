@@ -1,11 +1,13 @@
 import Auth from '../Auth/Auth';
 import './Register.css';
 
-function Register() {
+function Register({ loggedIn, login }) {
   return (
     <Auth
       title='Добро пожаловать!' name='register' submitBtn='Зарегистрироваться' 
-      question='Уже зарегистрированы?' path='signin' link='Войти'>
+      question='Уже зарегистрированы?' path='signin' link='Войти' 
+      loggedIn={loggedIn}  login={login}>
+        
       <label className='register__label register__label_type_name'>Имя
         <input className='register__input register__input_type_name register__input_type_' defaultValue='Оля'
           type='text' name='username' required minLength="2" maxLength="30"></input> {/* value={} */}
