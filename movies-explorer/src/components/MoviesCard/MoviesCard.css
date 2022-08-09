@@ -6,6 +6,8 @@
   box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
 }
 
+/* ---------------------------------- */
+
 .card__image {
   min-width: 100%;
   max-height: 151px;
@@ -26,6 +28,8 @@
   }
 }
 
+/* ---------------------------------- */
+
 .card__container {
   display: flex;
   flex-direction: row;
@@ -34,6 +38,8 @@
   column-gap: 10px;
   padding: 14px 12px 10px;
 }
+
+/* ---------------------------------- */
 
 .card__title {
   margin: 0;
@@ -45,6 +51,8 @@
   text-overflow: ellipsis;
 }
 
+/* ---------------------------------- */
+
 .card__duration {
   margin: 0;
   padding: 0 0 14px 12px;
@@ -53,6 +61,8 @@
   font-size: 11px;
   line-height: 14px;
 }
+
+/* ---------------------------------- */
 
 .card__like {
   width: 16px;
