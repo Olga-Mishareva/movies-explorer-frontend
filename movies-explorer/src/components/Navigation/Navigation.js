@@ -18,7 +18,7 @@ function Navigation({ loggedIn,login }) {
         <NavLink to="/signin" className="nav__link nav__link_type_login" onClick={login}>Войти</NavLink>
       </nav>
       {/* background-image меняется состоянием при нажатии, invisible добавл. если не залог. */}
-      <button className={`nav__button nav__button_type_${menuIsOpen ? 'close' : 'burger'} 
+      <button className={`nav__button nav__button_type_${!menuIsOpen ? 'burger' : 'close'} 
         nav__button_${loggedIn ? '' : 'invisible'}`} 
         type="button" onClick={handleMenu}></button> 
       {/* overlay_invisible добавляется состоянием при нажатии на nav__button, меню скрывается */}

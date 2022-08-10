@@ -8,7 +8,7 @@
 .nav_type_logged-out {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   
 }
 
@@ -18,7 +18,7 @@
   display: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__button {
     display: block;
     width: 44px;
@@ -50,7 +50,7 @@
 
 /* ---------------------------------- */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__overlay {
     display: block;
     position: fixed;
@@ -76,7 +76,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav_type_logged-in {
     min-height: 100vh;
     min-width: 65vw;
@@ -98,7 +98,7 @@
 
 /* ---------------------------------- */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__container {
     display: flex;
     flex-direction: column;
@@ -125,7 +125,7 @@
   font-weight: 500;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__link {
     padding: 4px 0;
     
@@ -144,7 +144,7 @@
   margin-right: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__link_type_register {
     padding: 10px 0;
   }
@@ -182,7 +182,7 @@
   display: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__link_type_home {
     display: inline;
     font-weight: 500;
@@ -202,7 +202,7 @@
   margin-bottom: 18px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__link_type_movies {
     font-size: 18px;
     line-height: 22px;
@@ -220,7 +220,7 @@
   line-height: 18px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__link_type_saved-movies {
     margin: 9px 0 0;
     font-size: 18px;
@@ -241,7 +241,7 @@
   line-height: 16px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .nav__link_type_profile {
     margin: 0 0 9% 0;
     font-weight: 500;
