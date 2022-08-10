@@ -11,11 +11,15 @@
   transition: opacity .5s ease-out, visibility .2s ease-out;
 }
 
+/* ---------------------------------- */
+
 .popup_opened {
   visibility: visible;
   opacity: 1;
   transition: opacity .2s ease-out;
 }
+
+/* ---------------------------------- */
 
 .popup__container {
   width: 530px;
@@ -37,6 +41,8 @@
     left: calc(100%/2 - 141px);
   }
 }
+
+/* ---------------------------------- */
 
 .popup__close-button {
   background-image: url(../../images/close-icon.svg);
@@ -67,6 +73,8 @@
   }
 }
 
+/* ---------------------------------- */
+
 .popup__image {
   width: 120px;
   height: 120px;
@@ -82,6 +90,8 @@
   background-color: #EE3465;
   mask-image: url(../../images/reject.svg);
 }
+
+/* ---------------------------------- */
 
 .popup__message {
   font-weight: 500;

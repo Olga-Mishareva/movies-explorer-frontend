@@ -58,17 +58,30 @@
 
 /* ---------------------------------- */
 
-.search__inpup {
-  padding: 0 0 0 20px;
+.search__input {
+  padding: 0 20px;
   min-width: calc(100% - 54px - 20px);
   min-height: 50px;
   border: none;
   border-radius: 8px;
   background-color: #2F2F2F;
+  color: #FFFFFF;
+}
+
+.search__input:focus {
+  outline: 1px solid #4285F4;
+}
+
+.search__input:-webkit-autofill,
+.search__input:-webkit-autofill:focus,
+.search__input:-webkit-autofill:active {
+  -webkit-text-fill-color: #FFFFFF;
+  background-color: #2F2F2F;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 @media screen and (max-width: 480px) {
-  .search__inpup {
+  .search__input {
     min-height: 44px;
   }
 }
