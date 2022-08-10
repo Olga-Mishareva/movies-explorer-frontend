@@ -8,7 +8,7 @@ function Login({ loggedIn, login }) {
       title='Рады видеть!' name='login' submitBtn='Войти' 
       question='Еще не зарегистрированы?' path='signup' link='Регистрация'
       loggedIn={loggedIn}  login={login}>
-        
+
       <label className='login__label login__label_type_email'>Email
         <input className='login__input login__input_type_email login__input_type_error' 
           type='email' name='email' required ></input>  {/* value={} */}
