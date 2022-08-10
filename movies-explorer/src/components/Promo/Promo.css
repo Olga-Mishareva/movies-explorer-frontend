@@ -89,7 +89,7 @@
 
 /* ---------------------------------- */
 
-.promo__link {
+.promo__button {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -102,19 +102,19 @@
   margin-top: 146px;
   transition: color .2s ease-in;
 }
-.promo__link:hover {
+.promo__button:hover {
   color: rgba(255, 255, 255, .6);
   cursor: pointer;
 }
 
 @media screen and (max-width: 999px) {
-  .promo__link {
+  .promo__button {
     margin-top: 92px;
   }
 }
 
 @media screen and (max-width: 460px) {
-  .promo__link {
+  .promo__button {
     margin-top: 80px;
   }
 }

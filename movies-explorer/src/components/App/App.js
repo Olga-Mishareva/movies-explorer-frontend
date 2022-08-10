@@ -21,13 +21,13 @@ function App() {
       <Header loggedIn={loggedIn} login={login}/>
       
       <Routes>
-        <Route path='/' element={<Main />}/>
-        <Route path='/movies' element={<Movies />}/>
-        <Route path='/saved-movies' element={<SavedMovies />}/>
-        <Route path='/profile' element={<Profile loggedIn={loggedIn} logout={logout}/>}/>
-        <Route path='/signup' element={<Register loggedIn={loggedIn} login={login}/>}/>
-        <Route path='/signin' element={<Login loggedIn={loggedIn} login={login}/>}/>
-        <Route path='*' element={<NoMatch />}/>
+        <Route path='/' element={<Main />} />
+        <Route path='/movies' element={<Movies />} />
+        <Route path='/saved-movies' element={<SavedMovies />} />
+        <Route path='/profile' element={<Profile loggedIn={loggedIn} logout={logout}/>} />
+        <Route path='/signup' element={<Register loggedIn={loggedIn} login={login}/>} />
+        <Route path='/signin' element={<Login loggedIn={loggedIn} login={login}/>} />
+        <Route path='*' element={<NoMatch />} />
       </Routes>
 
       {/* <InfoPopup /> */}

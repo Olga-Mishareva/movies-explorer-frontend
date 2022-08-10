@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import Promo from '../Promo/Promo';
 import AboutProject from '../AboutProject/AboutProject';
 import Techs from '../Techs/Techs';
@@ -7,10 +8,12 @@ import './Main.css';
 
 
 function Main() {
+  const projectRef = useRef();
+
   return (
     <main className="main">
-      <Promo />
-      <AboutProject />
+      <Promo projectRef={projectRef}/>
+      <AboutProject projectRef={projectRef}/>
       <Techs />
       <AboutMe />
       <Portfolio />
