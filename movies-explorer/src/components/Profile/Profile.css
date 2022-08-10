@@ -1,16 +1,16 @@
 .profile {
   min-height: calc(100vh - 74px - 144px);
-  padding: 74px 0 70px;
+  padding: 74px 0 65px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 821px) {
   .profile {
     min-height: calc(100vh - 74px - 54vh);
-    padding: 25vh 0 29vh; 
+    padding: 25vh 0 25vh; 
   }
 }
 
@@ -21,17 +21,21 @@
   }
 }
 
+/* ---------------------------------- */
+
 .profile__form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* ---------------------------------- */
+
 .profile__greeting {
-  margin: 0 0 123px;
+  margin: 0 0 25%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 821px) {
   .profile__greeting {
     margin: 0 0 96px; 
   }
@@ -43,9 +47,10 @@
   }
 }
 
-.profile__label {
+/* ---------------------------------- */
+
+/* .profile__label {
   min-width: 410px;
-  /* min-height: 46px; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -81,12 +86,13 @@
 
 .profile__input:focus {
   color: #4285F4;
-}
+} */
+
+/* ---------------------------------- */
 
 .profile__edit-container {
   width: 410px;
-  height: 80px;
-  margin-top: calc(100vh - 468px - 70px);
+  height: 160px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,15 +105,19 @@
   }
 }
 
+/* ---------------------------------- */
+
 .profile__error {
   display: block;
   color: #EE3465;
   font-weight: 400;
   font-size: 11px;
   line-height: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
 }
+
+/* ---------------------------------- */
 
 .profile__button {
   border: none;
@@ -125,6 +135,12 @@
   opacity: .7;
 }
 
+.profile__button_invisible {
+  display: none;
+}
+
+/* ---------------------------------- */
+
 .profile__button_type_submit {
   font-size: 14px;
   background-color: #4285F4;
@@ -141,15 +157,18 @@
   color: #8B8B8B;
 }
 
+/* ---------------------------------- */
+
+.profile__button_type_cancel {
+  margin-top: 5px;
+  font-size: 11px;
+  line-height: 14px;
+}
+
 .profile__button_type_edit {
   font-weight: 400;
 }
 
 .profile__button_type_logout {
   color: #EE3465;
-}
-
-
-.profile__button_invisible {
-  display: none;
 }

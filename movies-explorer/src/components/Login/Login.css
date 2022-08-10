@@ -1,4 +1,4 @@
-.login__label {
+/* .login__label {
   display: flex;
   flex-direction: column;
   font-weight: 400;
@@ -7,7 +7,7 @@
   color: #8B8B8B;
 }
 
-/* ---------------------------------- */
+
 
 .login__input {
   margin-top: 5px;
@@ -42,7 +42,7 @@
 
 .login__input_type_error {
   color: #EE3465;
-}
+} */
 
 /* ---------------------------------- */
 
