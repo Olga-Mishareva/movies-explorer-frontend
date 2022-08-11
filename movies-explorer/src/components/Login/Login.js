@@ -1,28 +1,24 @@
 import Auth from '../Auth/Auth';
 import FormInput from '../FormInput/FormInput';
+import useValidation from '../../utils/useValidation';
 import './Login.css';
 
 function Login({ loggedIn, login }) {
+  const { error, isValid, checkErrors } = useValidation();
 
   return (
     <Auth 
       title='Рады видеть!' name='login' submitBtn='Войти' 
       question='Еще не зарегистрированы?' path='signup' link='Регистрация'
-      loggedIn={loggedIn} login={login}>
+      loggedIn={loggedIn} login={login} isValid={isValid} checkErrors={checkErrors}>
 
-      {/* <label className='login__label login__label_type_email'>Email
-        <input className='login__input login__input_type_email login__input_type_error' 
-          type='email' name='email' required ></input> 
-      </label> */}
-      <FormInput name='email' type='email' label='Email'/>
-      <span className='login__error'></span>
+      <FormInput name='email' type='email' label='Email' 
+        placeholder='Введите ваш email'/>
+      <span className='login__error'>{error.email}</span>
 
-      {/* <label className='login__label login__label_type_password'>Пароль
-        <input className='login__input login__input_type_password login__input_type_' 
-          type='password' name='password' required></input> 
-      </label> */}
-      <FormInput name='password' type='password' label='Пароль'/>
-      <span className='login__error'></span>
+      <FormInput name='password' type='password' label='Пароль'
+        placeholder='Введите ваш пароль'/>
+      <span className='login__error'>{error.password}</span>
     </Auth>
   );
 }

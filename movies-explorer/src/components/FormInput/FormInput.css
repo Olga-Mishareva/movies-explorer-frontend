@@ -34,7 +34,7 @@
 
 .form-input__input {
   margin-top: 5px;
-  padding-bottom: 10px;
+  padding: 0 0 10px;
   border: none;
   border-bottom: 1px solid #424242;
   font-weight: 400;
@@ -63,16 +63,12 @@
   }
 }
 
-.form-input__input_type_error {
-  color: #EE3465;
-}
-
 /* ---------------------------------- */
 
 .form-input__input_type_profile {
   margin: 0;
   padding: 13px 0;
-  min-width: 50%;
+  min-width: 80%;
   min-height: 20px;
   text-align: end;
   color: #FFFFFF;
@@ -85,6 +81,16 @@
 }
 
 .form-input__input_type_profile:focus {
-  color: #4285F4;
   border: none;
+  font-size: 14px;
+}
+
+/* ---------------------------------- */
+
+.form-input__input_type_error {
+  color: #EE3465;
+}
+
+.form-input__input_type_error:focus {
+  color: #EE3465;
 }

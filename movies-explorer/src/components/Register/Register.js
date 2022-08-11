@@ -1,34 +1,28 @@
 import Auth from '../Auth/Auth';
 import FormInput from '../FormInput/FormInput';
+import useValidation from '../../utils/useValidation';
 import './Register.css';
 
 function Register({ loggedIn, login }) {
+  const { error, isValid, checkErrors } = useValidation();
+
   return (
     <Auth
       title='Добро пожаловать!' name='register' submitBtn='Зарегистрироваться' 
       question='Уже зарегистрированы?' path='signin' link='Войти' 
-      loggedIn={loggedIn}  login={login}>
+      loggedIn={loggedIn} login={login} isValid={isValid} checkErrors={checkErrors}>
 
-      {/* <label className='register__label register__label_type_name'>Имя
-        <input className='register__input register__input_type_name register__input_type_' defaultValue='Оля'
-          type='text' name='username' required minLength="2" maxLength="30"></input>
-      </label> */}
-      <FormInput name='name' type='text' label='Имя'/>
-      <span className='register__error'></span>
+      <FormInput name='username' type='text' label='Имя' minLength="2" maxLength="30"
+        placeholder='Как вас называть?'/>
+      <span className='register__error'>{error.username}</span>
 
-      {/* <label className='register__label register__label_type_email'>Email
-        <input className='register__input register__input_type_email register__input_type_error' defaultValue='om@gmail.c'
-          type='email' name='email' required></input> 
-      </label> */}
-      <FormInput name='email' type='email' label='Email'/>
-      <span className='register__error'>Что-то пошло не так...</span>
+      <FormInput name='email' type='email' label='Email'
+        placeholder='Ваш электронный ящик'/>
+      <span className='register__error'>{error.email}</span>
 
-      {/* <label className='register__label register__label_type_password'>Пароль
-        <input className='register__input register__input_type_password register__input_type_' defaultValue='111111' 
-          type='password' name='password' required></input> 
-      </label> */}
-      <FormInput name='password' type='password' label='Пароль'/>
-      <span className='register__error'></span>
+      <FormInput name='password' type='password' label='Пароль'
+        placeholder='Придумайте пароль'/>
+      <span className='register__error'>{error.password}</span>
       </Auth>
   );
 }
