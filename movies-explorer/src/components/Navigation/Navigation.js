@@ -13,8 +13,13 @@ function Navigation({ loggedIn,login }) {
 
   return (
     <div className="nav">
+
+      <button className={`nav__button nav__button_type_${!menuIsOpen ? 'burger' : 'close'} 
+        nav__button_${loggedIn ? '' : 'invisible'}`} 
+        type="button" onClick={handleMenu}></button>    
+      <div className={`nav__overlay nav__overlay_${menuIsOpen ? '' : 'invisible'}`}></div>
   
-      <nav className={`nav nav_type_logged-out nav_${loggedIn ? 'invisible' : ''}`}> 
+      <nav className={`nav nav__outside nav_${loggedIn ? 'invisible' : ''}`}> 
         <NavLink to="/signup" className="nav__link nav__link_type_register">
           Регистрация
         </NavLink>
@@ -23,33 +28,29 @@ function Navigation({ loggedIn,login }) {
         </NavLink>
       </nav>
 
-      <button className={`nav__button nav__button_type_${!menuIsOpen ? 'burger' : 'close'} 
-        nav__button_${loggedIn ? '' : 'invisible'}`} 
-        type="button" onClick={handleMenu}></button>    
-      <div className={`nav__side-menu nav__side-menu_${menuIsOpen ? '' : 'invisible'}`}> 
-        <nav className={`nav nav_type_logged-in nav_${loggedIn ? '' : 'invisible'}`}> 
-          <div className="nav__container">
-            <NavLink to="/" className='nav__link nav__link_type_home' 
-              onClick={handleMenu}>
-                Главная
-            </NavLink>
-            <NavLink to="/movies" className="nav__link nav__link_type_movies"
-              onClick={handleMenu}>
-                Фильмы
-            </NavLink>
-            <NavLink to="/saved-movies" className="nav__link nav__link_type_saved-movies" 
-              onClick={handleMenu}>
-                Сохранённые фильмы
-            </NavLink>
-          </div>
-          <NavLink to="/profile" className="nav__link nav__link_type_profile" 
+      <nav className={`nav nav__inside nav__inside_${menuIsOpen ? '' : 'closed'}
+        nav_${loggedIn ? '' : 'invisible'}`}> 
+        <div className="nav__container">
+          <NavLink to="/" className='nav__link nav__link_type_home' 
             onClick={handleMenu}>
-              Аккаунт
-            <img className="nav__user-icon" src={userIcon} alt="Иконка пользователя"></img>
+              Главная
           </NavLink>
-        </nav>
+          <NavLink to="/movies" className="nav__link nav__link_type_movies"
+            onClick={handleMenu}>
+              Фильмы
+          </NavLink>
+          <NavLink to="/saved-movies" className="nav__link nav__link_type_saved-movies" 
+            onClick={handleMenu}>
+              Сохранённые фильмы
+          </NavLink>
+        </div>
+        <NavLink to="/profile" className="nav__link nav__link_type_profile" 
+          onClick={handleMenu}>
+            Аккаунт
+          <img className="nav__user-icon" src={userIcon} alt="Иконка пользователя"></img>
+        </NavLink>
+      </nav>
 
-      </div>
     </div>
   );
 }

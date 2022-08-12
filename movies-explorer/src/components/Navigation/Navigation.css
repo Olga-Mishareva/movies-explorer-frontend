@@ -5,7 +5,7 @@
 
 /* ---------------------------------- */
 
-.nav_type_logged-out {
+.nav__outside {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -51,7 +51,7 @@
 /* ---------------------------------- */
 
 @media screen and (max-width: 769px) {
-  .nav__side-menu {
+  .nav__overlay {
     visibility: visible;
     position: fixed;
     top: 0;
@@ -59,20 +59,18 @@
     min-height: 100vh;
     min-width: 100vw;
     background-color: rgba(0, 0, 0, .3);
-    z-index: 1;
-    transition: opacity .2s ease-in;
+    transition: opacity .3s ease-in;
   }
-  .nav__side-menu_invisible {
+  .nav__overlay_invisible {
     visibility: hidden;
-    overflow: hidden;
     opacity: 0;
-    transition: visibility .1s ease-in, opacity .2s ease-in;
+    transition: visibility .3s ease-in, opacity .3s ease-in;
   }
 }
 
 /* ---------------------------------- */
 
-.nav_type_logged-in {
+.nav__inside {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -81,7 +79,7 @@
 }
 
 @media screen and (max-width: 769px) {
-  .nav_type_logged-in {
+  .nav__inside {
     min-height: 100vh;
     min-width: 65vw;
     display: flex;
@@ -91,14 +89,20 @@
     top: 0;
     right: 0;
     background-color: #202020;
+    z-index: 1;
+    transition: transform .3s ease-in;
+  }
+  .nav__inside_closed {
+    transform: translate(100%, 0);
   }
 }
 
 @media screen and (max-width: 480px) {
-  .nav_type_logged-in {
+  .nav__inside {
     min-width: 100vw;
   }
 }
+
 
 /* ---------------------------------- */
 
