@@ -10,7 +10,6 @@ function Navigation({ loggedIn,login }) {
     setMenuIsOpen(!menuIsOpen);
   }
 
-
   return (
     <div className="nav">
 
@@ -28,7 +27,7 @@ function Navigation({ loggedIn,login }) {
         </NavLink>
       </nav>
 
-      <nav className={`nav nav__inside nav__inside_${menuIsOpen ? '' : 'closed'}
+      <nav className={`nav nav__inside nav__inside_${!menuIsOpen ? 'closed' : ''}
         nav_${loggedIn ? '' : 'invisible'}`}> 
         <div className="nav__container">
           <NavLink to="/" className='nav__link nav__link_type_home' 

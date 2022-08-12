@@ -7,7 +7,7 @@
   align-items: stretch;
 }
 
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 769px) {
   .project {
     padding: 90px 0;
     max-width: calc(100% - 100px);
@@ -31,7 +31,7 @@
   column-gap: 30px;
 }
 
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 769px) {
   .project__description {
     padding-bottom: 93px;
   }
@@ -71,7 +71,7 @@
   line-height: 20px;
 }
 
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 769px) {
   .project__text {
     font-size: 12px;
     line-height: 18px;

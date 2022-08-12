@@ -5,6 +5,7 @@
   text-rendering: optimizeLegibility;
   background-color: #202020;
   min-height: 100vh;
+  position: relative;
 }
 
 .page__list {

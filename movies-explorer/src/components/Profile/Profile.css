@@ -49,47 +49,6 @@
 
 /* ---------------------------------- */
 
-/* .profile__label {
-  min-width: 410px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 14px;
-}
-
-@media screen and (max-width: 480px) {
-  .profile__label{
-    min-width: 260px;
-  }
-}
-
-.profile__label_type_name {
-  border-bottom: 1px solid #424242;
-}
-
-.profile__input {
-  padding: 13px 0;
-  min-width: 50%;
-  min-height: 20px;
-  text-align: end;
-  color: #FFFFFF;
-  border: none;  
-  background-color: transparent;
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 14px;
-  outline: none;
-}
-
-.profile__input:focus {
-  color: #4285F4;
-} */
-
-/* ---------------------------------- */
-
 .profile__edit-container {
   width: 410px;
   height: 160px;

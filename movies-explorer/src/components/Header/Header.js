@@ -9,8 +9,10 @@ function Header({ loggedIn, login }) {
   return (
     <header className={`header header_type_${location.pathname === '/' ? 'main' : ''}`}>
       <div className="header__container"> 
-        <Link to='/' className="header__logo-link"><img className="logo" src={logo} alt="Логотип"></img></Link>
-        <Navigation loggedIn={loggedIn}  login={login}/> 
+        <Link to='/' className="header__logo-link">
+          <img className="logo" src={logo} alt="Логотип"></img>
+        </Link>
+        <Navigation loggedIn={loggedIn} login={login}/> 
       </div>
     </header>
   );
