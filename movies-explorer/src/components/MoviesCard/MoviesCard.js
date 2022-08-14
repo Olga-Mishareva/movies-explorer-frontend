@@ -13,7 +13,7 @@ function MoviesCard() {
 
   return (
     <li className='card'> 
-      <img className='card__image' src={movieImage} alt='#'></img>
+      <img className='card__image' src={movieImage} alt='Изображение к фильму'></img>
       <div className='card__container'>
         <h2 className='card__title'>33 слова о дизайне</h2>
         <button className={`card__like 
