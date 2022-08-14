@@ -1,6 +1,4 @@
-// import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import {Helmet} from "react-helmet";
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -12,15 +10,10 @@ import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 // import InfoPopup from '../InfoPopup/InfoPopup';
 import useLogin from '../../utils/useLogin';
-// import { lang } from '../../constants/constants';
 import './App.css';
 
 function App() {
   const { loggedIn, login, logout } = useLogin();
-
-  // useEffect(() => {
-  //   document.documentElement.lang = lang;
-  // }, []);
 
   return (
     <div className='page'>
