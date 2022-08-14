@@ -99,3 +99,8 @@
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
+
+.search__submit-btn:hover {
+  cursor: pointer;
+  opacity: .7;
+}
