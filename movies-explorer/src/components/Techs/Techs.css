@@ -2,6 +2,12 @@
   background-color: #272727;
 }
 
+@media screen and (max-width: 480px) {
+  .techs {
+    background-color: #202020;
+  }
+}
+
 .techs__container {
   display: flex;
   flex-direction: column;
