@@ -16,7 +16,7 @@ function Login({ loggedIn, login }) {
         placeholder='Введите ваш email'/>
       <span className='login__error'>{error.email}</span>
 
-      <FormInput name='password' type='password' label='Пароль'
+      <FormInput name='password' type='password' label='Пароль' minLength='4'
         placeholder='Введите ваш пароль'/>
       <span className='login__error'>{error.password}</span>
     </Auth>

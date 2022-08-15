@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-function useValidation(input, errorMessage) {
+function useValidation() {
   const [error, setError] = useState({});
   const [isValid, setIsValid] = useState(false);
 
   function checkErrors(e) {
     if (!e.currentTarget.checkValidity()) {
-      setError({ ...error, [e.target.name]: e.target.validationMessage });
+      if (e.target.validity.patternMismatch) {
+        setError({ ...error, [e.target.name]: 'Имя может содержать только буквы, пробел или дефис.' });
+      }
+      else {
+        setError({ ...error, [e.target.name]: e.target.validationMessage });
+      }
       setIsValid(false);
     }
     else {

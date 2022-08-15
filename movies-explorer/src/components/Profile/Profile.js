@@ -25,7 +25,7 @@ function Profile({ logout }) {
         onChange={checkErrors}>
         <h2 className='profile__greeting'>Привет, Оля!</h2>
         <FormInput 
-          name='username' type='text' sort='profile' label='Имя' minLength="2" maxLength="30"
+          name='username' type='text' sort='profile' label='Имя' minLength='2' maxLength='30'
           placeholder='Новое имя' disabled={inputIsDisabled}/>
         <FormInput 
           name='email' type='email' sort='profile' label='Email'

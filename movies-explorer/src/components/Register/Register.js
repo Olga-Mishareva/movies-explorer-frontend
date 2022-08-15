@@ -12,7 +12,7 @@ function Register({ loggedIn, login }) {
       question='Уже зарегистрированы?' path='signin' link='Войти' 
       loggedIn={loggedIn} login={login} isValid={isValid} checkErrors={checkErrors}>
 
-      <FormInput name='username' type='text' label='Имя' minLength="2" maxLength="30"
+      <FormInput name='username' type='text' label='Имя' minLength='2' maxLength='30'
         placeholder='Как вас называть?'/>
       <span className='register__error'>{error.username}</span>
 
@@ -20,7 +20,7 @@ function Register({ loggedIn, login }) {
         placeholder='Ваш электронный ящик'/>
       <span className='register__error'>{error.email}</span>
 
-      <FormInput name='password' type='password' label='Пароль'
+      <FormInput name='password' type='password' label='Пароль' minLength='4'
         placeholder='Придумайте пароль'/>
       <span className='register__error'>{error.password}</span>
       </Auth>
