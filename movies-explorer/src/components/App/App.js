@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -11,12 +12,15 @@ import NoMatch from '../NoMatch/NoMatch';
 // import InfoPopup from '../InfoPopup/InfoPopup';
 import useLogin from '../../utils/useLogin';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({});
   const { loggedIn, login, logout } = useLogin();
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className='page'>
       <Header loggedIn={loggedIn} login={login}/>
       
@@ -49,6 +53,7 @@ function App() {
 
       <Footer />
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
