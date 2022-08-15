@@ -10,6 +10,7 @@ import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 // import InfoPopup from '../InfoPopup/InfoPopup';
 import useLogin from '../../utils/useLogin';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 function App() {
@@ -20,13 +21,28 @@ function App() {
       <Header loggedIn={loggedIn} login={login}/>
       
       <Routes>
+        
         <Route path='/' element={<Main />} />
-        <Route path='movies' element={<Movies />} />
-        <Route path='saved-movies' element={<SavedMovies />} />
-        <Route path='profile' element={<Profile loggedIn={loggedIn} logout={logout}/>} />
+
+        <Route path='movies' element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Movies />
+          </ProtectedRoute>} />
+
+        <Route path='saved-movies' element={ 
+          <ProtectedRoute loggedIn={loggedIn}>
+            <SavedMovies />
+          </ProtectedRoute>} />
+
+        <Route path='profile' element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Profile loggedIn={loggedIn} logout={logout}/>
+          </ProtectedRoute>} />
+
         <Route path='signup' element={<Register loggedIn={loggedIn} login={login}/>} />
         <Route path='signin' element={<Login loggedIn={loggedIn} login={login}/>} />
         <Route path='*' element={<NoMatch />} />
+
       </Routes>
 
       {/* <InfoPopup /> */}
