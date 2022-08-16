@@ -2,13 +2,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 import logo from '../../images/logo.svg';
 
-function Auth({ children, title, name, submitBtn, question, path, link, login, checkErrors, isValid }) {
+function Auth({ children, title, name, submitBtn, question, path, link, checkErrors, isValid, onRegister, onLogin, registerData, loginData }) {
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  function handleRegisterSubmit(e) {
     e.preventDefault();
-    login();
-    navigate('/');
+    onRegister(registerData);
+  }
+
+  function handleLoginSubmit(e) {
+    e.preventDefault();
+    onLogin(loginData);
   }
 
   return (
@@ -16,9 +20,9 @@ function Auth({ children, title, name, submitBtn, question, path, link, login, c
       <div className={`auth__container auth__container_type_${name}`}>
 
         <form className={`auth__form auth__form_type_${name}`} 
-          name={name} 
-          id={name} 
-          onSubmit={handleSubmit} onChange={checkErrors}>
+          name={name} id={name} 
+          onChange={checkErrors}
+          onSubmit={name === 'login' ? handleLoginSubmit : handleRegisterSubmit}>
         <Link to='/' className="auth__link auth__link_type_logo">
           <img className="logo" src={logo} alt="Логотип"></img>
         </Link>

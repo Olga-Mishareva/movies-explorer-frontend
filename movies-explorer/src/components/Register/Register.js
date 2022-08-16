@@ -1,29 +1,39 @@
+import { useState } from "react";
 import Auth from '../Auth/Auth';
 import FormInput from '../FormInput/FormInput';
 import useValidation from '../../utils/useValidation';
 import './Register.css';
 
-function Register({ loggedIn, login }) {
+function Register({ loggedIn, onRegister }) {
   const { error, isValid, checkErrors } = useValidation();
+  const [userData, setUserData] = useState({});
+
+  function handleUserData(name, value) {
+    setUserData({ ...userData, [name]: value});
+  }
 
   return (
     <Auth
       title='Добро пожаловать!' name='register' submitBtn='Зарегистрироваться' 
       question='Уже зарегистрированы?' path='signin' link='Войти' 
-      loggedIn={loggedIn} login={login} isValid={isValid} checkErrors={checkErrors}>
+      loggedIn={loggedIn} isValid={isValid} registerData={userData}
+      onRegister={onRegister} checkErrors={checkErrors}>   {/* нужно ли передавать loggedIn */}
 
       <FormInput name='username' type='text' label='Имя' minLength='2' maxLength='30'
-        placeholder='Как вас называть?'/>
+        placeholder='Как вас называть?'
+        setUserData={handleUserData} isValid={isValid}/>
       <span className='register__error'>{error.username}</span>
 
       <FormInput name='email' type='email' label='Email'
-        placeholder='Ваш электронный ящик'/>
+        placeholder='Вашв электронная почта'
+        setUserData={handleUserData} isValid={isValid}/>
       <span className='register__error'>{error.email}</span>
 
       <FormInput name='password' type='password' label='Пароль' minLength='4'
-        placeholder='Придумайте пароль'/>
+        placeholder='Придумайте пароль'
+        setUserData={handleUserData} isValid={isValid}/>
       <span className='register__error'>{error.password}</span>
-      </Auth>
+    </Auth>
   );
 }
 

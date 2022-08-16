@@ -1,14 +1,22 @@
-import { useState } from 'react';
-import { usernameRegex } from '../../constants/constants';
+import { useState, useEffect } from 'react';
+import { userNameRegex } from '../../constants/constants';
 import './FormInput.css';
 
-function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder }) { 
+function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData, isValid }) { 
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
 
   function handleInputValue(e) {
-    setValue({ ...value, [e.target.name]: e.target.value});
+    setValue({ ...value, [e.target.name]: e.target.value });
   }
+
+  // useEffect(() => {
+  //   if (isValid) {
+  //     setUserData({ ...value, value })
+  //   }
+  // }, [isValid]);
+
+  // console.log(value)
 
   function handleFocus(e) {
     e.target.select();
@@ -17,6 +25,7 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
   function checkInputValidity(e) {
     if (e.target.checkValidity()) {
       setIsInputValid(true);
+      setUserData(e.target.name, e.target.value);
     }
     else {
       setIsInputValid(false);
@@ -38,7 +47,7 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
         onChange={handleInputValue}
         onInput={checkInputValidity}
         value={value[name] || ''}
-        pattern={name === 'username' ? usernameRegex : null} > 
+        pattern={name === 'username' ? userNameRegex : null} > 
       </input>
     </label>
   );
