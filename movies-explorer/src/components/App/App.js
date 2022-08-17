@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -9,7 +9,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
-// import InfoPopup from '../InfoPopup/InfoPopup';
+import InfoPopup from '../InfoPopup/InfoPopup';
 import useLogin from '../../utils/useLogin';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -17,12 +17,31 @@ import './App.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const { loggedIn, login, logout } = useLogin();
+  const navigate = useNavigate();
+  const { loggedIn, checkAuth, loggedUserData, isConfirm, isInfoPopupOpen, setIsInfoPopupOpen, authError, handleRegister, handleLogin, handleLogout } = useLogin();
+
+  useEffect(() => {
+    checkAuth();
+  },[]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      setCurrentUser(loggedUserData);
+      navigate('/');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn]);
+
+  console.log(loggedUserData)
+
+  function closeInfoPopup() {
+    setIsInfoPopupOpen(false);
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className='page'>
-      <Header loggedIn={loggedIn} login={login}/>
+      <Header loggedIn={loggedIn}/>
       
       <Routes>
         
@@ -40,16 +59,17 @@ function App() {
 
         <Route path='profile' element={
           <ProtectedRoute loggedIn={loggedIn}>
-            <Profile loggedIn={loggedIn} logout={logout}/>
+            <Profile loggedIn={loggedIn} onLogout={handleLogout}/>
           </ProtectedRoute>} />
 
-        <Route path='signup' element={<Register loggedIn={loggedIn} login={login}/>} />
-        <Route path='signin' element={<Login loggedIn={loggedIn} login={login}/>} />
+        <Route path='signup' element={<Register loggedIn={loggedIn} onRegister={handleRegister}/>} />
+        <Route path='signin' element={<Login loggedIn={loggedIn} onLogin={handleLogin}/>} />
         <Route path='*' element={<NoMatch />} />
 
       </Routes>
 
-      {/* <InfoPopup /> */}
+      <InfoPopup isConfirm={isConfirm} authError={authError} isOpen={isInfoPopupOpen} onClose={closeInfoPopup}/>
+      {/* {isRegisterPopupOpen && <InfoPopup isSignup={isSignup} authError={authError} isOpen={setIsRegisterPopupOpen}/>} */}
 
       <Footer />
     </div>

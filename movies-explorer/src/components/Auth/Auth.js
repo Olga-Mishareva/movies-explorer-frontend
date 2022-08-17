@@ -8,11 +8,13 @@ function Auth({ children, title, name, submitBtn, question, path, link, checkErr
   function handleRegisterSubmit(e) {
     e.preventDefault();
     onRegister(registerData);
+
   }
 
   function handleLoginSubmit(e) {
     e.preventDefault();
     onLogin(loginData);
+
   }
 
   return (

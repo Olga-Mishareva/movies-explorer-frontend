@@ -1,19 +1,26 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FormInput from '../FormInput/FormInput';
 import useValidation from '../../utils/useValidation';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
-function Profile({ logout }) {
+function Profile({ onLogout }) {
+  const currentUser = useContext(CurrentUserContext);
   const { error, isValid, checkErrors } = useValidation();
   const [inputIsDisabled, setInputIsDisabled] = useState(true);
   
   function handleInput() {
     setInputIsDisabled(false);
   }
+  console.log(currentUser)
 
   function handleSubmit(e) {
     e.preventDefault();
     setInputIsDisabled(true);
+  }
+
+  function handleLogout() {
+    onLogout(currentUser.email);
   }
 
   return (
@@ -57,7 +64,7 @@ function Profile({ logout }) {
         <button className={`profile__button profile__button_type_logout 
           profile__button_${inputIsDisabled ? '' : 'invisible'}`} 
           type='button' 
-          onMouseDown={logout}>
+          onMouseDown={handleLogout}>
             Выйти из аккаунта
         </button>
       </div>
