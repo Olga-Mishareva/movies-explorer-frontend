@@ -10,15 +10,18 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 import InfoPopup from '../InfoPopup/InfoPopup';
-import useLogin from '../../utils/useLogin';
+import useLogin from '../../utils/useAuth';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
+
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
-  const { loggedIn, checkAuth, loggedUserData, isConfirm, isInfoPopupOpen, setIsInfoPopupOpen, authError, handleRegister, handleLogin, handleLogout } = useLogin();
+  const { loggedIn, loggedUserData, authConfirm, authPopup, authError, checkAuth, changeAuthPopup, handleRegister, handleLogin, handleLogout } = useLogin();
+  // const { registerConfirm, registerPopup, registerError, changeRegisterPopup} = useRegister();
+
 
   useEffect(() => {
     checkAuth();
@@ -33,9 +36,10 @@ function App() {
   }, [loggedIn]);
 
   console.log(loggedUserData)
+ 
 
   function closeInfoPopup() {
-    setIsInfoPopupOpen(false);
+    changeAuthPopup(false);
   }
 
   return (
@@ -62,13 +66,13 @@ function App() {
             <Profile loggedIn={loggedIn} onLogout={handleLogout}/>
           </ProtectedRoute>} />
 
-        <Route path='signup' element={<Register loggedIn={loggedIn} onRegister={handleRegister}/>} />
+        <Route path='signup' element={<Register loggedIn={loggedIn} isConfirm={authConfirm} onRegister={handleRegister}/>} />
         <Route path='signin' element={<Login loggedIn={loggedIn} onLogin={handleLogin}/>} />
         <Route path='*' element={<NoMatch />} />
 
       </Routes>
 
-      <InfoPopup isConfirm={isConfirm} authError={authError} isOpen={isInfoPopupOpen} onClose={closeInfoPopup}/>
+      <InfoPopup isConfirm={[authConfirm]} error={[authError]} isOpen={[authPopup]} onClose={closeInfoPopup}/>
       {/* {isRegisterPopupOpen && <InfoPopup isSignup={isSignup} authError={authError} isOpen={setIsRegisterPopupOpen}/>} */}
 
       <Footer />

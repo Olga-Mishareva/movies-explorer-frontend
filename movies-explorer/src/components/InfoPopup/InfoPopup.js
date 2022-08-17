@@ -1,16 +1,17 @@
 import { useEffect } from "react";
-import useLogin from '../../utils/useLogin';
 import './InfoPopup.css';
 
-function InfoPopup({ isConfirm, authError, isOpen, onClose }) {
-  
+function InfoPopup({ isConfirm, error, isOpen, onClose }) {
+  const [ authConfirm ] = isConfirm;
+  const [ authError ] = error;
+  const [ authPopup ] = isOpen;
 
   return (
-    <div className={`popup popup_${isOpen ? 'opened' : ''}`}>
+    <div className={`popup popup_${authPopup ? 'opened' : ''}`}>
       <div className='popup__container'>
       <button className='popup__close-button' type='button' onMouseDown={onClose}></button>
-        <div className={`popup__image popup__image_type_${isConfirm ? 'confirm' : 'reject'}`}></div>
-        <h2 className='popup__message'>{isConfirm ? 'Вы успешно зарегистрированы.' : authError}</h2>
+        <div className={`popup__image popup__image_type_${authConfirm ? 'confirm' : 'reject'}`}></div>
+        <h2 className='popup__message'>{authConfirm ? 'Вы успешно зарегистрированы.' : authError}</h2>
     </div>
    </div>
   ) 
