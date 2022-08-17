@@ -1,10 +1,15 @@
-export const baseURL = 'https://api.movies.om.nomoredomains.xyz';
+// export const baseURL = 'https://api.movies.om.nomoredomains.xyz';
+export const baseURL = 'http://localhost:3000';
 
 function getResponseData(res) {
-  if (res.ok) res.json();
+  if (res.ok) {
+    return res.json();
+  }
   else {
     return res.json()
-      .then(data => new Error(data.message));
+      .then(data => {
+        throw new Error(data.message);
+      });
   }
 }
 
