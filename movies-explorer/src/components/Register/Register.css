@@ -1,0 +1,15 @@
+.register__error {
+  display: block;
+  margin-top: 4px;
+  min-height: 24px;
+  color: #EE3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+@media screen and (max-width: 480px) {
+  .register__error {
+    align-self: flex-start;
+  }
+}

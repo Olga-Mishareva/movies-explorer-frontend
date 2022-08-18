@@ -1,0 +1,23 @@
+import './Promo.css';
+import landingLogo from '../../images/landing-logo.svg';
+
+function Promo({ projectRef }) {
+
+
+  function handleScroll() {
+    projectRef.current.scrollIntoView();
+  }
+
+  return (
+    <section className="promo">
+      <div className='promo__container'>
+        <h1 className='promo__title'>Учебный проект студента факультета Веб&#8209;разработки.</h1>
+        <p className='promo__subtitle'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
+        <button className='promo__button' type='button' onMouseDown={handleScroll}>Узнать больше</button>
+      </div>
+      <img className='promo__langing-logo' src={landingLogo} alt='Логотип главной страницы'></img>
+    </section>
+  );
+}
+
+export default Promo;

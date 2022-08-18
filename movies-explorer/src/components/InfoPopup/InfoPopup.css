@@ -1,0 +1,110 @@
+.popup {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, .8);
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .5s ease-out, visibility .2s ease-out;
+}
+
+/* ---------------------------------- */
+
+.popup_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .2s ease-out;
+}
+
+/* ---------------------------------- */
+
+.popup__container {
+  width: 530px;
+  min-height: 330px;
+  margin: 0 auto;
+  background-color: #202020;
+  position: fixed;
+  top: calc(100%/2 - 165px);
+  left: calc(100%/2 - 265px);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 580px) {
+  .popup__container {
+    width: 280px;
+    min-height: 320px;
+    top: calc(100%/2 - 161px);
+    left: calc(100%/2 - 141px);
+  }
+}
+
+/* ---------------------------------- */
+
+.popup__close-button {
+  background-image: url(../../images/close-icon.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: -40px;
+  left: 538px;
+  padding: 0;
+  transition: opacity .2s ease-in;
+}
+
+.popup__close-button:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    top: -32px;
+    left: 260px;
+  }
+}
+
+/* ---------------------------------- */
+
+.popup__image {
+  width: 120px;
+  height: 120px;
+  margin: 50px auto;
+}
+
+.popup__image_type_confirm {
+  background-color: #3DDC84;
+  mask-image: url(../../images/confirm.svg);
+}
+
+.popup__image_type_reject {
+  background-color: #EE3465;
+  mask-image: url(../../images/reject.svg);
+}
+
+/* ---------------------------------- */
+
+.popup__message {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  margin: 0 36px;
+}
+
+@media screen and (max-width: 580px) {
+  .popup__message {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 22px;
+  }
+}

@@ -1,0 +1,133 @@
+.profile {
+  min-height: calc(100vh - 74px - 144px);
+  padding: 74px 0 65px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 821px) {
+  .profile {
+    min-height: calc(100vh - 74px - 54vh);
+    padding: 25vh 0 25vh; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    min-height: calc(100vh - 74px - 130px);
+    padding: 70px 0 40px; 
+  }
+}
+
+/* ---------------------------------- */
+
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------------------------------- */
+
+.profile__greeting {
+  margin: 0 0 25%;
+}
+
+@media screen and (max-width: 821px) {
+  .profile__greeting {
+    margin: 0 0 96px; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile__greeting{
+    margin: 0 0 80px; 
+  }
+}
+
+/* ---------------------------------- */
+
+.profile__edit-container {
+  width: 410px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 480px) {
+  .profile__edit-container{
+    width: 260px;
+  }
+}
+
+/* ---------------------------------- */
+
+.profile__error {
+  display: block;
+  color: #EE3465;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* ---------------------------------- */
+
+.profile__button {
+  border: none;
+  color: #FFFFFF;
+  background-color: transparent;
+  padding: 8px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  transition: opacity .2s ease-in;
+}
+
+.profile__button:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.profile__button_invisible {
+  display: none;
+}
+
+/* ---------------------------------- */
+
+.profile__button_type_submit {
+  font-size: 14px;
+  background-color: #4285F4;
+  width: 100%;
+  height: 45px;
+  padding: 0;
+  border-radius: 3px;
+}
+
+.profile__button_type_submit:disabled {
+  cursor: auto;
+  background-color: #DADADA;
+  opacity: 1;
+  color: #8B8B8B;
+}
+
+/* ---------------------------------- */
+
+.profile__button_type_cancel {
+  margin-top: 5px;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.profile__button_type_edit {
+  font-weight: 400;
+}
+
+.profile__button_type_logout {
+  color: #EE3465;
+}
