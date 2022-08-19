@@ -41,3 +41,21 @@ export function logout(email) {
   })
     .then(res => getResponseData(res))
 }
+
+export function getUser() {
+  return fetch(`${baseURL}/users/me`, {
+    method: 'GET',
+    credentials: 'include',
+  })
+   .then(res => getResponseData(res))
+}
+
+export function updateUser(name, email) {
+  return fetch(`${baseURL}/users/me`, {
+    method: 'PATH',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email })
+  })
+   .then(res => getResponseData(res))
+}

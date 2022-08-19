@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { register, login, logout } from './MainApi';
 import useInfoPopup from "./useInfoPopup";
 
-function useLogin() {
+function useAuth() {
   const { 
     isConfirm: authConfirm, 
     isInfoPopupOpen: authPopup, 
@@ -62,7 +62,7 @@ function useLogin() {
     if (localStorage.getItem('email')) {
       // console.log(localStorage.getItem('email'))
       setLoggedIn(true);
-      navigate('/');
+      navigate('/movies');
     }
   }
 
@@ -95,4 +95,4 @@ function useLogin() {
   }
 }
 
-export default useLogin;
+export default useAuth;

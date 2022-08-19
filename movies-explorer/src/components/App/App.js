@@ -10,7 +10,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 import InfoPopup from '../InfoPopup/InfoPopup';
-import useLogin from '../../utils/useAuth';
+import useAuth from '../../utils/useAuth';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
@@ -19,9 +19,18 @@ import './App.css';
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
-  const { loggedIn, loggedUserData, authConfirm, authPopup, authError, checkAuth, changeAuthPopup, handleRegister, handleLogin, handleLogout } = useLogin();
-  // const { registerConfirm, registerPopup, registerError, changeRegisterPopup} = useRegister();
-
+  const { 
+    loggedIn, 
+    loggedUserData, 
+    authConfirm, 
+    authPopup, 
+    authError, 
+    checkAuth, 
+    changeAuthPopup, 
+    handleRegister, 
+    handleLogin, 
+    handleLogout 
+  } = useAuth();
 
   useEffect(() => {
     checkAuth();
@@ -30,7 +39,7 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       setCurrentUser(loggedUserData);
-      navigate('/');
+      navigate('/movies');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
