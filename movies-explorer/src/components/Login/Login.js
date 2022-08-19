@@ -7,15 +7,6 @@ import './Login.css';
 function Login({ loggedIn, onLogin }) {
   const { error, isValid, checkErrors } = useValidation();
   const [userData, setUserData] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  function handleSubmitState() {
-    setIsSubmitted(true);
-  }
-
-  useEffect(() => {
-    setIsSubmitted(false);
-  }, [isValid]);
 
   function handleUserData(name, value) {
     setUserData({ ...userData, [name]: value});
@@ -26,17 +17,15 @@ function Login({ loggedIn, onLogin }) {
       title='Рады видеть!' name='login' submitBtn='Войти' 
       question='Еще не зарегистрированы?' path='signup' link='Регистрация'
       loggedIn={loggedIn} isValid={isValid} loginData={userData} 
-      onLogin={onLogin} handleSubmitState={handleSubmitState} checkErrors={checkErrors}>  {/* нужно ли передавать loggedIn */}
+      onLogin={onLogin} checkErrors={checkErrors}>  {/* нужно ли передавать loggedIn */}
 
       <FormInput name='email' type='email' label='Email' 
         placeholder='Введите ваш email'
-        isSubmitted={isSubmitted}
         setUserData={handleUserData} />
       <span className='login__error'>{error.email}</span>
 
       <FormInput name='password' type='password' label='Пароль' minLength='4'
         placeholder='Введите ваш пароль'
-        isSubmitted={isSubmitted}
         setUserData={handleUserData} />
       <span className='login__error'>{error.password}</span>
     </Auth>

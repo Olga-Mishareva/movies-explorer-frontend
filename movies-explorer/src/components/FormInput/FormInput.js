@@ -2,22 +2,12 @@ import { useState, useEffect } from 'react';
 import { userNameRegex } from '../../constants/constants';
 import './FormInput.css';
 
-function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData, isValid, isSubmitted }) { 
+function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData, isValid }) { 
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
 
   function handleInputValue(e) {
     setValue({ ...value, [e.target.name]: e.target.value });
-  }
-
-  useEffect(() => { 
-    if (isSubmitted) {
-      cleanInputs();
-    }
-  }, [isSubmitted]);
-
-  function cleanInputs() {
-    setValue({});
   }
 
   function handleFocus(e) {
