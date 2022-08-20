@@ -10,6 +10,7 @@
 
 @media screen and (max-width: 480px) {
   .register__error {
+    max-width: 260px;
     align-self: flex-start;
   }
 }
