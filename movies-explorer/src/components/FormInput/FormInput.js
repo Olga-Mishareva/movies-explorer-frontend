@@ -4,19 +4,11 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './FormInput.css';
 
 function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData, isValid }) { 
-  const currentUser = useContext(CurrentUserContext);
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
 
   function handleInputValue(e) {
     setValue({ ...value, [e.target.name]: e.target.value });
-  }
-
-  function handleFocus(e) {
-    e.target.select();
-  }
-
-  function checkInputValidity(e) {
     if (e.target.checkValidity()) {
       setIsInputValid(true);
       setUserData(e.target.name, e.target.value);
@@ -24,6 +16,10 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
     else {
       setIsInputValid(false);
     }
+  }
+
+  function handleFocus(e) {
+    e.target.select();
   }
 
   return (
@@ -34,13 +30,11 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
         name={name} 
         required 
         minLength={minLength} 
-        maxLength={maxLength} 
         placeholder={placeholder}
         disabled={disabled} 
         onFocus={handleFocus} 
         onChange={handleInputValue}
-        onInput={checkInputValidity}
-        value={(sort === 'profile' ? currentUser[name] : value[name]) || ''}
+        value={value[name] || ''}
         pattern={name === 'username' ? userNameRegex : null} > 
       </input>
     </label>

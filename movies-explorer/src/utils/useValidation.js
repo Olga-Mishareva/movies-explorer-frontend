@@ -5,9 +5,9 @@ function useValidation() {
   const [isValid, setIsValid] = useState(false);
 
   function checkErrors(e) {
-    if (!e.currentTarget.checkValidity()) {
+    if (!e.target.checkValidity()) {
       if (e.target.validity.patternMismatch) {
-        setError({ ...error, [e.target.name]: 'Имя может содержать только буквы, пробел или дефис.' });
+        setError({ ...error, [e.target.name]: 'Имя может содержать только буквы, пробел или дефис и должно быть не менее двух символов.' });
       }
       else {
         setError({ ...error, [e.target.name]: e.target.validationMessage });
@@ -20,7 +20,7 @@ function useValidation() {
     }
   }
 
-  return { error, isValid, checkErrors };
+  return { error, isValid, setError, checkErrors };
 }
 
 export default useValidation;

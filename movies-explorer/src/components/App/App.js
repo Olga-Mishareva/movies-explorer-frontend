@@ -13,7 +13,7 @@ import InfoPopup from '../InfoPopup/InfoPopup';
 import useAuth from '../../utils/useAuth';
 import useInfoPopup from '../../utils/useInfoPopup';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { getUser } from '../../utils/MainApi';
+import { getUser, updateUser } from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
@@ -48,7 +48,6 @@ function App() {
     if (loggedIn) {
       getUser()
         .then(user => {
-          console.log(user)
           setCurrentUser({
             _id: user._id, 
             username: user.name, 
@@ -62,6 +61,22 @@ function App() {
         })
     }
   }, [loggedIn]);
+
+  function updateUserData({ name, email }) {
+    updateUser(name, email)
+      .then(data => {
+        setCurrentUser({ ...currentUser,
+          username: data.name, 
+          email: data.email
+        })
+      })
+      .catch(err => {
+        changeProfileError(err.message);
+        changeProfilePopup(true);
+      })
+  }
+
+  // console.log(currentUser)
  
 
   function closeInfoPopup() {
@@ -89,7 +104,7 @@ function App() {
 
         <Route path='profile' element={
           <ProtectedRoute loggedIn={loggedIn}>
-            <Profile loggedIn={loggedIn} onLogout={handleLogout}/>
+            <Profile loggedIn={loggedIn} onLogout={handleLogout} onUpdate={updateUserData}/>
           </ProtectedRoute>} />
 
         <Route path='signup' element={<Register loggedIn={loggedIn} isConfirm={authConfirm} onRegister={handleRegister}/>} />

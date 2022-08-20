@@ -24,9 +24,9 @@ function Auth({ children, title, name, submitBtn, question, path, link, checkErr
           name={name} id={name} 
           onChange={checkErrors}
           onSubmit={name === 'login' ? handleLoginSubmit : handleRegisterSubmit}>
-        <Link to='/' className="auth__link auth__link_type_logo">
-          <img className="logo" src={logo} alt="Логотип"></img>
-        </Link>
+          <Link to='/' className="auth__link auth__link_type_logo">
+            <img className="logo" src={logo} alt="Логотип"></img>
+          </Link>
           <h2 className={`auth__greeting auth__greeting_type_${name}`}>{title}</h2>
           {children}
         </form>

@@ -52,7 +52,7 @@ export function getUser() {
 
 export function updateUser(name, email) {
   return fetch(`${baseURL}/users/me`, {
-    method: 'PATH',
+    method: 'PATCH',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email })

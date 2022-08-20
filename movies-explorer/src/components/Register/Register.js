@@ -19,7 +19,7 @@ function Register({ loggedIn, onRegister, isConfirm }) {
       loggedIn={loggedIn} isValid={isValid} registerData={userData}
       onRegister={onRegister} isConfirm={isConfirm} checkErrors={checkErrors}>   {/* нужно ли передавать loggedIn */}
 
-      <FormInput name='username' type='text' label='Имя' minLength='2' maxLength='30'
+      <FormInput name='username' type='text' label='Имя'
         placeholder='Как вас называть?'
         setUserData={handleUserData} isValid={isValid}/>
       <span className='register__error'>{error.username}</span>

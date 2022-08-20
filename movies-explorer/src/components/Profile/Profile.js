@@ -1,20 +1,38 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import FormInput from '../FormInput/FormInput';
 import useValidation from '../../utils/useValidation';
+import { userNameRegex } from '../../constants/constants';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
-function Profile({ onLogout }) {
+function Profile({ onLogout, onUpdate }) {
   const currentUser = useContext(CurrentUserContext);
-  const { error, isValid, checkErrors } = useValidation();
+  const { error, isValid, setError, checkErrors } = useValidation();
+  const inputRef = useRef();
+
   const [inputIsDisabled, setInputIsDisabled] = useState(true);
+  const [isInputValid, setIsInputValid] = useState(true);
+  const [value, setValue] = useState({});
+
+  useEffect(() => {
+    setValue(currentUser);
+  }, []);
   
   function handleInput() {
     setInputIsDisabled(false);
   }
 
+  function handleCansel() {
+    setValue(currentUser);
+    setError({});
+    setIsInputValid(true);
+    setInputIsDisabled(true);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+    // console.log(value)
+    onUpdate({ name: value.username, email: value.email });
     setInputIsDisabled(true);
   }
 
@@ -22,20 +40,59 @@ function Profile({ onLogout }) {
     onLogout(currentUser.email);
   }
 
+  function handleInputValue(e) {
+    setValue({ ...value, [e.target.name]: e.target.value });
+    if (e.target.checkValidity()) {
+      setIsInputValid(true);
+    }
+    else {
+      setIsInputValid(false);
+    }
+  }
+
+  function handleFocus(e) {
+    e.target.select();
+  }
+
   return (
     <section className='profile'>
 
       <form className='profile__form' 
-        name='profile' 
-        id='profile'
-        onChange={checkErrors}>
+        name='profile' id='profile'
+        
+        onChange={checkErrors} onSubmit={handleSubmit} >
         <h2 className='profile__greeting'>Привет, Оля!</h2>
-        <FormInput 
-          name='username' type='text' sort='profile' label='Имя' minLength='2' maxLength='30'
-          placeholder='Новое имя' disabled={inputIsDisabled}/>
-        <FormInput 
-          name='email' type='email' sort='profile' label='Email'
-          placeholder='Новый email' disabled={inputIsDisabled}/>
+        <label className='form-input__label form-input__label_type_profile'>Имя
+          <input className={`form-input__input form-input__input_type_profile
+            form-input__input_type_${isInputValid ? '' : 'error'}`} 
+            ref={inputRef}
+            name='username' 
+            type='text'
+            minLength='2'
+            maxLength='30'
+            required
+            placeholder='Новое имя' 
+            pattern={userNameRegex} 
+            disabled={inputIsDisabled}
+            onFocus={handleFocus} 
+            onChange={handleInputValue}
+            value={value.username || ''}>
+          </input> 
+        </label>
+        <label className='form-input__label form-input__label_type_profile'>Email
+          <input className={`form-input__input form-input__input_type_profile
+            form-input__input_type_${isInputValid ? '' : 'error'}`} 
+            ref={inputRef}
+            name='email' 
+            type='email'
+            required
+            placeholder='Новый email' 
+            disabled={inputIsDisabled}
+            onFocus={handleFocus} 
+            onChange={handleInputValue}
+            value={value.email || ''}>
+          </input>
+        </label>
       </form>
 
       <div className='profile__edit-container'>
@@ -44,26 +101,25 @@ function Profile({ onLogout }) {
           profile__button_${inputIsDisabled ? 'invisible' : ''}`} 
           type='submit' 
           form='profile' 
-          onSubmit={handleSubmit} 
           disabled={!isValid}>
             Сохранить
         </button>
         <button className={`profile__button profile__button_type_cancel 
           profile__button_${inputIsDisabled ? 'invisible' : ''}`} 
           type='button' 
-          onMouseDown={() => setInputIsDisabled(true)}>
+          onClick={handleCansel}>
             Отмена
         </button>
         <button className={`profile__button profile__button_type_edit 
           profile__button_${inputIsDisabled ? '' : 'invisible'}`} 
           type='button' 
-          onMouseDown={handleInput}>
+          onClick={handleInput}>
             Редактировать
         </button>
         <button className={`profile__button profile__button_type_logout 
           profile__button_${inputIsDisabled ? '' : 'invisible'}`} 
           type='button' 
-          onMouseDown={handleLogout}>
+          onClick={handleLogout}>
             Выйти из аккаунта
         </button>
       </div>

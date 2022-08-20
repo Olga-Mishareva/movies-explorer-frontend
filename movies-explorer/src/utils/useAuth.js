@@ -40,7 +40,6 @@ function useAuth() {
   }
 
   function handleLogin({ email, password }) {
-    // console.log(email, password)
     login(email, password) 
       .then(user => {
         if (user.email) {
