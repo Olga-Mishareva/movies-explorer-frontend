@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect, useRef } from 'react';
-import FormInput from '../FormInput/FormInput';
 import useValidation from '../../utils/useValidation';
 import { userNameRegex } from '../../constants/constants';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -16,29 +15,12 @@ function Profile({ onLogout, onUpdate }) {
 
   useEffect(() => {
     setValue(currentUser);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   function handleInput() {
     setInputIsDisabled(false);
     setIsValid(false);
-  }
-
-  function handleCansel() {
-    setValue(currentUser);
-    setError({});
-    setIsInputValid(true);
-    setInputIsDisabled(true);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    // console.log(value)
-    onUpdate({ name: value.username, email: value.email });
-    setInputIsDisabled(true);
-  }
-
-  function handleLogout() {
-    onLogout(currentUser.email);
   }
 
   function handleInputValue(e) {
@@ -49,6 +31,23 @@ function Profile({ onLogout, onUpdate }) {
     else {
       setIsInputValid(false);
     }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdate({ name: value.username, email: value.email });
+    setInputIsDisabled(true);
+  }
+
+  function handleCansel() {
+    setValue(currentUser);
+    setError({});
+    setIsInputValid(true);
+    setInputIsDisabled(true);
+  }
+
+  function handleLogout() {
+    onLogout(currentUser.email);
   }
 
   function handleFocus(e) {

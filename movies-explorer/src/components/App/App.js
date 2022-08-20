@@ -42,6 +42,7 @@ function App() {
 
   useEffect(() => {
     checkAuth();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   useEffect(() => {
@@ -60,6 +61,7 @@ function App() {
           changeProfilePopup(true);
         })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
   function updateUserData({ name, email }) {

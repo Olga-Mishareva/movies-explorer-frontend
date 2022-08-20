@@ -17,10 +17,8 @@ function useAuth() {
   const navigate = useNavigate();
 
   function handleRegister({ username, email, password }) {
-    // console.log(username, email, password)
     register(username, email, password)
       .then(res => {
-        // console.log(res)
         if (res._id) {
           changeConfirm(true);
           changeAuthPopup(true);
@@ -49,16 +47,14 @@ function useAuth() {
       })
       .catch(err => {
         changeError(err.message);
-        // setIsConfirm(false); // нужен ли он кроме как в регистр?
         changeAuthPopup(true);
       })
   }
 
   function checkAuth() {
     if (localStorage.getItem('email')) {
-      // console.log(localStorage.getItem('email'))
       setLoggedIn(true);
-      navigate('/movies');
+      // navigate('/movies');
     }
   }
 
@@ -66,13 +62,11 @@ function useAuth() {
     logout(email)
       .then(() => {
         localStorage.removeItem('email');
-        // setLoggedUserData({});
         setLoggedIn(false);
         navigate('/');
       })
       .catch(err => {
         changeError(err.message);
-        // setIsConfirm(false);
         changeAuthPopup(true);
       })
   }
@@ -87,7 +81,7 @@ function useAuth() {
     handleRegister, 
     handleLogin, 
     handleLogout 
-  }
+  };
 }
 
 export default useAuth;

@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Auth from '../Auth/Auth';
 import FormInput from '../FormInput/FormInput';
 import useValidation from '../../utils/useValidation';
 import './Login.css';
 
-function Login({ loggedIn, onLogin }) {
+function Login({ onLogin }) {
   const { error, isValid, checkErrors } = useValidation();
   const [userData, setUserData] = useState({});
 
@@ -16,8 +16,8 @@ function Login({ loggedIn, onLogin }) {
     <Auth 
       title='Рады видеть!' name='login' submitBtn='Войти' 
       question='Еще не зарегистрированы?' path='signup' link='Регистрация'
-      loggedIn={loggedIn} isValid={isValid} loginData={userData} 
-      onLogin={onLogin} checkErrors={checkErrors}>  {/* нужно ли передавать loggedIn */}
+      isValid={isValid} loginData={userData} 
+      onLogin={onLogin} checkErrors={checkErrors}>
 
       <FormInput name='email' type='email' label='Email' 
         placeholder='Введите ваш email'

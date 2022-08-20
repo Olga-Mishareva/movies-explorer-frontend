@@ -1,9 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState} from 'react';
 import { userNameRegex } from '../../constants/constants';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './FormInput.css';
 
-function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData, isValid }) { 
+function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData }) { 
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
 
@@ -30,6 +29,7 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
         name={name} 
         required 
         minLength={minLength} 
+        maxLength={maxLength}
         placeholder={placeholder}
         disabled={disabled} 
         onFocus={handleFocus} 

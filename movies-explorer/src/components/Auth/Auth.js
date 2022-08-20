@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Auth.css';
 import logo from '../../images/logo.svg';
 
 function Auth({ children, title, name, submitBtn, question, path, link, checkErrors, isValid, onRegister, onLogin, registerData, loginData }) {
-  const navigate = useNavigate();
 
   function handleRegisterSubmit(e) {
     e.preventDefault();

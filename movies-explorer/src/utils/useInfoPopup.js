@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function useInfoPopup() {
   const [isConfirm, setIsConfirm] = useState(false);
@@ -20,16 +20,7 @@ function useInfoPopup() {
     return error;
   }
 
-  // console.log(isConfirm)
-  // console.log(isInfoPopupOpen)
-  // console.log(authError)
-
-  // useEffect(() => {
-    
-  // }, [isConfirm, isInfoPopupOpen, authError]);
-  
-
-  return { isConfirm, isInfoPopupOpen, error, changeConfirm, changePopup, changeError }
+  return { isConfirm, isInfoPopupOpen, error, changeConfirm, changePopup, changeError };
 }
 
 export default useInfoPopup;

@@ -1,8 +1,6 @@
-import { useEffect } from "react";
 import './InfoPopup.css';
 
 function InfoPopup({ isConfirm, error, isOpen, onClose }) {
-  // const [ authConfirm ] = isConfirm;
   const [ authError, profileError ] = error;
   const [ authPopup, profilePopup ] = isOpen;
 
