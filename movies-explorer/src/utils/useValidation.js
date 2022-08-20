@@ -20,7 +20,7 @@ function useValidation() {
     }
   }
 
-  return { error, isValid, setError, checkErrors };
+  return { error, isValid, setError, setIsValid, checkErrors };
 }
 
 export default useValidation;

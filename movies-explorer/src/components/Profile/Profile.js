@@ -7,7 +7,7 @@ import './Profile.css';
 
 function Profile({ onLogout, onUpdate }) {
   const currentUser = useContext(CurrentUserContext);
-  const { error, isValid, setError, checkErrors } = useValidation();
+  const { error, isValid, setError, setIsValid, checkErrors } = useValidation();
   const inputRef = useRef();
 
   const [inputIsDisabled, setInputIsDisabled] = useState(true);
@@ -20,6 +20,7 @@ function Profile({ onLogout, onUpdate }) {
   
   function handleInput() {
     setInputIsDisabled(false);
+    setIsValid(false);
   }
 
   function handleCansel() {
