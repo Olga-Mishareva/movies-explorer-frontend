@@ -14,7 +14,6 @@ function useAuth() {
   } = useInfoPopup();
   
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loggedUserData, setLoggedUserData] = useState({});
   const navigate = useNavigate();
 
   function handleRegister({ username, email, password }) {
@@ -45,9 +44,7 @@ function useAuth() {
     login(email, password) 
       .then(user => {
         if (user.email) {
-          const { name, email, _id } = user;
           localStorage.setItem('email', email);
-          setLoggedUserData({ name, email, _id });
           checkAuth();
         }
       })
@@ -70,7 +67,7 @@ function useAuth() {
     logout(email)
       .then(() => {
         localStorage.removeItem('email');
-        setLoggedUserData({});
+        // setLoggedUserData({});
         setLoggedIn(false);
         navigate('/');
       })
@@ -83,7 +80,6 @@ function useAuth() {
 
   return { 
     loggedIn, 
-    loggedUserData, 
     authConfirm, 
     authPopup, 
     authError, 

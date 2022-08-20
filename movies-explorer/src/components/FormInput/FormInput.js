@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { userNameRegex } from '../../constants/constants';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './FormInput.css';
 
 function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData, isValid }) { 
+  const currentUser = useContext(CurrentUserContext);
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
 
@@ -38,7 +40,7 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
         onFocus={handleFocus} 
         onChange={handleInputValue}
         onInput={checkInputValidity}
-        value={value[name] || ''}
+        value={(sort === 'profile' ? currentUser[name] : value[name]) || ''}
         pattern={name === 'username' ? userNameRegex : null} > 
       </input>
     </label>

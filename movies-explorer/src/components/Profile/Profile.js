@@ -12,7 +12,6 @@ function Profile({ onLogout }) {
   function handleInput() {
     setInputIsDisabled(false);
   }
-  console.log(currentUser)
 
   function handleSubmit(e) {
     e.preventDefault();

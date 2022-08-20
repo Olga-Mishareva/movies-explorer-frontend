@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -11,7 +11,9 @@ import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 import InfoPopup from '../InfoPopup/InfoPopup';
 import useAuth from '../../utils/useAuth';
+import useInfoPopup from '../../utils/useInfoPopup';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { getUser } from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
@@ -21,7 +23,6 @@ function App() {
   const navigate = useNavigate();
   const { 
     loggedIn, 
-    loggedUserData, 
     authConfirm, 
     authPopup, 
     authError, 
@@ -31,6 +32,13 @@ function App() {
     handleLogin, 
     handleLogout 
   } = useAuth();
+  
+  const { 
+    isInfoPopupOpen: profilePopup, 
+    error: profileError, 
+    changePopup: changeProfilePopup,  
+    changeError: changeProfileError
+  } = useInfoPopup();
 
   useEffect(() => {
     checkAuth();
@@ -38,13 +46,22 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      setCurrentUser(loggedUserData);
-      navigate('/movies');
+      getUser()
+        .then(user => {
+          console.log(user)
+          setCurrentUser({
+            _id: user._id, 
+            username: user.name, 
+            email: user.email 
+          });
+          navigate('/movies');
+        })
+        .catch(err => {
+          changeProfileError(err.message);
+          changeProfilePopup(true);
+        })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
-
-  console.log(loggedUserData)
  
 
   function closeInfoPopup() {
@@ -81,7 +98,7 @@ function App() {
 
       </Routes>
 
-      <InfoPopup isConfirm={[authConfirm]} error={[authError]} isOpen={[authPopup]} onClose={closeInfoPopup}/>
+      <InfoPopup isConfirm={authConfirm} error={[authError, profileError]} isOpen={[authPopup, profilePopup]} onClose={closeInfoPopup}/>
       {/* {isRegisterPopupOpen && <InfoPopup isSignup={isSignup} authError={authError} isOpen={setIsRegisterPopupOpen}/>} */}
 
       <Footer />
