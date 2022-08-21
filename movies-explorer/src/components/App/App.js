@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -20,13 +20,13 @@ import './App.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const navigate = useNavigate();
   const { 
     loggedIn, 
     authConfirm, 
     authPopup, 
     authError, 
     checkAuth, 
+    checkPath,
     changeAuthPopup, 
     handleRegister, 
     handleLogin, 
@@ -42,6 +42,7 @@ function App() {
 
   useEffect(() => {
     checkAuth();
+    checkPath();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
@@ -54,7 +55,7 @@ function App() {
             username: user.name, 
             email: user.email 
           });
-          navigate('/movies');
+          checkPath();
         })
         .catch(err => {
           changeProfileError(err.message);
@@ -63,6 +64,8 @@ function App() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
+
+  
 
   function updateUserData({ name, email }) {
     updateUser(name, email)
@@ -91,28 +94,26 @@ function App() {
       <Header loggedIn={loggedIn}/>
       
       <Routes>
-        
         <Route path='/' element={<Main />} />
 
-        <Route path='movies' element={
+        <Route path='/movies' element={
           <ProtectedRoute loggedIn={loggedIn}>
             <Movies />
           </ProtectedRoute>} />
 
-        <Route path='saved-movies' element={ 
+        <Route path='/saved-movies' element={ 
           <ProtectedRoute loggedIn={loggedIn}>
             <SavedMovies />
           </ProtectedRoute>} />
 
-        <Route path='profile' element={
+        <Route path='/profile' element={
           <ProtectedRoute loggedIn={loggedIn}>
-            <Profile loggedIn={loggedIn} onLogout={handleLogout} onUpdate={updateUserData}/>
+            <Profile onLogout={handleLogout} onUpdate={updateUserData}/>
           </ProtectedRoute>} />
 
-        <Route path='signup' element={<Register loggedIn={loggedIn} isConfirm={authConfirm} onRegister={handleRegister}/>} />
-        <Route path='signin' element={<Login loggedIn={loggedIn} onLogin={handleLogin}/>} />
+        <Route path='/signup' element={<Register isConfirm={authConfirm} onRegister={handleRegister} />} />
+        <Route path='/signin' element={<Login onLogin={handleLogin}/>} />
         <Route path='*' element={<NoMatch />} />
-
       </Routes>
 
       <InfoPopup isConfirm={authConfirm} error={[authError, profileError]} isOpen={[authPopup, profilePopup]} onClose={closeInfoPopup}/>

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { register, login, logout } from './MainApi';
 import useInfoPopup from "./useInfoPopup";
 
 function useAuth() {
+  const location = useLocation();
   const { 
     isConfirm: authConfirm, 
     isInfoPopupOpen: authPopup, 
@@ -43,6 +44,7 @@ function useAuth() {
         if (user.email) {
           localStorage.setItem('email', email);
           checkAuth();
+          navigate('/movies');
         }
       })
       .catch(err => {
@@ -54,7 +56,15 @@ function useAuth() {
   function checkAuth() {
     if (localStorage.getItem('email')) {
       setLoggedIn(true);
-      // navigate('/movies');
+    }
+  }
+
+  function checkPath() {
+    if (location.pathname === '/signup' || location.pathname === '/signin') {
+      navigate('/');
+    }
+    else {
+      navigate(location.pathname);
     }
   }
 
@@ -76,7 +86,8 @@ function useAuth() {
     authConfirm, 
     authPopup, 
     authError, 
-    checkAuth, 
+    checkAuth,
+    checkPath, 
     changeAuthPopup, 
     handleRegister, 
     handleLogin, 

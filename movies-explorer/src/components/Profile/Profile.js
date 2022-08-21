@@ -1,4 +1,5 @@
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 import useValidation from '../../utils/useValidation';
 import { userNameRegex } from '../../constants/constants';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -6,8 +7,8 @@ import './Profile.css';
 
 function Profile({ onLogout, onUpdate }) {
   const currentUser = useContext(CurrentUserContext);
+  const location = useLocation();
   const { error, isValid, setError, setIsValid, checkErrors } = useValidation();
-  const inputRef = useRef();
 
   const [inputIsDisabled, setInputIsDisabled] = useState(true);
   const [isInputValid, setIsInputValid] = useState(true);
@@ -17,6 +18,13 @@ function Profile({ onLogout, onUpdate }) {
     setValue(currentUser);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === '/profile') {
+      setValue(currentUser);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
   
   function handleInput() {
     setInputIsDisabled(false);
@@ -59,13 +67,11 @@ function Profile({ onLogout, onUpdate }) {
 
       <form className='profile__form' 
         name='profile' id='profile'
-        
         onChange={checkErrors} onSubmit={handleSubmit} >
         <h2 className='profile__greeting'>Привет, Оля!</h2>
         <label className='form-input__label form-input__label_type_profile'>Имя
           <input className={`form-input__input form-input__input_type_profile
             form-input__input_type_${isInputValid ? '' : 'error'}`} 
-            ref={inputRef}
             name='username' 
             type='text'
             minLength='2'
@@ -82,7 +88,6 @@ function Profile({ onLogout, onUpdate }) {
         <label className='form-input__label form-input__label_type_profile'>Email
           <input className={`form-input__input form-input__input_type_profile
             form-input__input_type_${isInputValid ? '' : 'error'}`} 
-            ref={inputRef}
             name='email' 
             type='email'
             required
