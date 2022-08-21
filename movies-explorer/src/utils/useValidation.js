@@ -5,12 +5,18 @@ function useValidation() {
   const [isValid, setIsValid] = useState(false);
 
   function checkErrors(e) {
-    if (!e.target.checkValidity()) {
-      if (e.target.validity.patternMismatch) {
-        setError({ ...error, [e.target.name]: 'Имя может содержать только буквы, пробел или дефис и должно быть не менее двух символов.' });
+    let object;
+    if (e.target) object = e.target;
+    else object = e;
+
+    if (!object.validity.valid) {
+      if (object.validity.patternMismatch) {
+        object.name === 'search' ?
+        setError({ ...error, [object.name]: 'Нужно ввести ключевое слово.' }) :
+        setError({ ...error, [object.name]: 'Имя может содержать только буквы, пробел или дефис и должно быть не менее двух символов.' });
       }
       else {
-        setError({ ...error, [e.target.name]: e.target.validationMessage });
+        setError({ ...error, [object.name]: object.validationMessage });
       }
       setIsValid(false);
     }
