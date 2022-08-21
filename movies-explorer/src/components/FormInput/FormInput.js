@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { userNameRegex } from '../../constants/constants';
+import { USER_NAME_REGEX } from '../../constants/config';
 import './FormInput.css';
 
 function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData }) { 
@@ -35,7 +35,7 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
         onFocus={handleFocus} 
         onChange={handleInputValue}
         value={value[name] || ''}
-        pattern={name === 'username' ? userNameRegex : null} > 
+        pattern={name === 'username' ? USER_NAME_REGEX : null} > 
       </input>
     </label>
   );

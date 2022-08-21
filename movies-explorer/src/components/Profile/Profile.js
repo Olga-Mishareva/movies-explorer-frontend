@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import useValidation from '../../utils/useValidation';
-import { userNameRegex } from '../../constants/constants';
+import { USER_NAME_REGEX } from '../../constants/config';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
@@ -85,7 +85,7 @@ function Profile({ onLogout, onUpdate }) {
             maxLength='30'
             required
             placeholder='Новое имя' 
-            pattern={userNameRegex} 
+            pattern={USER_NAME_REGEX} 
             disabled={inputIsDisabled}
             onFocus={handleFocus} 
             onChange={handleInputValue}
