@@ -34,8 +34,10 @@ function App() {
   } = useAuth();
   
   const { 
+    isConfirm: profileConfirm,
     isInfoPopupOpen: profilePopup, 
     error: profileError, 
+    changeConfirm: changeProfileConfirm,
     changePopup: changeProfilePopup,  
     changeError: changeProfileError
   } = useInfoPopup();
@@ -55,10 +57,12 @@ function App() {
             username: user.name, 
             email: user.email 
           });
+          
           checkPath();
         })
         .catch(err => {
           changeProfileError(err.message);
+          
           changeProfilePopup(true);
         })
     }
@@ -73,10 +77,14 @@ function App() {
         setCurrentUser({ ...currentUser,
           username: data.name, 
           email: data.email
-        })
+        });
+        changeProfileConfirm(true);
+        changeProfilePopup(true)
+        setTimeout(() => changeProfilePopup(false), 2000);
       })
       .catch(err => {
         changeProfileError(err.message);
+        changeProfileConfirm(false);
         changeProfilePopup(true);
       })
   }
@@ -86,6 +94,7 @@ function App() {
 
   function closeInfoPopup() {
     changeAuthPopup(false);
+    changeProfilePopup(false);
   }
 
   return (
@@ -116,7 +125,7 @@ function App() {
         <Route path='*' element={<NoMatch />} />
       </Routes>
 
-      <InfoPopup isConfirm={authConfirm} error={[authError, profileError]} isOpen={[authPopup, profilePopup]} onClose={closeInfoPopup}/>
+      <InfoPopup isConfirm={[authConfirm, profileConfirm]} error={[authError, profileError]} isOpen={[authPopup, profilePopup]} onClose={closeInfoPopup}/>
       {/* {isRegisterPopupOpen && <InfoPopup isSignup={isSignup} authError={authError} isOpen={setIsRegisterPopupOpen}/>} */}
 
       <Footer />

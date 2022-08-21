@@ -16,14 +16,14 @@ function Profile({ onLogout, onUpdate }) {
 
   useEffect(() => {
     setValue(currentUser);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (location.pathname === '/profile') {
       setValue(currentUser);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
   
   function handleInput() {
@@ -40,6 +40,13 @@ function Profile({ onLogout, onUpdate }) {
       setIsInputValid(false);
     }
   }
+
+  useEffect(() => {
+    if (value.username === currentUser.username && value.email === currentUser.email) {
+      setIsValid(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   function handleSubmit(e) {
     e.preventDefault();
