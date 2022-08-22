@@ -4,10 +4,17 @@ import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, filmsCollection }) {
+function SearchForm({ onSearch, filmsCollection, shortMovie, setShortMovie }) {
   const { error, isValid, checkErrors } = useValidation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
+
+  useEffect(() => {
+    console.log(value)
+    if (value.search !== '') {
+      onSearch(value.search, filmsCollection);
+    }
+  }, [shortMovie]);
 
   function handleInputValue(e) {
     setValue({ search: e.target.value });
@@ -51,7 +58,7 @@ function SearchForm({ onSearch, filmsCollection }) {
             <button className='search__submit-btn' type='submit'></button>
           </div>
           <span className='search__error'>{error.search}</span>
-          <FilterCheckbox />
+          <FilterCheckbox setShortMovie={setShortMovie} onSearch={onSearch}/>
         </form>
       </div> 
       

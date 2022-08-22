@@ -15,6 +15,8 @@ function MoviesCard({ movie }) {
         });
   }, [movie]);
 
+  
+
   function handleLike() {
     setLiked(!liked);
   }

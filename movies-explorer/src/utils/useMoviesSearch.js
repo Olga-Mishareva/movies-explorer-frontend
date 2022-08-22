@@ -3,19 +3,25 @@ import { getMovies } from './MoviesApi';
 
 function useMoviesSearch() {
   const [matchedMovies, setMatchedMovies] = useState([]);
+  const [shortMovie, setShortMovie] = useState(false);
 
   function filterMovies(word, filmsCollection) {
     const regex = new RegExp(`[\\s,]?${word}[\\s,]?`, 'i');  // (`[\\s\\,^]${word}\\s`, 'i');
-    // console.log(filmsCollection)
-    // console.log(regex)
-    setMatchedMovies(filmsCollection.filter(movie => {
-      return movie.nameRU.match(regex)  
-    }));
+    if (shortMovie) {
+      setMatchedMovies(filmsCollection.filter(movie => {
+        return movie.nameRU.match(regex) && movie.duration <= 40;
+      }));
+    }
+    else {
+      setMatchedMovies(filmsCollection.filter(movie => {
+        return movie.nameRU.match(regex);
+      }));
+    }
   }  
 
   // console.log(matchedMovies)
 
-  return { matchedMovies, filterMovies }
+  return { matchedMovies, shortMovie, setShortMovie, filterMovies }
 }
 
 export default useMoviesSearch;
