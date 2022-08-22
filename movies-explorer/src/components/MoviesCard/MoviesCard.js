@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import './MoviesCard.css';
 import movieImage from '../../images/movie_jakob-owens.jpg';
 
-function MoviesCard() {
+function MoviesCard({ movie }) {
   const location = useLocation();
   const [liked, setLiked] = useState(false);
+  const [time, setTime] = useState({});
+
+  useEffect(() => {
+    setTime({
+          hours: Math.floor(movie.duration / 60),
+          minutes: movie.duration % 60
+        });
+  }, [movie]);
 
   function handleLike() {
     setLiked(!liked);
@@ -13,14 +21,14 @@ function MoviesCard() {
 
   return (
     <li className='card'> 
-      <img className='card__image' src={movieImage} alt='Изображение к фильму'></img>
+      <img className='card__image' src={`https://api.nomoreparties.co/${movie.image.url}`} alt='Изображение к фильму'></img>
       <div className='card__container'>
-        <h2 className='card__title'>33 слова о дизайне</h2>
+        <h2 className='card__title'>{movie.nameRU}</h2>
         <button className={`card__like 
           card__like_type_${location.pathname === '/saved-movies' ? 'saved' : liked ? 'liked' : ''}`} 
           type='button' onMouseDown={handleLike}></button>
       </div>
-      <p className='card__duration'>1ч42м</p>
+      <p className='card__duration'>{`${time.hours !== 0 ? time.hours + 'ч': ''}${time.minutes}м`}</p>
      
     </li>
   );
