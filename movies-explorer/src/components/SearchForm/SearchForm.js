@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { SEARCH_REGEX } from '../../constants/config';
+import { SEARCH_WORD_REGEX } from '../../constants/config';
 import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm() {
-  const { error, isValid, checkErrors, setIsValid } = useValidation();
+function SearchForm({ onSearch, filmsCollection }) {
+  const { error, isValid, checkErrors } = useValidation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
   function handleInputValue(e) {
     setValue({ search: e.target.value });
+    checkErrors(inputRef.current);
   }
 
   function handleFocus(e) {
@@ -19,13 +20,10 @@ function SearchForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    checkErrors(inputRef.current); 
+    if (isValid) {
+      onSearch(value.search, filmsCollection);
+    }
   }
-
-  // useEffect(() => {
-  //   console.log(isValid)
-  //   if (isValid === false) setValue({}); 
-  // }, [isValid]);
 
   // console.log(inputRef.current)
 
@@ -45,7 +43,7 @@ function SearchForm() {
               name='search' 
               placeholder='Фильм' 
               required
-              pattern={SEARCH_REGEX}
+              pattern={SEARCH_WORD_REGEX}
               value={value.search || ''}
               onFocus={handleFocus}
               onChange={handleInputValue}>

@@ -12,14 +12,17 @@ import NoMatch from '../NoMatch/NoMatch';
 import InfoPopup from '../InfoPopup/InfoPopup';
 import useAuth from '../../utils/useAuth';
 import useInfoPopup from '../../utils/useInfoPopup';
+import useMoviesSearch from '../../utils/useMoviesSearch';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { getUser, updateUser } from '../../utils/MainApi';
+import { getMovies } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
+  const [filmsCollection, setFilmsCollection] = useState([]);
   const { 
     loggedIn, 
     authConfirm, 
@@ -42,6 +45,14 @@ function App() {
     changeError: changeProfileError
   } = useInfoPopup();
 
+  function getFilmsCollection() {
+    getMovies()
+      .then(data => {
+        setFilmsCollection(data);
+      })
+      .catch(err => console.log(err))  // заменить потом
+  }
+
   useEffect(() => {
     checkAuth();
     checkPath();
@@ -57,8 +68,8 @@ function App() {
             username: user.name, 
             email: user.email 
           });
-          
           checkPath();
+          getFilmsCollection();
         })
         .catch(err => {
           changeProfileError(err.message);
@@ -107,7 +118,7 @@ function App() {
 
         <Route path='/movies' element={
           <ProtectedRoute loggedIn={loggedIn}>
-            <Movies />
+            <Movies filmsCollection={filmsCollection}/>
           </ProtectedRoute>} />
 
         <Route path='/saved-movies' element={ 
