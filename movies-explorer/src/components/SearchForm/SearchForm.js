@@ -9,9 +9,8 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
-  useEffect(() => {  // прокинуть isSearched и запускать если true
-    console.log(value)
-    // checkErrors(inputRef.current);
+  useEffect(() => { 
+    // console.log(value)
     if (value.search && !error.search && isSearched) {
       setIsSearched(false);
       onSearch(value.search, filmsCollection);
@@ -30,7 +29,7 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
   function handleSubmit(e) {
     e.preventDefault();
     checkErrors(inputRef.current);
-    console.log(error.search)
+    // console.log(error.search)
     if (isValid) {
       setIsSearched(false);
       onSearch(value.search, filmsCollection);

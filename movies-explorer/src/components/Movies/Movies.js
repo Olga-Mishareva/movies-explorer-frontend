@@ -21,7 +21,11 @@ function Movies({ filmsCollection }) {
       </SearchForm>
       {/* <Preloader /> */}
       {isSearched && noResult && <WithoutResult />}
-      <MoviesCardList movies={matchedMovies}/>
+      <MoviesCardList 
+        movies={matchedMovies}
+        noResult={noResult}
+        isSearched={isSearched}>
+      </MoviesCardList>
     </div>
   );
 }

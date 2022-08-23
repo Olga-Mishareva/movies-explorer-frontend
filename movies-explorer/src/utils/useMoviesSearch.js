@@ -8,7 +8,6 @@ function useMoviesSearch() {
   const [isSearched, setIsSearched] = useState(false);
 
   function filterMovies(word, filmsCollection) {
-    console.log(word)
     localStorage.setItem('word', word);
     const regex = new RegExp(`[\\s,\\.]?${word}[\\s,\\.]?`, 'i');  // (`[\\s\\,^]${word}\\s`, 'i');
     
@@ -26,20 +25,16 @@ function useMoviesSearch() {
   }  
 
   useEffect(() => {
-    console.log(matchedMovies)
-    console.log(matchedMovies[0])
-    console.log(isSearched)
+    // console.log(matchedMovies)
+    // console.log(matchedMovies[0])
+    // console.log(isSearched)
     if (isSearched && !matchedMovies[0]) {
       setNoResult(true);
     }
     else setNoResult(false);
   }, [isSearched, matchedMovies])
 
-  // useEffect(() => {
-  //   setIsSearched(true);
-  // }, [matchedMovies])
-
-  console.log(noResult)
+  // console.log(noResult)
 
   useEffect(() => {
     matchedMovies.forEach((movie, i )=> {
