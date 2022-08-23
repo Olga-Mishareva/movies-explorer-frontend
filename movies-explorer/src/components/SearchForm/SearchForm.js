@@ -4,14 +4,16 @@ import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, filmsCollection, shortMovie, setShortMovie }) {
+function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShortMovie, setIsSearched }) {
   const { error, isValid, checkErrors } = useValidation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
-  useEffect(() => {
+  useEffect(() => {  // прокинуть isSearched и запускать если true
     console.log(value)
-    if (value.search !== '') {
+    // checkErrors(inputRef.current);
+    if (value.search && !error.search && isSearched) {
+      setIsSearched(false);
       onSearch(value.search, filmsCollection);
     }
   }, [shortMovie]);
@@ -27,7 +29,10 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, setShortMovie }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    checkErrors(inputRef.current);
+    console.log(error.search)
     if (isValid) {
+      setIsSearched(false);
       onSearch(value.search, filmsCollection);
     }
   }
