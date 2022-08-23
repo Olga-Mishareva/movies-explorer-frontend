@@ -6,11 +6,13 @@ function useMoviesSearch() {
   const [shortMovie, setShortMovie] = useState(false);
   const [noResult, setNoResult] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function filterMovies(word, filmsCollection) {
+    setIsLoading(true);
     localStorage.setItem('word', word);
     const regex = new RegExp(`[\\s,\\.]?${word}[\\s,\\.]?`, 'i');  // (`[\\s\\,^]${word}\\s`, 'i');
-    
+    setIsSearched(true);
     if (shortMovie) {
       setMatchedMovies(filmsCollection.filter(movie => {
         return movie.nameRU.match(regex) && movie.duration <= 40;
@@ -21,7 +23,6 @@ function useMoviesSearch() {
         return movie.nameRU.match(regex);
       }));
     }
-    setIsSearched(true);
   }  
 
   useEffect(() => {
@@ -32,6 +33,7 @@ function useMoviesSearch() {
       setNoResult(true);
     }
     else setNoResult(false);
+    setIsLoading(false);
   }, [isSearched, matchedMovies])
 
   // console.log(noResult)
@@ -48,7 +50,7 @@ function useMoviesSearch() {
   }, [matchedMovies, shortMovie])
   
 
-  return { matchedMovies, shortMovie, noResult, isSearched, setIsSearched, setShortMovie, filterMovies }
+  return { matchedMovies, shortMovie, noResult, isSearched, isLoading, setIsSearched, setShortMovie, filterMovies }
 }
 
 export default useMoviesSearch;

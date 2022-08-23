@@ -5,7 +5,7 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShortMovie, setIsSearched }) {
-  const { error, isValid, checkErrors } = useValidation();
+  const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
@@ -18,8 +18,11 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
   }, [shortMovie]);
 
   function handleInputValue(e) {
+    setError({});
+    setIsValid(true);
     setValue({ search: e.target.value });
-    checkErrors(inputRef.current);
+    // console.log(value)
+    // checkErrors(inputRef.current);
   }
 
   function handleFocus(e) {
@@ -29,8 +32,7 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
   function handleSubmit(e) {
     e.preventDefault();
     checkErrors(inputRef.current);
-    // console.log(error.search)
-    if (isValid) {
+    if (isValid && value.search) {
       setIsSearched(false);
       onSearch(value.search, filmsCollection);
     }

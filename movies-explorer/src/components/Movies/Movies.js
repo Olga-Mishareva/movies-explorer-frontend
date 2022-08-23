@@ -1,12 +1,12 @@
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
-// import Preloader from '../Preloader/Preloader';
+import Preloader from '../Preloader/Preloader';
 import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 
 function Movies({ filmsCollection }) {
-  const { matchedMovies, shortMovie, noResult, isSearched, setIsSearched, setShortMovie, filterMovies } = useMoviesSearch();
+  const { matchedMovies, shortMovie, noResult, isSearched, isLoading, setIsSearched, setShortMovie, filterMovies } = useMoviesSearch();
   // console.log(matchedMovies)
 
   return (
@@ -19,7 +19,7 @@ function Movies({ filmsCollection }) {
         setIsSearched={setIsSearched}
         onSearch={filterMovies}>
       </SearchForm>
-      {/* <Preloader /> */}
+      {isLoading && <Preloader />}
       {isSearched && noResult && <WithoutResult />}
       <MoviesCardList 
         movies={matchedMovies}
