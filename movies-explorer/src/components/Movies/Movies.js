@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
@@ -6,7 +7,28 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 
 function Movies({ filmsCollection }) {
-  const { matchedMovies, shortMovie, noResult, isSearched, isLoading, setIsSearched, setShortMovie, filterMovies } = useMoviesSearch();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsSubmitted(false), 2000);
+  }, [isSubmitted]);
+
+  // console.log(isSubmitted)
+
+  const { 
+    matchedMovies, 
+    showedMovies,
+    shortMovie, 
+    noResult, 
+    isSearched, 
+    isLoading, 
+    count,
+    setIsSearched, 
+    setShortMovie, 
+    filterMovies,
+    decideCardCount,
+    setCount 
+  } = useMoviesSearch();
   // console.log(matchedMovies)
 
   return (
@@ -17,14 +39,20 @@ function Movies({ filmsCollection }) {
         isSearched={isSearched}
         setShortMovie={setShortMovie}
         setIsSearched={setIsSearched}
+        setIsSubmitted={setIsSubmitted}
         onSearch={filterMovies}>
       </SearchForm>
       {isLoading && <Preloader />}
       {isSearched && noResult && <WithoutResult />}
       <MoviesCardList 
-        movies={matchedMovies}
+        matchedMovies={matchedMovies}
+        showedMovies={showedMovies}
         noResult={noResult}
-        isSearched={isSearched}>
+        isSearched={isSearched}
+        count={count}
+        isSubmitted={isSubmitted}
+        decideCardCount={decideCardCount}
+        setCount={setCount}>
       </MoviesCardList>
     </div>
   );

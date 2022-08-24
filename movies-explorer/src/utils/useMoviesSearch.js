@@ -3,15 +3,63 @@ import { getMovies } from './MoviesApi';
 
 function useMoviesSearch() {
   const [matchedMovies, setMatchedMovies] = useState([]);
+  const [showedMovies, setShowedMovies] = useState([]); 
   const [shortMovie, setShortMovie] = useState(false);
   const [noResult, setNoResult] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [count, setCount] = useState(0);
+  const [row, setRow] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  function handleResize() {
+    setTimeout(() => {
+      setWidth(window.innerWidth);
+    }, 2000);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+    window.removeEventListener('resize', handleResize);
+    }
+  }, [width]);
+
+  console.log(width)
+
+  useEffect(() => {
+    if (width > 1023) {
+      setCount(4);
+      setRow(4);
+      return;
+    }
+    else if (1024 > width && width > 800) {
+      setCount(3);
+      setRow(4);
+      return
+    }
+    else if (801 > width && width > 560) {
+      setCount(2);
+      setRow(4);
+      return
+    }
+    else  {
+      setCount(1)
+      setRow(5);
+      return
+    }
+  }, [width]);
+
+  console.log(count)
+  console.log(row)
+  
+  console.log(matchedMovies)
+  console.log(showedMovies)
 
   function filterMovies(word, filmsCollection) {
     setIsLoading(true);
     localStorage.setItem('word', word);
-    const regex = new RegExp(`[\\s,\\.]?${word}[\\s,\\.]?`, 'i');  // (`[\\s\\,^]${word}\\s`, 'i');
+    const regex = new RegExp(`${word}`, 'i');  // (`[\\s\\,^]${word}\\s`, 'i');
     setIsSearched(true);
     if (shortMovie) {
       setMatchedMovies(filmsCollection.filter(movie => {
@@ -26,17 +74,16 @@ function useMoviesSearch() {
   }  
 
   useEffect(() => {
-    // console.log(matchedMovies)
-    // console.log(matchedMovies[0])
-    // console.log(isSearched)
+    setShowedMovies(matchedMovies.slice(0, count * row));
+  }, [row, count, matchedMovies]);
+
+  useEffect(() => {
     if (isSearched && !matchedMovies[0]) {
       setNoResult(true);
     }
     else setNoResult(false);
     setIsLoading(false);
   }, [isSearched, matchedMovies])
-
-  // console.log(noResult)
 
   useEffect(() => {
     matchedMovies.forEach((movie, i )=> {
@@ -50,7 +97,19 @@ function useMoviesSearch() {
   }, [matchedMovies, shortMovie])
   
 
-  return { matchedMovies, shortMovie, noResult, isSearched, isLoading, setIsSearched, setShortMovie, filterMovies }
+  return { 
+    matchedMovies, 
+    showedMovies,
+    shortMovie, 
+    noResult, 
+    isSearched, 
+    isLoading,
+    count, 
+    setIsSearched, 
+    setShortMovie, 
+    filterMovies,
+    setCount
+  }
 }
 
 export default useMoviesSearch;

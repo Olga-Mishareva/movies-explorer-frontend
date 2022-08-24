@@ -108,6 +108,11 @@ function App() {
     changeProfilePopup(false);
   }
 
+  // function handleCardGrid(e) {
+  //   // setWidth(window.innerWidth)
+  //   console.log(window.innerWidth)
+  // }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className='page'>
