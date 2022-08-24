@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import './MoviesCard.css';
-import movieImage from '../../images/movie_jakob-owens.jpg';
 
 function MoviesCard({ movie }) {
   const location = useLocation();
@@ -14,8 +13,6 @@ function MoviesCard({ movie }) {
           minutes: movie.duration % 60
         });
   }, [movie]);
-
-  
 
   function handleLike() {
     setLiked(!liked);

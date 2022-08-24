@@ -74,8 +74,22 @@ function useMoviesSearch() {
   }  
 
   useEffect(() => {
-    setShowedMovies(matchedMovies.slice(0, count * row));
+    if (showedMovies.length > count * row) {
+      return;
+    }
+    else {
+      setShowedMovies(matchedMovies.slice(0, count * row));
+    }
   }, [row, count, matchedMovies]);
+
+  function handleMoreButton() {
+    if (width < 561) {
+      setShowedMovies(matchedMovies.slice(0, (showedMovies.length + count * 2)));
+    }
+    else {
+      setShowedMovies(matchedMovies.slice(0, showedMovies.length + count));
+    }
+  }
 
   useEffect(() => {
     if (isSearched && !matchedMovies[0]) {
@@ -108,6 +122,7 @@ function useMoviesSearch() {
     setIsSearched, 
     setShortMovie, 
     filterMovies,
+    handleMoreButton,
     setCount
   }
 }
