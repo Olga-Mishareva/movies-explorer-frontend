@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from "react-router-dom";
 import { SEARCH_WORD_REGEX } from '../../constants/config';
 import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
@@ -6,22 +7,28 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShortMovie }) {
   const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
+  const location = useLocation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
   useEffect(() => { 
-    // console.log(value)
-    if (value.search && !error.search && isSearched) {
+    checkErrors(inputRef.current); 
+    // console.log(isValid)
+    if (value.search && isValid) {
       onSearch(value.search, filmsCollection);
     }
-  }, [shortMovie]);
+  }, [shortMovie, value]);
+
+  useEffect(() => {                        
+    if (location.pathname === '/movies'){
+      setValue({search: localStorage.getItem('word')});
+    }
+  }, []);
 
   function handleInputValue(e) {
     setError({});
     setIsValid(true);
     setValue({ search: e.target.value });
-    // console.log(value)
-    // checkErrors(inputRef.current);
   }
 
   function handleFocus(e) {
@@ -35,8 +42,6 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
       onSearch(value.search, filmsCollection);
     }
   }
-
-  // console.log(inputRef.current)
 
   return (
     <section className="search"> 
@@ -62,7 +67,7 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
             <button className='search__submit-btn' type='submit'></button>
           </div>
           <span className='search__error'>{error.search}</span>
-          <FilterCheckbox setShortMovie={setShortMovie} onSearch={onSearch}/>
+          <FilterCheckbox shortMovie={shortMovie} setShortMovie={setShortMovie} onSearch={onSearch}/>
         </form>
       </div> 
       

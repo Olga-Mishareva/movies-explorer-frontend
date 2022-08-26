@@ -9,6 +9,8 @@ function useValidation() {
     if (e.target) object = e.target;
     else object = e;
 
+    // console.log(object.validity)
+
     if (!object.validity.valid) {
       if (object.validity.patternMismatch) {
         object.name === 'search' ?

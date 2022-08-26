@@ -71,7 +71,7 @@ function useAuth() {
   function handleLogout(email) {
     logout(email)
       .then(() => {
-        localStorage.removeItem('email');
+        localStorage.clear();
         setLoggedIn(false);
         navigate('/');
       })

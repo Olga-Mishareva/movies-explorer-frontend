@@ -1,25 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import useMoviesSearch from '../../utils/useMoviesSearch';
 
-function Movies({ filmsCollection }) {
-  const { 
+function Movies({ 
+    filmsCollection,
     matchedMovies, 
     showedMovies,
     shortMovie, 
     noResult, 
     isSearched, 
     isLoading, 
-    setIsSearched, 
     setShortMovie, 
     filterMovies,
-    handleMoreButton,
-  } = useMoviesSearch();
-  // console.log(matchedMovies)
+    handleMoreButton 
+    }) {
+
+    useEffect(() => {
+          setShortMovie(localStorage.getItem('checkbox'));
+    }, []);
+
+  useEffect(() => {
+    localStorage.setItem('search', isSearched);
+  }, [isSearched])
+
+  console.log(shortMovie)
 
   return (
     <div className='movies'> 
@@ -28,7 +35,6 @@ function Movies({ filmsCollection }) {
         shortMovie={shortMovie} 
         isSearched={isSearched}
         setShortMovie={setShortMovie}
-        setIsSearched={setIsSearched}
         onSearch={filterMovies}>
       </SearchForm>
       {isLoading && <Preloader />}

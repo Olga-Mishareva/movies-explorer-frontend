@@ -27,7 +27,7 @@ function MoviesCard({ movie }) {
           card__like_type_${location.pathname === '/saved-movies' ? 'saved' : liked ? 'liked' : ''}`} 
           type='button' onMouseDown={handleLike}></button>
       </div>
-      <p className='card__duration'>{`${time.hours !== 0 ? time.hours + 'ч': ''}${time.minutes}м`}</p>
+      <p className='card__duration'>{`${time.hours !== 0 ? time.hours + 'ч': ''}${time.minutes !== 0 ? time.minutes + 'м' : ''}`}</p>
      
     </li>
   );

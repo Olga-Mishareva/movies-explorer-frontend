@@ -1,76 +1,43 @@
 import { useState, useEffect } from 'react';
-import { getMovies } from './MoviesApi';
+// import { useLocation } from "react-router-dom";
+import useResize from './useResize';
 
 function useMoviesSearch() {
+  const { width, count, row } = useResize();
+  // const location = useLocation();
   const [matchedMovies, setMatchedMovies] = useState([]);
   const [showedMovies, setShowedMovies] = useState([]); 
   const [shortMovie, setShortMovie] = useState(false);
   const [noResult, setNoResult] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [count, setCount] = useState(0);
-  const [row, setRow] = useState(0);
-  const [width, setWidth] = useState(window.innerWidth);
-
-  function handleResize() {
-    setTimeout(() => {
-      setWidth(window.innerWidth);
-    }, 2000);
-  }
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-    window.removeEventListener('resize', handleResize);
-    }
-  }, [width]);
-
-  console.log(width)
-
-  useEffect(() => {
-    if (width > 1023) {
-      setCount(4);
-      setRow(4);
-      return;
-    }
-    else if (1024 > width && width > 800) {
-      setCount(3);
-      setRow(4);
-      return
-    }
-    else if (801 > width && width > 560) {
-      setCount(2);
-      setRow(4);
-      return
-    }
-    else  {
-      setCount(1)
-      setRow(5);
-      return
-    }
-  }, [width]);
-
-  console.log(count)
-  console.log(row)
-  
-  console.log(matchedMovies)
-  console.log(showedMovies)
+        setMatchedMovies(JSON.parse(localStorage.getItem('matched-movies')));
+        setShortMovie(localStorage.getItem('checkbox'));
+  }, []);
 
   function filterMovies(word, filmsCollection) {
     setIsLoading(true);
     localStorage.setItem('word', word);
-    const regex = new RegExp(`${word}`, 'i');  // (`[\\s\\,^]${word}\\s`, 'i');
-    setIsSearched(true);
+    const regex = new RegExp(`${word}`, 'i'); 
+    console.log(regex)
+    
     if (shortMovie) {
-      setMatchedMovies(filmsCollection.filter(movie => {
-        return movie.nameRU.match(regex) && movie.duration <= 40;
-      }));
+      const shortFilmList = filmsCollection.filter(movie => {
+        return (movie.nameRU.match(regex)) && movie.duration <= 40;
+      })
+      setMatchedMovies(shortFilmList);
+      localStorage.setItem('matched-movies', JSON.stringify(shortFilmList));
     }
     else {
-      setMatchedMovies(filmsCollection.filter(movie => {
-        return movie.nameRU.match(regex);
-      }));
+      const filmList = filmsCollection.filter(movie => {
+        return  movie.nameRU.match(regex);    
+      })
+      setMatchedMovies(filmList);
+      localStorage.setItem('matched-movies', JSON.stringify(filmList));
     }
+    setIsSearched(true);
   }  
 
   useEffect(() => {
@@ -99,17 +66,9 @@ function useMoviesSearch() {
     setIsLoading(false);
   }, [isSearched, matchedMovies])
 
-  useEffect(() => {
-    matchedMovies.forEach((movie, i )=> {
-      localStorage.setItem(`${i}`, JSON.stringify(movie));
-    })
-    localStorage.setItem('checkbox', shortMovie);
-    
-    // console.log(JSON.parse(localStorage.getItem(0)))
-    // console.log(localStorage.getItem('word'))
-    // console.log(localStorage.getItem('checkbox'))
-  }, [matchedMovies, shortMovie])
-  
+  console.log(JSON.parse(localStorage.getItem('matched-movies')))
+  console.log(localStorage.getItem('word'))
+  console.log(localStorage.getItem('checkbox'))
 
   return { 
     matchedMovies, 
@@ -119,11 +78,10 @@ function useMoviesSearch() {
     isSearched, 
     isLoading,
     count, 
-    setIsSearched, 
+    setMatchedMovies, 
     setShortMovie, 
     filterMovies,
     handleMoreButton,
-    setCount
   }
 }
 

@@ -19,7 +19,6 @@ import { getMovies } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
-
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [filmsCollection, setFilmsCollection] = useState([]);
@@ -44,6 +43,19 @@ function App() {
     changePopup: changeProfilePopup,  
     changeError: changeProfileError
   } = useInfoPopup();
+
+  const { 
+    matchedMovies, 
+    showedMovies,
+    shortMovie, 
+    noResult, 
+    isSearched, 
+    isLoading, 
+    setMatchedMovies,
+    setShortMovie, 
+    filterMovies,
+    handleMoreButton
+  } = useMoviesSearch();
 
   function getFilmsCollection() {
     getMovies()
@@ -80,8 +92,6 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
-  
-
   function updateUserData({ name, email }) {
     updateUser(name, email)
       .then(data => {
@@ -100,18 +110,10 @@ function App() {
       })
   }
 
-  // console.log(currentUser)
- 
-
   function closeInfoPopup() {
     changeAuthPopup(false);
     changeProfilePopup(false);
   }
-
-  // function handleCardGrid(e) {
-  //   // setWidth(window.innerWidth)
-  //   console.log(window.innerWidth)
-  // }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -123,7 +125,19 @@ function App() {
 
         <Route path='/movies' element={
           <ProtectedRoute loggedIn={loggedIn}>
-            <Movies filmsCollection={filmsCollection}/>
+            <Movies 
+              filmsCollection={filmsCollection} 
+              matchedMovies={matchedMovies} 
+              showedMovies={showedMovies} 
+              shortMovie={shortMovie} 
+              noResult={noResult}
+              isSearched={isSearched}
+              isLoading={isLoading}
+              setMatchedMovies={setMatchedMovies}
+              setShortMovie={setShortMovie}
+              filterMovies={filterMovies}
+              handleMoreButton={handleMoreButton} >
+            </Movies>
           </ProtectedRoute>} />
 
         <Route path='/saved-movies' element={ 
@@ -142,7 +156,6 @@ function App() {
       </Routes>
 
       <InfoPopup isConfirm={[authConfirm, profileConfirm]} error={[authError, profileError]} isOpen={[authPopup, profilePopup]} onClose={closeInfoPopup}/>
-      {/* {isRegisterPopupOpen && <InfoPopup isSignup={isSignup} authError={authError} isOpen={setIsRegisterPopupOpen}/>} */}
 
       <Footer />
     </div>
