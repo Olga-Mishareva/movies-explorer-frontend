@@ -59,3 +59,35 @@ export function updateUser(name, email) {
   })
    .then(res => getResponseData(res))
 }
+
+export function addMovie({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId }) {
+  // console.log({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId })
+  return fetch(`${baseURL}/movies`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      country,
+      director, 
+      duration, 
+      year, 
+      description,
+      image, 
+      trailerLink, 
+      nameRU, 
+      nameEN, 
+      thumbnail, 
+      movieId
+    })
+  })
+    .then(res => getResponseData(res))
+}
+
+export function getAddedMovies() {
+  return fetch(`${baseURL}/movies`, {
+    method: 'GET',
+    credentials: 'include',
+  })
+    .then(res => getResponseData(res))
+}
+

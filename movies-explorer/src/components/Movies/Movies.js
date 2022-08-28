@@ -15,7 +15,8 @@ function Movies({
     isLoading, 
     setShortMovie, 
     filterMovies,
-    handleMoreButton 
+    handleMoreButton,
+    handleSaveMovie
     }) {
 
     useEffect(() => {
@@ -26,7 +27,7 @@ function Movies({
     localStorage.setItem('search', isSearched);
   }, [isSearched])
 
-  console.log(shortMovie)
+  console.log(matchedMovies)
 
   return (
     <div className='movies'> 
@@ -44,7 +45,8 @@ function Movies({
         showedMovies={showedMovies}
         noResult={noResult}
         isSearched={isSearched}
-        onMore={handleMoreButton}>
+        onMore={handleMoreButton}
+        handleSaveMovie={handleSaveMovie}>
       </MoviesCardList>
     </div>
   );

@@ -1,4 +1,4 @@
-const baseURL = 'https://api.nomoreparties.co/beatfilm-movies';
+const moviesURL = 'https://api.nomoreparties.co/beatfilm-movies';
 
 function getResponseData(res) {
   if (res.ok) {
@@ -12,9 +12,10 @@ function getResponseData(res) {
   }
 }
 
-export function getMovies() {
-  return fetch(baseURL, {
+export function getAllMovies() {
+  return fetch(moviesURL, {
     method: 'GET'
   })
     .then(res => getResponseData(res))
 }
+
