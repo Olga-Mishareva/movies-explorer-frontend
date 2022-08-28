@@ -25,14 +25,18 @@ function useMoviesSearch() {
     
     if (shortMovie) {
       const shortFilmList = filmsCollection.filter(movie => {
-        return (movie.nameRU.match(regex)) && movie.duration <= 40;
+        if(movie.nameEN !== null) {
+          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) && movie.duration <= 40;
+        }
       })
       setMatchedMovies(shortFilmList);
       localStorage.setItem('matched-movies', JSON.stringify(shortFilmList));
     }
     else {
       const filmList = filmsCollection.filter(movie => {
-        return  movie.nameRU.match(regex);    
+        if(movie.nameEN !== null) {
+          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) ;
+        }    
       })
       setMatchedMovies(filmList);
       localStorage.setItem('matched-movies', JSON.stringify(filmList));
@@ -66,9 +70,9 @@ function useMoviesSearch() {
     setIsLoading(false);
   }, [isSearched, matchedMovies])
 
-  console.log(JSON.parse(localStorage.getItem('matched-movies')))
-  console.log(localStorage.getItem('word'))
-  console.log(localStorage.getItem('checkbox'))
+  // console.log(JSON.parse(localStorage.getItem('matched-movies')))
+  // console.log(localStorage.getItem('word'))
+  // console.log(localStorage.getItem('checkbox'))
 
   return { 
     matchedMovies, 

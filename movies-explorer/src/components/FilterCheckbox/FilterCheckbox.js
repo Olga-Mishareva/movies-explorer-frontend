@@ -1,7 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './FilterCheckbox.css';
 
 function FilterCheckbox({ shortMovie, setShortMovie }) {
+  const checkboxRef = useRef();
+
+  // useEffect(() => {
+  //   // if (checkboxRef.current) {
+  //     if (shortMovie) {
+  //       checkboxRef.current.checked = true;
+  //     }
+  //     else checkboxRef.current.checked = false;
+  //   // }
+  // }, [])
 
   function toggleCheckbox(e) {
     if (e.target.checked) {
@@ -12,19 +22,24 @@ function FilterCheckbox({ shortMovie, setShortMovie }) {
     }
   }
 
-  console.log(shortMovie) // правильное значение
+  // if (checkboxRef.current) {
+  //   console.log(checkboxRef.current.checked)
+  // }
+  
+
+  // console.log(shortMovie) // правильное значение
 
   useEffect(() => {
     localStorage.setItem('checkbox', shortMovie);
-    console.log(localStorage.getItem('checkbox')) // правильное значение
+    // console.log(localStorage.getItem('checkbox')) // правильное значение
   }, [shortMovie])
 
   return (
     <div className="filter"> 
       <label className='filter__title'>
-        <input className='filter__checkbox' type='checkbox' value='short' 
-          // checked={shortMovie ? true : false} // не работает, всегда checked
-          onClick={toggleCheckbox}></input>
+        <input ref={checkboxRef} className='filter__checkbox' type='checkbox' value='short' 
+          checked={!shortMovie ? false : true} // не работает, всегда checked
+          onChange={toggleCheckbox}></input>
             Короткометражки
       </label>
     </div>

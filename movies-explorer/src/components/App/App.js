@@ -13,9 +13,10 @@ import InfoPopup from '../InfoPopup/InfoPopup';
 import useAuth from '../../utils/useAuth';
 import useInfoPopup from '../../utils/useInfoPopup';
 import useMoviesSearch from '../../utils/useMoviesSearch';
+import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { getUser, updateUser } from '../../utils/MainApi';
-import { getMovies } from '../../utils/MoviesApi';
+import { getAllMovies } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
@@ -57,8 +58,10 @@ function App() {
     handleMoreButton
   } = useMoviesSearch();
 
+  const { savedMovies, setSavedMovies, handleSaveMovie, getSavedMovies } = useSaveMovies();
+
   function getFilmsCollection() {
-    getMovies()
+    getAllMovies()
       .then(data => {
         setFilmsCollection(data);
       })
@@ -115,6 +118,8 @@ function App() {
     changeProfilePopup(false);
   }
 
+  // console.log(filmsCollection)
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className='page'>
@@ -136,13 +141,22 @@ function App() {
               setMatchedMovies={setMatchedMovies}
               setShortMovie={setShortMovie}
               filterMovies={filterMovies}
-              handleMoreButton={handleMoreButton} >
+              handleMoreButton={handleMoreButton}
+              handleSaveMovie={handleSaveMovie} >
             </Movies>
           </ProtectedRoute>} />
 
         <Route path='/saved-movies' element={ 
           <ProtectedRoute loggedIn={loggedIn}>
-            <SavedMovies />
+            <SavedMovies 
+              savedMovies={savedMovies}
+              shortMovie={shortMovie} 
+              noResult={noResult}
+              isSearched={isSearched}
+              setSavedMovies={setSavedMovies}
+              setShortMovie={setShortMovie}
+              filterMovies={filterMovies}
+              getSavedMovies={getSavedMovies}/>
           </ProtectedRoute>} />
 
         <Route path='/profile' element={

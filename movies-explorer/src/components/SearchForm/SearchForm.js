@@ -5,19 +5,26 @@ import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShortMovie }) {
+function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShortMovie, savedMovies }) {
   const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
   const location = useLocation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
   useEffect(() => { 
-    checkErrors(inputRef.current); 
-    // console.log(isValid)
+    // console.log(value.search)
+    if (value.search || value.search === '') {
+      checkErrors(inputRef.current); 
+    } 
     if (value.search && isValid) {
-      onSearch(value.search, filmsCollection);
+      if (location.pathname === '/movies') {
+        onSearch(value.search, filmsCollection);
+      }
+      else {
+        onSearch(value.search, savedMovies);
+      }
     }
-  }, [shortMovie, value]);
+  }, [shortMovie]);
 
   useEffect(() => {                        
     if (location.pathname === '/movies'){
@@ -39,7 +46,12 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
     e.preventDefault();
     checkErrors(inputRef.current);
     if (isValid && value.search) {
-      onSearch(value.search, filmsCollection);
+      if (location.pathname === '/movies') {
+        onSearch(value.search, filmsCollection);
+      }
+      else {
+        onSearch(value.search, savedMovies);
+      }
     }
   }
 
@@ -67,7 +79,7 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
             <button className='search__submit-btn' type='submit'></button>
           </div>
           <span className='search__error'>{error.search}</span>
-          <FilterCheckbox shortMovie={shortMovie} setShortMovie={setShortMovie} onSearch={onSearch}/>
+          <FilterCheckbox shortMovie={shortMovie} setShortMovie={setShortMovie}/>
         </form>
       </div> 
       
