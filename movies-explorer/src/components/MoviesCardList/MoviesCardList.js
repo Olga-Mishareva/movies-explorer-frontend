@@ -27,9 +27,8 @@ function MoviesCardList({
     setMoviesList(location.pathname === '/movies' ? showedMovies : isUsersFilmsSearched ? userMatchedMovies : savedMovies);
   }, [savedMovies, showedMovies, userMatchedMovies])
 
-  console.log(showedMovies)
-
-  console.log(moviesList)
+  // console.log(showedMovies)
+  // console.log(moviesList)
 
   return (
     <div className={`card-list card-list_${noResult ? "invisible" : ""}`}>

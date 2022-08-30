@@ -42,8 +42,8 @@ function Movies({
     localStorage.setItem('search', isSearched);
   }, [isSearched])
 
-  console.log(isSearched)
-  console.log(noResult)
+  // console.log(isSearched)
+  // console.log(noResult)
 
   return (
     <div className='movies'> 

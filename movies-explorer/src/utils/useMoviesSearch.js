@@ -13,8 +13,8 @@ function useMoviesSearch() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-        setMatchedMovies(JSON.parse(localStorage.getItem('matched-movies')));
+  useEffect(() => {                                                                  
+        setMatchedMovies(JSON.parse(localStorage.getItem('matched-movies'))); // temporare
         setShortMovie(localStorage.getItem('checkbox'));
   }, []);
 
@@ -32,6 +32,7 @@ function useMoviesSearch() {
       })
       setMatchedMovies(shortFilmList);
       localStorage.setItem('matched-movies', JSON.stringify(shortFilmList)); 
+      localStorage.setItem('checkbox', shortMovie);
     }
     else {
       const filmList = filmsCollection.filter(movie => {
@@ -41,6 +42,7 @@ function useMoviesSearch() {
       })
       setMatchedMovies(filmList);
       localStorage.setItem('matched-movies', JSON.stringify(filmList));
+      localStorage.setItem('checkbox', '');
     }
     setIsSearched(true);
   }  
@@ -86,9 +88,9 @@ function useMoviesSearch() {
   }
 
   useEffect(() => {
-    console.log(matchedMovies[0])
-    console.log(isSearched)
-    console.log(noResult)
+    // console.log(matchedMovies[0])
+    // console.log(isSearched)
+    // console.log(noResult)
     if (isSearched && !matchedMovies[0]) {
       setNoResult(true);
       setIsLoading(false);
@@ -103,11 +105,11 @@ function useMoviesSearch() {
     setIsLoading(false);
   }, [isSearched, isUsersFilmsSearched, matchedMovies, userMatchedMovies])
 
-  // console.log(JSON.parse(localStorage.getItem('matched-movies')))
-  // console.log(localStorage.getItem('word'))
-  // console.log(localStorage.getItem('checkbox'))
+  console.log(JSON.parse(localStorage.getItem('matched-movies')))
+  console.log(localStorage.getItem('word'))
+  console.log(localStorage.getItem('checkbox'))
 
-  console.log(noResult)
+  // console.log(noResult)
 
   return { 
     matchedMovies, 

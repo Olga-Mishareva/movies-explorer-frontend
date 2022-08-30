@@ -23,9 +23,10 @@ function SavedMovies({
   // const [moviesList, setMoviesList] = useState([]);
 
   useEffect(() => {
-    console.log(isUsersFilmsSearched)
-    console.log(noResult)
+    // console.log(isUsersFilmsSearched)
+    // console.log(noResult)
     setIsUsersFilmsSearched(false);
+    setShortMovie(false);
     getSavedMovies();
   }, []);
 
