@@ -91,3 +91,11 @@ export function getAddedMovies() {
     .then(res => getResponseData(res))
 }
 
+export function removeMovie({ id }) {
+  console.log(id)
+  return fetch(`${baseURL}/movies/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  })
+    .then(res => getResponseData(res))
+}

@@ -48,17 +48,23 @@ function App() {
   const { 
     matchedMovies, 
     showedMovies,
+    userMatchedMovies,
     shortMovie, 
     noResult, 
     isSearched, 
+    isUsersFilmsSearched,
     isLoading, 
+    setNoResult,
+    setIsSearched,
+    setIsUsersFilmsSearched,
     setMatchedMovies,
     setShortMovie, 
     filterMovies,
+    filterSavedMovies,
     handleMoreButton
   } = useMoviesSearch();
 
-  const { savedMovies, setSavedMovies, handleSaveMovie, getSavedMovies } = useSaveMovies();
+  const { savedMovies, liked, likedMovies, setLiked, setSavedMovies, handleSaveMovie, getSavedMovies, handleRemoveMovie } = useSaveMovies();
 
   function getFilmsCollection() {
     getAllMovies()
@@ -118,7 +124,11 @@ function App() {
     changeProfilePopup(false);
   }
 
-  // console.log(filmsCollection)
+  // useEffect(() => {
+  //   getSavedMovies();
+  // }, []);
+
+  // console.log(savedMovies)
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -138,11 +148,20 @@ function App() {
               noResult={noResult}
               isSearched={isSearched}
               isLoading={isLoading}
+              savedMovies={savedMovies}
+              likedMovies={likedMovies}
+              liked={liked}
+              setLiked={setLiked}
+              setNoResult={setNoResult}
+              setIsSearched={setIsSearched}
+              setIsUsersFilmsSearched={setIsUsersFilmsSearched}
               setMatchedMovies={setMatchedMovies}
               setShortMovie={setShortMovie}
               filterMovies={filterMovies}
+              getSavedMovies={getSavedMovies}
               handleMoreButton={handleMoreButton}
-              handleSaveMovie={handleSaveMovie} >
+              onSave={handleSaveMovie} 
+              onRemove={handleRemoveMovie}>
             </Movies>
           </ProtectedRoute>} />
 
@@ -150,13 +169,19 @@ function App() {
           <ProtectedRoute loggedIn={loggedIn}>
             <SavedMovies 
               savedMovies={savedMovies}
+              userMatchedMovies={userMatchedMovies} 
               shortMovie={shortMovie} 
               noResult={noResult}
-              isSearched={isSearched}
+              isUsersFilmsSearched={isUsersFilmsSearched}
+              liked={liked}
+              setLiked={setLiked}
+              setIsUsersFilmsSearched={setIsUsersFilmsSearched}
               setSavedMovies={setSavedMovies}
               setShortMovie={setShortMovie}
-              filterMovies={filterMovies}
-              getSavedMovies={getSavedMovies}/>
+              filterSavedMovies={filterSavedMovies}
+              getSavedMovies={getSavedMovies}
+              onRemove={handleRemoveMovie}
+              />
           </ProtectedRoute>} />
 
         <Route path='/profile' element={

@@ -13,21 +13,37 @@ function Movies({
     noResult, 
     isSearched, 
     isLoading, 
+    savedMovies,
+    likedMovies,
+    liked,
+    setLiked,
+    setIsSearched,
+    setIsUsersFilmsSearched,
+    setNoResult,
     setShortMovie, 
     filterMovies,
+    getSavedMovies,
     handleMoreButton,
-    handleSaveMovie
+    onSave, 
+    onRemove
     }) {
 
-    useEffect(() => {
-          setShortMovie(localStorage.getItem('checkbox'));
-    }, []);
+  useEffect(() => {
+    setIsUsersFilmsSearched(false);
+    // setIsSearched(false);  /// ?????????????????
+    getSavedMovies();
+  }, []);
+
+  useEffect(() => {
+        setShortMovie(localStorage.getItem('checkbox'));
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('search', isSearched);
   }, [isSearched])
 
-  console.log(matchedMovies)
+  console.log(isSearched)
+  console.log(noResult)
 
   return (
     <div className='movies'> 
@@ -39,14 +55,20 @@ function Movies({
         onSearch={filterMovies}>
       </SearchForm>
       {isLoading && <Preloader />}
-      {isSearched && noResult && <WithoutResult />}
+      {noResult && <WithoutResult />}
       <MoviesCardList 
         matchedMovies={matchedMovies}
         showedMovies={showedMovies}
+        savedMovies={savedMovies}
         noResult={noResult}
         isSearched={isSearched}
+        likedMovies={likedMovies}
+        liked={liked}
+        setLiked={setLiked}
+        getSavedMovies={getSavedMovies}
         onMore={handleMoreButton}
-        handleSaveMovie={handleSaveMovie}>
+        onSave={onSave}
+        onRemove={onRemove}>
       </MoviesCardList>
     </div>
   );

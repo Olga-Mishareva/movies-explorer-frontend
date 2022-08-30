@@ -1,23 +1,55 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies({ savedMovies, setSavedMovies, isSearched, noResult, shortMovie, setShortMovie, filterMovies, getSavedMovies }) {
+function SavedMovies({ 
+  savedMovies, 
+  userMatchedMovies,
+  setSavedMovies, 
+  isUsersFilmsSearched, 
+  noResult, 
+  shortMovie, 
+  liked,
+  setIsUsersFilmsSearched,
+  setLiked,
+  setShortMovie, 
+  filterSavedMovies, 
+  getSavedMovies,
+  onRemove
+}) {
+
+  // const [moviesList, setMoviesList] = useState([]);
 
   useEffect(() => {
+    console.log(isUsersFilmsSearched)
+    console.log(noResult)
+    setIsUsersFilmsSearched(false);
     getSavedMovies();
   }, []);
 
+  useEffect(() => {
+
+  }, [])
+
   return (
     <div className='saved-movies'> 
-      <SearchForm shortMovie={shortMovie} setShortMovie={setShortMovie} savedMovies={savedMovies} onSearch={filterMovies}/>
-      {isSearched && noResult && <WithoutResult />}
+      <SearchForm 
+        shortMovie={shortMovie} 
+        setShortMovie={setShortMovie} 
+        savedMovies={savedMovies} 
+        onSearch={filterSavedMovies} />
+      {noResult && <WithoutResult />}
       <MoviesCardList 
         noResult={noResult}
         savedMovies={savedMovies}
-        setSavedMovies={setSavedMovies}/>
+        userMatchedMovies={userMatchedMovies}
+        liked={liked}
+        isUsersFilmsSearched={isUsersFilmsSearched}
+        setLiked={setLiked}
+        setSavedMovies={setSavedMovies} 
+        onRemove={onRemove}/>
     </div>
   );
 }

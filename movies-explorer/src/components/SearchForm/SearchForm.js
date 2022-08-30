@@ -50,6 +50,8 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
         onSearch(value.search, filmsCollection);
       }
       else {
+        // console.log(savedMovies)
+        // console.log(value.search)
         onSearch(value.search, savedMovies);
       }
     }
