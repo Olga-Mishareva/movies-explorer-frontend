@@ -8,6 +8,7 @@ function SavedMovies({
   savedMovies, 
   userMatchedMovies,
   setSavedMovies, 
+  setUserMatchedMovies,
   isUsersFilmsSearched, 
   noResult, 
   shortMovie, 
@@ -40,12 +41,14 @@ function SavedMovies({
         shortMovie={shortMovie} 
         setShortMovie={setShortMovie} 
         savedMovies={savedMovies} 
+        isUsersFilmsSearched={isUsersFilmsSearched}
         onSearch={filterSavedMovies} />
       {noResult && <WithoutResult />}
       <MoviesCardList 
         noResult={noResult}
         savedMovies={savedMovies}
         userMatchedMovies={userMatchedMovies}
+        setUserMatchedMovies={setUserMatchedMovies}
         liked={liked}
         isUsersFilmsSearched={isUsersFilmsSearched}
         setLiked={setLiked}

@@ -4,15 +4,18 @@ import { addMovie, getAddedMovies, removeMovie } from './MainApi';
 
 function useSaveMovies() {
   const [savedMovies, setSavedMovies] = useState([]);
-  const [likedMovies, setLikedMovies] = useState([]);  // remove
   // const [liked, setLiked] = useState(false);
 
   function handleSaveMovie(data) {
     addMovie(data)
-      .then(likedMovie => {
+      .then(likedMovie => {                                   
+        if (likedMovie) {
+          getSavedMovies();
+        }
+
         // console.log(showedMovies)
-        // console.log(likedMovie)
-        setSavedMovies([...savedMovies, likedMovie])
+        console.log(likedMovie)
+        // setSavedMovies([...savedMovies, likedMovie])
       })
       .catch(err => console.log(err))  // popup!!
   }
@@ -41,7 +44,7 @@ function useSaveMovies() {
   // console.log(savedMovies)
 
 
-  return { savedMovies, likedMovies, setSavedMovies, handleSaveMovie, getSavedMovies, handleRemoveMovie }
+  return { savedMovies, setSavedMovies, handleSaveMovie, getSavedMovies, handleRemoveMovie }
 }
 
 export default useSaveMovies;

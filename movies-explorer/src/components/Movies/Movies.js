@@ -29,18 +29,21 @@ function Movies({
     }) {
 
   useEffect(() => {
+    getSavedMovies();
     setIsUsersFilmsSearched(false);
     // setIsSearched(false);  /// ?????????????????
-    getSavedMovies();
+    
   }, []);
+
+  // console.log(savedMovies)
 
   useEffect(() => {
         setShortMovie(localStorage.getItem('checkbox'));
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('search', isSearched);
-  }, [isSearched])
+  // useEffect(() => {
+  //   localStorage.setItem('search', isSearched);
+  // }, [isSearched])
 
   // console.log(isSearched)
   // console.log(noResult)

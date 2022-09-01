@@ -58,6 +58,7 @@ function App() {
     setIsSearched,
     setIsUsersFilmsSearched,
     setMatchedMovies,
+    setUserMatchedMovies,
     setShortMovie, 
     filterMovies,
     filterSavedMovies,
@@ -177,6 +178,7 @@ function App() {
               setLiked={setLiked}
               setIsUsersFilmsSearched={setIsUsersFilmsSearched}
               setSavedMovies={setSavedMovies}
+              setUserMatchedMovies={setUserMatchedMovies}
               setShortMovie={setShortMovie}
               filterSavedMovies={filterSavedMovies}
               getSavedMovies={getSavedMovies}

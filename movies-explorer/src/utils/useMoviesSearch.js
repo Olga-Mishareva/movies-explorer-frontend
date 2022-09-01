@@ -105,9 +105,9 @@ function useMoviesSearch() {
     setIsLoading(false);
   }, [isSearched, isUsersFilmsSearched, matchedMovies, userMatchedMovies])
 
-  console.log(JSON.parse(localStorage.getItem('matched-movies')))
-  console.log(localStorage.getItem('word'))
-  console.log(localStorage.getItem('checkbox'))
+  // console.log(JSON.parse(localStorage.getItem('matched-movies')))
+  // console.log(localStorage.getItem('word'))
+  // console.log(localStorage.getItem('checkbox'))
 
   // console.log(noResult)
 
@@ -125,6 +125,7 @@ function useMoviesSearch() {
     setIsSearched,
     setIsUsersFilmsSearched,
     setMatchedMovies, 
+    setUserMatchedMovies,
     setShortMovie, 
     filterMovies,
     filterSavedMovies,

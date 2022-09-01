@@ -5,7 +5,7 @@ import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShortMovie, savedMovies }) {
+function SearchForm({ onSearch, filmsCollection, shortMovie, isUsersFilmsSearched, setShortMovie, savedMovies }) {
   const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
   const location = useLocation();
   const inputRef = useRef();
@@ -71,7 +71,7 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isSearched, setShor
               ref={inputRef}
               type='search' 
               name='search' 
-              placeholder='Фильм' 
+              placeholder='Фильм'
               required
               pattern={SEARCH_WORD_REGEX}
               value={value.search || ''}
