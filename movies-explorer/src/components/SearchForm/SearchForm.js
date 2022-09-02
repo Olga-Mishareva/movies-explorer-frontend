@@ -9,27 +9,27 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
   const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
   const { pathname } = useLocation();
   const inputRef = useRef();
+
   const [value, setValue] = useState({});
 
-  useEffect(() => {                           // нужно вынести!!!
+  useEffect(() => {                         
     if (pathname === '/movies'){
       setValue({ search: storageWord });
-      // setValue({search: localStorage.getItem('word')});
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { 
-    console.log(value.search)
     if (value.search || value.search === '') {
       checkErrors(inputRef.current); 
     } 
-    console.log(isValid)
     if (value.search && isValid) {
       onSearch(value.search, filmsList);
     }
     if (pathname === '/movies' && value.search === storageWord) {
       onSearch(value.search, filmsList);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shortMovie]);
 
   
