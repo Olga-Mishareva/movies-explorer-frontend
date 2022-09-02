@@ -1,18 +1,12 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { register, login, logout } from './MainApi';
-import useInfoPopup from "./useInfoPopup";
 
 function useAuth() {
-  const location = useLocation();
-  const { 
-    isConfirm: authConfirm, 
-    isInfoPopupOpen: authPopup, 
-    error: authError, 
-    changePopup: changeAuthPopup, 
-    changeConfirm, 
-    changeError 
-  } = useInfoPopup();
+  const { pathname } = useLocation();
+  const [authConfirm, setAuthConfirm] = useState(false);
+  const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
+  const [authError, setAuthError] = useState('');
   
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -21,21 +15,24 @@ function useAuth() {
     register(username, email, password)
       .then(res => {
         if (res._id) {
-          changeConfirm(true);
-          changeAuthPopup(true);
-          setTimeout(() => changeAuthPopup(false), 2000);
+          setAuthConfirm(true);
+          setIsAuthPopupOpen(true);
+          setTimeout(() => {
+            setIsAuthPopupOpen(false);
+            setAuthConfirm(false);
+          }, 2000);
           handleLogin({ email, password });
         }
         else {
-          changeConfirm(false);
-          changeAuthPopup(true);
+          setAuthConfirm(false);
+          setIsAuthPopupOpen(true);
         }
       })
       .catch(err => {
-        changeError(err.message);
-        changeConfirm(false);
-        changeAuthPopup(true);
-      }) 
+        setAuthError(err.message);
+        setAuthConfirm(false);
+        setIsAuthPopupOpen(true);
+      });
   }
 
   function handleLogin({ email, password }) {
@@ -48,9 +45,9 @@ function useAuth() {
         }
       })
       .catch(err => {
-        changeError(err.message);
-        changeAuthPopup(true);
-      })
+        setAuthError(err.message);
+        setIsAuthPopupOpen(true);
+      });
   }
 
   function checkAuth() {
@@ -60,11 +57,11 @@ function useAuth() {
   }
 
   function checkPath() {
-    if (location.pathname === '/signup' || location.pathname === '/signin') {
+    if (pathname === '/signup' || pathname === '/signin') {
       navigate('/');
     }
     else {
-      navigate(location.pathname);
+      navigate(pathname);
     }
   }
 
@@ -76,19 +73,19 @@ function useAuth() {
         navigate('/');
       })
       .catch(err => {
-        changeError(err.message);
-        changeAuthPopup(true);
-      })
+        setAuthError(err.message);
+        setIsAuthPopupOpen(true);
+      });
   }
 
   return { 
     loggedIn, 
     authConfirm, 
-    authPopup, 
+    isAuthPopupOpen, 
     authError, 
+    setIsAuthPopupOpen,
     checkAuth,
     checkPath, 
-    changeAuthPopup, 
     handleRegister, 
     handleLogin, 
     handleLogout 

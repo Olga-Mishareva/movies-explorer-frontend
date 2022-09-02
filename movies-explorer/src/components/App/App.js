@@ -11,7 +11,6 @@ import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 import InfoPopup from '../InfoPopup/InfoPopup';
 import useAuth from '../../utils/useAuth';
-import useInfoPopup from '../../utils/useInfoPopup';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -23,27 +22,22 @@ import './App.css';
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [filmsCollection, setFilmsCollection] = useState([]);
+  const [profileConfirm, setProfileConfirm] = useState(false);
+  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
+  const [profileError, setProfileError] = useState('');
+
   const { 
     loggedIn, 
     authConfirm, 
-    authPopup, 
+    isAuthPopupOpen, 
     authError, 
     checkAuth, 
     checkPath,
-    changeAuthPopup, 
+    setIsAuthPopupOpen, 
     handleRegister, 
     handleLogin, 
     handleLogout 
   } = useAuth();
-  
-  const { 
-    isConfirm: profileConfirm,
-    isInfoPopupOpen: profilePopup, 
-    error: profileError, 
-    changeConfirm: changeProfileConfirm,
-    changePopup: changeProfilePopup,  
-    changeError: changeProfileError
-  } = useInfoPopup();
 
   const { 
     matchedMovies, 
@@ -64,7 +58,16 @@ function App() {
     handleMoreButton
   } = useMoviesSearch();
 
-  const { savedMovies, handleSaveMovie, getSavedMovies, handleRemoveMovie } = useSaveMovies();
+  const { 
+    savedMovies, 
+    // movieConfirm, 
+    isMoviePopupOpen, 
+    movieError, 
+    setIsMoviePopupOpen,
+    handleSaveMovie, 
+    getSavedMovies, 
+    handleRemoveMovie 
+  } = useSaveMovies();
 
   function getFilmsCollection() {
     getAllMovies()
@@ -93,9 +96,9 @@ function App() {
           getFilmsCollection();
         })
         .catch(err => {
-          changeProfileError(err.message);
+          setProfileError(err.message);
           
-          changeProfilePopup(true);
+          setIsProfilePopupOpen(true);
         })
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -108,20 +111,24 @@ function App() {
           username: data.name, 
           email: data.email
         });
-        changeProfileConfirm(true);
-        changeProfilePopup(true)
-        setTimeout(() => changeProfilePopup(false), 2000);
+        setProfileConfirm(true);
+        setIsProfilePopupOpen(true)
+        setTimeout(() => {
+          setIsProfilePopupOpen(false);
+          setProfileConfirm(false);
+        }, 2000);
       })
       .catch(err => {
-        changeProfileError(err.message);
-        changeProfileConfirm(false);
-        changeProfilePopup(true);
+        setProfileError(err.message);
+        setProfileConfirm(false);
+        setIsProfilePopupOpen(true);
       })
   }
 
-  function closeInfoPopup() {
-    changeAuthPopup(false);
-    changeProfilePopup(false);
+  function closeInfoPopups() {
+    setIsAuthPopupOpen(false);
+    setIsProfilePopupOpen(false);
+    setIsMoviePopupOpen(false);
   }
 
   // useEffect(() => {
@@ -189,7 +196,11 @@ function App() {
         <Route path='*' element={<NoMatch />} />
       </Routes>
 
-      <InfoPopup isConfirm={[authConfirm, profileConfirm]} error={[authError, profileError]} isOpen={[authPopup, profilePopup]} onClose={closeInfoPopup}/>
+      <InfoPopup isConfirm={[authConfirm, profileConfirm]} 
+        error={[authError, profileError, movieError]} 
+        isOpen={[isAuthPopupOpen, isProfilePopupOpen, isMoviePopupOpen]} 
+        onClose={closeInfoPopups}>
+      </InfoPopup>
 
       <Footer />
     </div>

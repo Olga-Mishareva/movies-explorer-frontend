@@ -3,6 +3,9 @@ import { addMovie, getAddedMovies, removeMovie } from './MainApi';
 
 function useSaveMovies() {
   const [savedMovies, setSavedMovies] = useState([]);
+  // const [movieConfirm, setMovieConfirm] = useState(false);
+  const [isMoviePopupOpen, setIsMoviePopupOpen] = useState(false);
+  const [movieError, setMovieError] = useState('');
 
   function handleSaveMovie(data) {
     addMovie(data)
@@ -12,7 +15,11 @@ function useSaveMovies() {
         }
         console.log(likedMovie)
       })
-      .catch(err => console.log(err))  // popup!!
+      .catch(err => {
+        setMovieError(err.message);
+        // setMovieConfirm(false);
+        setIsMoviePopupOpen(true);
+      });
   }
 
   function handleRemoveMovie(movieId) {
@@ -23,8 +30,11 @@ function useSaveMovies() {
           return movie._id !== res._id;
         }))
       })
-        
-      .catch(err => console.log(err))  // popup!!
+      .catch(err => {
+        setMovieError(err.message);
+        // setMovieConfirm(false);
+        setIsMoviePopupOpen(true);
+      });
   }
 
   function getSavedMovies() {
@@ -32,10 +42,14 @@ function useSaveMovies() {
       .then(movies => {
           setSavedMovies(movies);
       })
-      .catch(err => console.log(err));   // popup!! 
+      .catch(err => {
+        setMovieError(err.message);
+        // setMovieConfirm(false);
+        setIsMoviePopupOpen(true);
+      });
   }
 
-  return { savedMovies, handleSaveMovie, getSavedMovies, handleRemoveMovie }
+  return { savedMovies, isMoviePopupOpen, movieError, setIsMoviePopupOpen, handleSaveMovie, getSavedMovies, handleRemoveMovie }
 }
 
 export default useSaveMovies;
