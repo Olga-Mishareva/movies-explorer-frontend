@@ -7,53 +7,56 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 function SavedMovies({ 
   savedMovies, 
   userMatchedMovies,
-  setSavedMovies, 
-  setUserMatchedMovies,
   isUsersFilmsSearched, 
   noResult, 
   shortMovie, 
-  liked,
+  setUserMatchedMovies,
   setIsUsersFilmsSearched,
-  setLiked,
   setShortMovie, 
   filterSavedMovies, 
   getSavedMovies,
   onRemove
 }) {
 
-  // const [moviesList, setMoviesList] = useState([]);
-
   useEffect(() => {
-    // console.log(isUsersFilmsSearched)
-    // console.log(noResult)
     setIsUsersFilmsSearched(false);
     setShortMovie(false);
     getSavedMovies();
   }, []);
 
   useEffect(() => {
+    let userMatchedList = [];
+    userMatchedMovies.map(machedMovie => {
+      return savedMovies.forEach(savedMovie => {
+        if (machedMovie._id === savedMovie._id) {
+          userMatchedList.push(machedMovie);
+        }
+      });
+    });
+    setUserMatchedMovies(userMatchedList);
+  }, [savedMovies]);
 
-  }, [])
+ 
+
+  // useEffect(() => {
+
+  // }, [])
 
   return (
     <div className='saved-movies'> 
       <SearchForm 
         shortMovie={shortMovie} 
         setShortMovie={setShortMovie} 
-        savedMovies={savedMovies} 
-        isUsersFilmsSearched={isUsersFilmsSearched}
-        onSearch={filterSavedMovies} />
-      {noResult && <WithoutResult />}
+        filmsList={savedMovies} 
+        onSearch={filterSavedMovies}>
+      </SearchForm>
+        {noResult && <WithoutResult />}
       <MoviesCardList 
         noResult={noResult}
         savedMovies={savedMovies}
-        userMatchedMovies={userMatchedMovies}
-        setUserMatchedMovies={setUserMatchedMovies}
-        liked={liked}
-        isUsersFilmsSearched={isUsersFilmsSearched}
-        setLiked={setLiked}
-        setSavedMovies={setSavedMovies} 
-        onRemove={onRemove}/>
+        moviesToShow={!isUsersFilmsSearched ? savedMovies : userMatchedMovies}
+        onRemove={onRemove}>
+      </MoviesCardList>
     </div>
   );
 }

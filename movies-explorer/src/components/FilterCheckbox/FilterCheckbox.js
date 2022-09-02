@@ -1,10 +1,6 @@
-import { useEffect } from 'react';
-import { useLocation } from "react-router-dom";
 import './FilterCheckbox.css';
 
 function FilterCheckbox({ shortMovie, setShortMovie }) {
-  const location = useLocation();
-  
 
   function toggleCheckbox(e) {
     if (e.target.checked) {
@@ -15,15 +11,11 @@ function FilterCheckbox({ shortMovie, setShortMovie }) {
     }
   }
 
-  // console.log(shortMovie) // правильное значение
-
-  
-
   return (
     <div className="filter"> 
       <label className='filter__title'>
         <input className='filter__checkbox' type='checkbox' value='short' 
-          checked={!shortMovie ? false : true} // не работает, всегда checked
+          checked={!shortMovie ? false : true} 
           onChange={toggleCheckbox}></input>
             Короткометражки
       </label>

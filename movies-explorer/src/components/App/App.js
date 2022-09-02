@@ -54,10 +54,7 @@ function App() {
     isSearched, 
     isUsersFilmsSearched,
     isLoading, 
-    setNoResult,
-    setIsSearched,
     setIsUsersFilmsSearched,
-    setMatchedMovies,
     setUserMatchedMovies,
     setShortMovie, 
     filterMovies,
@@ -65,7 +62,7 @@ function App() {
     handleMoreButton
   } = useMoviesSearch();
 
-  const { savedMovies, liked, likedMovies, setLiked, setSavedMovies, handleSaveMovie, getSavedMovies, handleRemoveMovie } = useSaveMovies();
+  const { savedMovies, handleSaveMovie, getSavedMovies, handleRemoveMovie } = useSaveMovies();
 
   function getFilmsCollection() {
     getAllMovies()
@@ -129,7 +126,8 @@ function App() {
   //   getSavedMovies();
   // }, []);
 
-  // console.log(savedMovies)
+  console.log(loggedIn)
+  console.log(currentUser)
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -150,13 +148,7 @@ function App() {
               isSearched={isSearched}
               isLoading={isLoading}
               savedMovies={savedMovies}
-              likedMovies={likedMovies}
-              liked={liked}
-              setLiked={setLiked}
-              setNoResult={setNoResult}
-              setIsSearched={setIsSearched}
               setIsUsersFilmsSearched={setIsUsersFilmsSearched}
-              setMatchedMovies={setMatchedMovies}
               setShortMovie={setShortMovie}
               filterMovies={filterMovies}
               getSavedMovies={getSavedMovies}
@@ -174,16 +166,13 @@ function App() {
               shortMovie={shortMovie} 
               noResult={noResult}
               isUsersFilmsSearched={isUsersFilmsSearched}
-              liked={liked}
-              setLiked={setLiked}
               setIsUsersFilmsSearched={setIsUsersFilmsSearched}
-              setSavedMovies={setSavedMovies}
               setUserMatchedMovies={setUserMatchedMovies}
               setShortMovie={setShortMovie}
               filterSavedMovies={filterSavedMovies}
               getSavedMovies={getSavedMovies}
-              onRemove={handleRemoveMovie}
-              />
+              onRemove={handleRemoveMovie}>
+            </SavedMovies>
           </ProtectedRoute>} />
 
         <Route path='/profile' element={

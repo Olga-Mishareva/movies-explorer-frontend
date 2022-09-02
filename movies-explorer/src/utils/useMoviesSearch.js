@@ -14,7 +14,7 @@ function useMoviesSearch() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {                                                                  
-        setMatchedMovies(JSON.parse(localStorage.getItem('matched-movies'))); // temporare
+        setMatchedMovies(JSON.parse(localStorage.getItem('matched-movies'))); 
         setShortMovie(localStorage.getItem('checkbox'));
   }, []);
 
@@ -120,11 +120,7 @@ function useMoviesSearch() {
     isSearched, 
     isUsersFilmsSearched,
     isLoading,
-    count, 
-    setNoResult,
-    setIsSearched,
     setIsUsersFilmsSearched,
-    setMatchedMovies, 
     setUserMatchedMovies,
     setShortMovie, 
     filterMovies,

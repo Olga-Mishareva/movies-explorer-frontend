@@ -5,9 +5,9 @@ import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, filmsCollection, shortMovie, isUsersFilmsSearched, setShortMovie, savedMovies }) {
+function SearchForm({ onSearch, filmsList, shortMovie, setShortMovie }) {
   const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
@@ -17,17 +17,12 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isUsersFilmsSearche
       checkErrors(inputRef.current); 
     } 
     if (value.search && isValid) {
-      if (location.pathname === '/movies') {
-        onSearch(value.search, filmsCollection);
-      }
-      else {
-        onSearch(value.search, savedMovies);
-      }
+      onSearch(value.search, filmsList);
     }
   }, [shortMovie]);
 
-  useEffect(() => {                        
-    if (location.pathname === '/movies'){
+  useEffect(() => {                           // нужно вынести!!!
+    if (pathname === '/movies'){
       setValue({search: localStorage.getItem('word')});
     }
   }, []);
@@ -46,14 +41,7 @@ function SearchForm({ onSearch, filmsCollection, shortMovie, isUsersFilmsSearche
     e.preventDefault();
     checkErrors(inputRef.current);
     if (isValid && value.search) {
-      if (location.pathname === '/movies') {
-        onSearch(value.search, filmsCollection);
-      }
-      else {
-        // console.log(savedMovies)
-        // console.log(value.search)
-        onSearch(value.search, savedMovies);
-      }
+      onSearch(value.search, filmsList);
     }
   }
 
