@@ -54,6 +54,8 @@ function App() {
     isSearched, 
     isUsersFilmsSearched,
     isLoading, 
+    storageWord,
+    storageCheckbox,
     setIsUsersFilmsSearched,
     setUserMatchedMovies,
     setShortMovie, 
@@ -126,8 +128,8 @@ function App() {
   //   getSavedMovies();
   // }, []);
 
-  console.log(loggedIn)
-  console.log(currentUser)
+  // console.log(loggedIn)
+  // console.log(currentUser)
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -148,6 +150,8 @@ function App() {
               isSearched={isSearched}
               isLoading={isLoading}
               savedMovies={savedMovies}
+              storageWord={storageWord}
+              storageCheckbox={storageCheckbox}
               setIsUsersFilmsSearched={setIsUsersFilmsSearched}
               setShortMovie={setShortMovie}
               filterMovies={filterMovies}

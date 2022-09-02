@@ -5,27 +5,34 @@ import useValidation from '../../utils/useValidation';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, filmsList, shortMovie, setShortMovie }) {
+function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovie }) {
   const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
   const { pathname } = useLocation();
   const inputRef = useRef();
   const [value, setValue] = useState({});
 
+  useEffect(() => {                           // нужно вынести!!!
+    if (pathname === '/movies'){
+      setValue({ search: storageWord });
+      // setValue({search: localStorage.getItem('word')});
+    }
+  }, []);
+
   useEffect(() => { 
-    // console.log(value.search)
+    console.log(value.search)
     if (value.search || value.search === '') {
       checkErrors(inputRef.current); 
     } 
+    console.log(isValid)
     if (value.search && isValid) {
+      onSearch(value.search, filmsList);
+    }
+    if (pathname === '/movies' && value.search === storageWord) {
       onSearch(value.search, filmsList);
     }
   }, [shortMovie]);
 
-  useEffect(() => {                           // нужно вынести!!!
-    if (pathname === '/movies'){
-      setValue({search: localStorage.getItem('word')});
-    }
-  }, []);
+  
 
   function handleInputValue(e) {
     setError({});

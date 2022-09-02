@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useResize from './useResize';
+import useLocalStorage from './useLocalStorage';
 
 function useMoviesSearch() {
   const { width, count, row } = useResize();
@@ -10,17 +11,25 @@ function useMoviesSearch() {
   const [noResult, setNoResult] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
   const [isUsersFilmsSearched, setIsUsersFilmsSearched] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
 
+  const [storageMovies, setStorageMovies] = useLocalStorage([], 'movies');
+  const [storageCheckbox, setStorageCheckbox] = useLocalStorage('', 'checkbox');
+  const [storageWord, setStorageWord] = useLocalStorage('', 'word');
+  // const [storageSearched, setStorageSearched] = useLocalStorage('', 'search');
+
   useEffect(() => {                                                                  
-        setMatchedMovies(JSON.parse(localStorage.getItem('matched-movies'))); 
-        setShortMovie(localStorage.getItem('checkbox'));
+        // setMatchedMovies(JSON.parse(localStorage.getItem('movies'))); 
+        // setShortMovie(localStorage.getItem('checkbox'));
+        setMatchedMovies(storageMovies); 
+        setShortMovie(storageCheckbox);
+        // setIsSearched(storageSearched);
   }, []);
 
   function filterMovies(word, filmsCollection) {
     setIsLoading(true);
-    localStorage.setItem('word', word);
+    setStorageWord(word);
+    // localStorage.setItem('word', word);
     const regex = new RegExp(`${word}`, 'i'); 
     console.log(regex)
 
@@ -31,8 +40,11 @@ function useMoviesSearch() {
         }
       })
       setMatchedMovies(shortFilmList);
-      localStorage.setItem('matched-movies', JSON.stringify(shortFilmList)); 
-      localStorage.setItem('checkbox', shortMovie);
+      setStorageMovies(shortFilmList);
+      setStorageCheckbox(shortMovie);
+      // setStorageSearched(true);
+      // localStorage.setItem('matched-movies', JSON.stringify(shortFilmList)); 
+      // localStorage.setItem('checkbox', shortMovie);
     }
     else {
       const filmList = filmsCollection.filter(movie => {
@@ -41,8 +53,11 @@ function useMoviesSearch() {
         }    
       })
       setMatchedMovies(filmList);
-      localStorage.setItem('matched-movies', JSON.stringify(filmList));
-      localStorage.setItem('checkbox', '');
+      setStorageMovies(filmList);
+      setStorageCheckbox('');
+      // setStorageSearched(true);
+      // localStorage.setItem('matched-movies', JSON.stringify(filmList));
+      // localStorage.setItem('checkbox', '');
     }
     setIsSearched(true);
   }  
@@ -88,9 +103,6 @@ function useMoviesSearch() {
   }
 
   useEffect(() => {
-    // console.log(matchedMovies[0])
-    // console.log(isSearched)
-    // console.log(noResult)
     if (isSearched && !matchedMovies[0]) {
       setNoResult(true);
       setIsLoading(false);
@@ -105,12 +117,6 @@ function useMoviesSearch() {
     setIsLoading(false);
   }, [isSearched, isUsersFilmsSearched, matchedMovies, userMatchedMovies])
 
-  // console.log(JSON.parse(localStorage.getItem('matched-movies')))
-  // console.log(localStorage.getItem('word'))
-  // console.log(localStorage.getItem('checkbox'))
-
-  // console.log(noResult)
-
   return { 
     matchedMovies, 
     showedMovies,
@@ -120,6 +126,8 @@ function useMoviesSearch() {
     isSearched, 
     isUsersFilmsSearched,
     isLoading,
+    storageWord,
+    storageCheckbox,
     setIsUsersFilmsSearched,
     setUserMatchedMovies,
     setShortMovie, 

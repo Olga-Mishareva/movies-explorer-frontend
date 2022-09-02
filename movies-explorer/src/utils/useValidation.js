@@ -6,8 +6,7 @@ function useValidation() {
 
   function checkErrors(e) {
     let object;
-    if (e.target) object = e.target;
-    else object = e;
+    object = (e.target) ?  e.target : e;
 
     if (!object.validity.valid) {
       if (object.validity.patternMismatch) {

@@ -13,6 +13,8 @@ function Movies({
     noResult, 
     isSearched, 
     isLoading, 
+    storageWord,
+    storageCheckbox,
     savedMovies,
     setIsUsersFilmsSearched,
     setShortMovie, 
@@ -26,17 +28,19 @@ function Movies({
   useEffect(() => {
     getSavedMovies();
     setIsUsersFilmsSearched(false); 
+    setShortMovie(storageCheckbox);
   }, []);
 
-  useEffect(() => {
-        setShortMovie(localStorage.getItem('checkbox'));
-  }, []);
+  // useEffect(() => {
+  //       setShortMovie(localStorage.getItem('checkbox'));
+  // }, []);
 
   return (
     <div className='movies'> 
       <SearchForm 
         filmsList={filmsCollection} 
         shortMovie={shortMovie} 
+        storageWord={storageWord}
         setShortMovie={setShortMovie}
         onSearch={filterMovies}>
       </SearchForm>
