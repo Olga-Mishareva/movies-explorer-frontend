@@ -36,12 +36,6 @@ function SavedMovies({
     setUserMatchedMovies(userMatchedList);
   }, [savedMovies]);
 
- 
-
-  // useEffect(() => {
-
-  // }, [])
-
   return (
     <div className='saved-movies'> 
       <SearchForm 

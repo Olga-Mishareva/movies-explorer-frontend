@@ -31,10 +31,6 @@ function Movies({
     setShortMovie(storageCheckbox);
   }, []);
 
-  // useEffect(() => {
-  //       setShortMovie(localStorage.getItem('checkbox'));
-  // }, []);
-
   return (
     <div className='movies'> 
       <SearchForm 

@@ -5,36 +5,30 @@ import './MoviesCard.css';
 
 function MoviesCard({ movie, savedMovies, onSave, onRemove }) {
   const { pathname } = useLocation();
-  
   const [film, setFilm] = useState(movie);
   const [liked, setLiked] = useState(false);
   const [time, setTime] = useState({});
 
-  // console.log(liked)  
-  
+  useEffect(() => {
+    setLiked(false);
+    savedMovies.forEach(savedMovie => {
+      if (film.id === savedMovie.movieId || film.movieId === savedMovie.movieId) {
+        setLiked(true);
+        setFilm(savedMovie);
+      }
+    })
+  }, [savedMovies]);
 
   useEffect(() => {
     setTime({
-          hours: Math.floor(film.duration / 60),
-          minutes: film.duration % 60
-        });
+      hours: Math.floor(film.duration / 60),
+      minutes: film.duration % 60
+    });
   }, [film]);
 
-  useEffect(() => {
-    if (pathname === '/movies') {
-      savedMovies.forEach(savedMovie => {
-        if (film.id === savedMovie.movieId || film.movieId === savedMovie.movieId) {
-          setLiked(true);
-          setFilm(savedMovie);
-        }
-      })
-    }
-  }, [savedMovies])
-
-
-
-  function handleLike(e) {
-    setLiked(true);
+  function handleLikeState() {
+    liked ?
+    onRemove({ id: film._id }) :
     onSave({ 
       country: film.country,
       director: film.director, 
@@ -50,28 +44,24 @@ function MoviesCard({ movie, savedMovies, onSave, onRemove }) {
     });
   }
 
-  function handleDislike() { 
-      savedMovies.forEach(savedMovie => {
-        if (savedMovie.movieId === film.id || savedMovie.movieId === film.movieId) {
-          setLiked(false);
-          onRemove({ id: film._id });
-        }
-      });
-  }
-
   return (
     <li className='card'> 
       <a className='card__link' href={film.trailerLink} rel='noreferrer' target='_blank'>
-        <img className='card__image' src={!film.image.url ? film.image : `https://api.nomoreparties.co/${film.image.url}`} alt='Изображение к фильму'></img>
+        <img className='card__image' 
+          src={!film.image.url ? film.image : `https://api.nomoreparties.co/${film.image.url}`} 
+          alt='Изображение к фильму'>
+        </img>
       </a>
       <div className='card__container'>
         <h2 className='card__title'>{film.nameRU}</h2>
         <button className={`card__like 
           card__like_type_${pathname === '/saved-movies' ? 'saved' : liked ? 'liked' : ''}`} 
-          type='button' onClick={liked || pathname === '/saved-movies' ? handleDislike : handleLike}></button>
+          type='button' onClick={handleLikeState}></button>
       </div>
-      <p className='card__duration'>{`${time.hours !== 0 ? time.hours + 'ч': ''}${time.minutes !== 0 ? time.minutes + 'м' : ''}`}</p>
-     
+      <p className='card__duration'>
+        {`${time.hours !== 0 ? time.hours + 'ч': ''}
+        ${time.minutes !== 0 ? time.minutes + 'м' : ''}`}
+      </p>
     </li>
   );
 }

@@ -35,7 +35,7 @@ function useMoviesSearch() {
 
     if (shortMovie) {
       const shortFilmList = filmsCollection.filter(movie => {
-        if(movie.nameEN !== null) {
+        if (Object.values(movie).every(item => item !== null)) {
           return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) && movie.duration <= 40;
         }
       })
@@ -48,7 +48,7 @@ function useMoviesSearch() {
     }
     else {
       const filmList = filmsCollection.filter(movie => {
-        if(movie.nameEN !== null) {
+        if (Object.values(movie).every(item => item !== null)) {
           return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) ;
         }    
       })

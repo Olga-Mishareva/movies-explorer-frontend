@@ -60,7 +60,6 @@ function App() {
 
   const { 
     savedMovies, 
-    // movieConfirm, 
     isMoviePopupOpen, 
     movieError, 
     setIsMoviePopupOpen,
@@ -80,7 +79,6 @@ function App() {
   useEffect(() => {
     checkAuth();
     checkPath();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   useEffect(() => {
@@ -101,7 +99,6 @@ function App() {
           setIsProfilePopupOpen(true);
         })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
   function updateUserData({ name, email }) {
