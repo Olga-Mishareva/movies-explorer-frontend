@@ -88,7 +88,7 @@ function App() {
           setCurrentUser({
             _id: user._id, 
             username: user.name, 
-            email: user.email 
+            email: user.email
           });
           checkPath();
           getFilmsCollection();
