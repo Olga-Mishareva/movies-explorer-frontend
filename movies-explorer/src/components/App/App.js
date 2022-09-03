@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -14,29 +15,25 @@ import useAuth from '../../utils/useAuth';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { getUser, updateUser } from '../../utils/MainApi';
 import { getAllMovies } from '../../utils/MoviesApi';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
   const [filmsCollection, setFilmsCollection] = useState([]);
-  const [profileConfirm, setProfileConfirm] = useState(false);
-  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
-  const [profileError, setProfileError] = useState('');
 
   const { 
     loggedIn, 
     authConfirm, 
     isAuthPopupOpen, 
-    authError, 
-    checkAuth, 
-    checkPath,
+    authError,
+    currentUser, 
+    // checkAuth, 
+    // checkPath,
     setIsAuthPopupOpen, 
     handleRegister, 
     handleLogin, 
-    handleLogout 
+    handleLogout,
+    updateUserData 
   } = useAuth();
 
   const { 
@@ -62,6 +59,7 @@ function App() {
     savedMovies, 
     isMoviePopupOpen, 
     movieError, 
+    setMovieError,
     setIsMoviePopupOpen,
     handleSaveMovie, 
     getSavedMovies, 
@@ -73,67 +71,22 @@ function App() {
       .then(data => {
         setFilmsCollection(data);
       })
-      .catch(err => console.log(err))  // заменить потом
+      .catch(err => {
+        setMovieError(err.message);
+        setIsMoviePopupOpen(true);
+      });
   }
-
-  useEffect(() => {
-    checkAuth();
-    checkPath();
-  },[]);
 
   useEffect(() => {
     if (loggedIn) {
-      getUser()
-        .then(user => {
-          setCurrentUser({
-            _id: user._id, 
-            username: user.name, 
-            email: user.email
-          });
-          checkPath();
-          getFilmsCollection();
-        })
-        .catch(err => {
-          setProfileError(err.message);
-          
-          setIsProfilePopupOpen(true);
-        })
+      getFilmsCollection();
     }
   }, [loggedIn]);
 
-  function updateUserData({ name, email }) {
-    updateUser(name, email)
-      .then(data => {
-        setCurrentUser({ ...currentUser,
-          username: data.name, 
-          email: data.email
-        });
-        setProfileConfirm(true);
-        setIsProfilePopupOpen(true)
-        setTimeout(() => {
-          setIsProfilePopupOpen(false);
-          setProfileConfirm(false);
-        }, 2000);
-      })
-      .catch(err => {
-        setProfileError(err.message);
-        setProfileConfirm(false);
-        setIsProfilePopupOpen(true);
-      })
-  }
-
   function closeInfoPopups() {
     setIsAuthPopupOpen(false);
-    setIsProfilePopupOpen(false);
     setIsMoviePopupOpen(false);
   }
-
-  // useEffect(() => {
-  //   getSavedMovies();
-  // }, []);
-
-  // console.log(loggedIn)
-  // console.log(currentUser)
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -193,9 +146,9 @@ function App() {
         <Route path='*' element={<NoMatch />} />
       </Routes>
 
-      <InfoPopup isConfirm={[authConfirm, profileConfirm]} 
-        error={[authError, profileError, movieError]} 
-        isOpen={[isAuthPopupOpen, isProfilePopupOpen, isMoviePopupOpen]} 
+      <InfoPopup isConfirm={authConfirm} 
+        error={[authError, movieError]} 
+        isOpen={[isAuthPopupOpen, isMoviePopupOpen]} 
         onClose={closeInfoPopups}>
       </InfoPopup>
 

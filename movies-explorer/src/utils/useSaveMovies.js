@@ -45,7 +45,7 @@ function useSaveMovies() {
       });
   }
 
-  return { savedMovies, isMoviePopupOpen, movieError, setIsMoviePopupOpen, handleSaveMovie, getSavedMovies, handleRemoveMovie }
+  return { savedMovies, isMoviePopupOpen, movieError, setMovieError, setIsMoviePopupOpen, handleSaveMovie, getSavedMovies, handleRemoveMovie }
 }
 
 export default useSaveMovies;

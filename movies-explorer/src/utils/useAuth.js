@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
-import { register, login, logout } from './MainApi';
+import { register, login, logout, getUser, updateUser } from './MainApi';
 
 function useAuth() {
   const { pathname } = useLocation();
@@ -8,8 +8,32 @@ function useAuth() {
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [authError, setAuthError] = useState('');
   
+  const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    checkAuth();
+    checkPath();
+  },[]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      getUser()
+        .then(user => {
+          setCurrentUser({
+            _id: user._id, 
+            username: user.name, 
+            email: user.email
+          });
+          checkPath();
+        })
+        .catch(err => {
+          setAuthError(err.message);
+          setIsAuthPopupOpen(true);
+        })
+    }
+  }, [loggedIn]);
 
   function handleRegister({ username, email, password }) {
     register(username, email, password)
@@ -39,7 +63,6 @@ function useAuth() {
     login(email, password) 
       .then(user => {
         if (user.email) {
-          localStorage.setItem('email', email);
           checkAuth();
           navigate('/movies');
         }
@@ -51,9 +74,15 @@ function useAuth() {
   }
 
   function checkAuth() {
-    if (localStorage.getItem('email')) {
-      setLoggedIn(true);
-    }
+    getUser()
+        .then(user => {
+          setLoggedIn(true);
+          checkPath();
+        })
+        .catch(err => {
+          setAuthError(err.message);
+          setIsAuthPopupOpen(true);
+        })
   }
 
   function checkPath() {
@@ -78,17 +107,40 @@ function useAuth() {
       });
   }
 
+  function updateUserData({ name, email }) {
+    updateUser(name, email)
+      .then(data => {
+        setCurrentUser({ ...currentUser,
+          username: data.name, 
+          email: data.email
+        });
+        setAuthConfirm(true);
+        setIsAuthPopupOpen(true)
+        setTimeout(() => {
+          setIsAuthPopupOpen(false);
+          setAuthConfirm(false);
+        }, 2000);
+      })
+      .catch(err => {
+        setAuthError(err.message);
+        setAuthConfirm(false);
+        setIsAuthPopupOpen(true);
+      });
+  }
+
   return { 
     loggedIn, 
     authConfirm, 
     isAuthPopupOpen, 
-    authError, 
+    authError,
+    currentUser, 
     setIsAuthPopupOpen,
     checkAuth,
     checkPath, 
     handleRegister, 
     handleLogin, 
-    handleLogout 
+    handleLogout,
+    updateUserData 
   };
 }
 
