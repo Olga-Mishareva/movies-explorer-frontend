@@ -1,6 +1,4 @@
-// export const baseURL = 'https://api.movies.om.nomoredomains.xyz';
-export const baseURL = 'http://localhost:3000';
-export const movieURL = 'https://api.nomoreparties.co/';
+const baseURL = 'https://api.movies.om.nomoredomains.xyz';
 
 function getResponseData(res) {
   if (res.ok) {
@@ -62,8 +60,6 @@ export function updateUser(name, email) {
 }
 
 export function addMovie({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId }) {
-  // console.log( {thumbnail})
-  console.log({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId })
   return fetch(`${baseURL}/movies`, {
     method: 'POST',
     credentials: 'include',
@@ -94,7 +90,6 @@ export function getAddedMovies() {
 }
 
 export function removeMovie({ id }) {
-  console.log(id)
   return fetch(`${baseURL}/movies/${id}`, {
     method: 'DELETE',
     credentials: 'include',

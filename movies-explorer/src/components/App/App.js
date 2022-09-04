@@ -20,6 +20,7 @@ import './App.css';
 
 function App() {
   const [filmsCollection, setFilmsCollection] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { 
     loggedIn, 
@@ -42,7 +43,7 @@ function App() {
     noResult, 
     isSearched, 
     isUsersFilmsSearched,
-    isLoading, 
+  
     storageWord,
     storageCheckbox,
     setIsUsersFilmsSearched,
@@ -65,6 +66,7 @@ function App() {
   } = useSaveMovies();
 
   function getFilmsCollection() {
+    setIsLoading(true);
     getAllMovies()
       .then(data => {
         setFilmsCollection(data);
@@ -72,7 +74,8 @@ function App() {
       .catch(err => {
         setMovieError(err.message);
         setIsMoviePopupOpen(true);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   useEffect(() => {
@@ -80,8 +83,6 @@ function App() {
       getFilmsCollection();
     }
   }, [loggedIn]);
-
-  
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

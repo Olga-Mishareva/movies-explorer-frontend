@@ -12,7 +12,6 @@ function useSaveMovies() {
         if (likedMovie) {
           getSavedMovies();
         }
-        console.log(likedMovie)
       })
       .catch(err => {
         setMovieError(err.message);
@@ -23,7 +22,6 @@ function useSaveMovies() {
   function handleRemoveMovie(movieId) {
     removeMovie(movieId)
       .then(res => {
-        console.log(res)
         setSavedMovies(savedMovies.filter(movie => {
           return movie._id !== res._id;
         }));
@@ -45,7 +43,16 @@ function useSaveMovies() {
       });
   }
 
-  return { savedMovies, isMoviePopupOpen, movieError, setMovieError, setIsMoviePopupOpen, handleSaveMovie, getSavedMovies, handleRemoveMovie }
+  return { 
+    savedMovies, 
+    isMoviePopupOpen, 
+    movieError, 
+    setMovieError, 
+    setIsMoviePopupOpen, 
+    handleSaveMovie, 
+    getSavedMovies, 
+    handleRemoveMovie 
+  }
 }
 
 export default useSaveMovies;

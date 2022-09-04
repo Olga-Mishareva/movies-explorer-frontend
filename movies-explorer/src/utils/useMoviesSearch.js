@@ -6,12 +6,11 @@ function useMoviesSearch() {
   const { width, count, row } = useResize();
   const [matchedMovies, setMatchedMovies] = useState([]);
   const [showedMovies, setShowedMovies] = useState([]); 
-  const [userMatchedMovies, setUserMatchedMovies] = useState([]); //??
+  const [userMatchedMovies, setUserMatchedMovies] = useState([]);
   const [shortMovie, setShortMovie] = useState(false);
   const [noResult, setNoResult] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
   const [isUsersFilmsSearched, setIsUsersFilmsSearched] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const [storageMovies, setStorageMovies] = useLocalStorage([], 'movies');
   const [storageCheckbox, setStorageCheckbox] = useLocalStorage('', 'checkbox');
@@ -23,11 +22,8 @@ function useMoviesSearch() {
   }, []);
 
   function filterMovies(word, filmsCollection) {
-    setIsLoading(true);
     const searchWord = word.replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '')
-    console.log(searchWord)
     setStorageWord(searchWord);
-    
     const regex = new RegExp(`${searchWord}`, 'i'); 
 
     if (shortMovie) {
@@ -54,7 +50,6 @@ function useMoviesSearch() {
   }  
 
   function filterSavedMovies(word, usersCollection) {
-    setIsLoading(true);
     const regex = new RegExp(`${word}`, 'i'); 
     if (shortMovie) {
       const shortFilmList = usersCollection.filter(movie => {
@@ -96,16 +91,13 @@ function useMoviesSearch() {
   useEffect(() => {
     if (isSearched && !matchedMovies[0]) {
       setNoResult(true);
-      setIsLoading(false);
       return;
     }
     if (isUsersFilmsSearched && !userMatchedMovies[0]) {
       setNoResult(true);
-      setIsLoading(false);
       return;
     }
     else setNoResult(false);
-    setIsLoading(false);
   }, [isSearched, isUsersFilmsSearched, matchedMovies, userMatchedMovies])
 
   return { 
@@ -116,7 +108,6 @@ function useMoviesSearch() {
     noResult, 
     isSearched, 
     isUsersFilmsSearched,
-    isLoading,
     storageWord,
     storageCheckbox,
     setIsUsersFilmsSearched,
