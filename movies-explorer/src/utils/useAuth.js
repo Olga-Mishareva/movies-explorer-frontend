@@ -14,7 +14,6 @@ function useAuth() {
 
   useEffect(() => {
     checkAuth();
-    checkPath();
   },[]);
 
   useEffect(() => {
@@ -75,7 +74,7 @@ function useAuth() {
 
   function checkAuth() {
     getUser()
-        .then(user => {
+        .then(() => {
           setLoggedIn(true);
           checkPath();
         })
@@ -135,8 +134,6 @@ function useAuth() {
     authError,
     currentUser, 
     setIsAuthPopupOpen,
-    checkAuth,
-    checkPath, 
     handleRegister, 
     handleLogin, 
     handleLogout,

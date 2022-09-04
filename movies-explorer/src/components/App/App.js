@@ -27,8 +27,6 @@ function App() {
     isAuthPopupOpen, 
     authError,
     currentUser, 
-    // checkAuth, 
-    // checkPath,
     setIsAuthPopupOpen, 
     handleRegister, 
     handleLogin, 
@@ -95,9 +93,8 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Main />} />
-
-        <Route path='/movies' element={
-          <ProtectedRoute loggedIn={loggedIn}>
+        <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+          <Route path='/movies' element={
             <Movies 
               filmsCollection={filmsCollection} 
               matchedMovies={matchedMovies} 
@@ -117,10 +114,8 @@ function App() {
               onSave={handleSaveMovie} 
               onRemove={handleRemoveMovie}>
             </Movies>
-          </ProtectedRoute>} />
-
-        <Route path='/saved-movies' element={ 
-          <ProtectedRoute loggedIn={loggedIn}>
+          }/>
+          <Route path='/saved-movies' element={ 
             <SavedMovies 
               savedMovies={savedMovies}
               userMatchedMovies={userMatchedMovies} 
@@ -134,13 +129,12 @@ function App() {
               getSavedMovies={getSavedMovies}
               onRemove={handleRemoveMovie}>
             </SavedMovies>
-          </ProtectedRoute>} />
-
-        <Route path='/profile' element={
-          <ProtectedRoute loggedIn={loggedIn}>
+          }/>
+          <Route path='/profile' element={
             <Profile onLogout={handleLogout} onUpdate={updateUserData}/>
-          </ProtectedRoute>} />
-
+          }/>
+        </Route>
+   
         <Route path='/signup' element={<Register isConfirm={authConfirm} onRegister={handleRegister} />} />
         <Route path='/signin' element={<Login onLogin={handleLogin}/>} />
         <Route path='*' element={<NoMatch />} />
