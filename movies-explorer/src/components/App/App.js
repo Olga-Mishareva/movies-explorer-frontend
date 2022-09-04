@@ -81,10 +81,7 @@ function App() {
     }
   }, [loggedIn]);
 
-  function closeInfoPopups() {
-    setIsAuthPopupOpen(false);
-    setIsMoviePopupOpen(false);
-  }
+  
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -93,6 +90,7 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Main />} />
+
         <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
           <Route path='/movies' element={
             <Movies 
@@ -143,7 +141,7 @@ function App() {
       <InfoPopup isConfirm={authConfirm} 
         error={[authError, movieError]} 
         isOpen={[isAuthPopupOpen, isMoviePopupOpen]} 
-        onClose={closeInfoPopups}>
+        onClose={[setIsAuthPopupOpen, setIsMoviePopupOpen]}>
       </InfoPopup>
 
       <Footer />
