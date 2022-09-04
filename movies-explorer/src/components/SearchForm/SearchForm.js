@@ -6,7 +6,7 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovie }) {
-  const { error, isValid, checkErrors, setError, setIsValid } = useValidation();
+  const { error, isValid, checkErrors, setError} = useValidation();
   const { pathname } = useLocation();
   const inputRef = useRef();
 
@@ -16,7 +16,6 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
     if (pathname === '/movies'){
       setValue({ search: storageWord });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { 
@@ -26,17 +25,12 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
     if (value.search && isValid) {
       onSearch(value.search, filmsList);
     }
-    if (pathname === '/movies' && value.search === storageWord) {
-      onSearch(value.search, filmsList);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shortMovie]);
 
   
 
   function handleInputValue(e) {
     setError({});
-    setIsValid(true);
     setValue({ search: e.target.value });
   }
 
