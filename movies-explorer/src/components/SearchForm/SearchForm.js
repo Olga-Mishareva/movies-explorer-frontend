@@ -22,12 +22,13 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
     if (value.search || value.search === '') {
       checkErrors(inputRef.current); 
     } 
+  }, [shortMovie, value]);
+
+  useEffect(() => { 
     if (value.search && isValid) {
       onSearch(value.search, filmsList);
     }
   }, [shortMovie]);
-
-  
 
   function handleInputValue(e) {
     setError({});
