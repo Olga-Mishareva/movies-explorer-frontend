@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { getAllMovies } from './MoviesApi';
+import useLocalStorage from './useLocalStorage';
 import { register, login, logout, getUser, updateUser } from './MainApi';
 
 function useAuth() {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [authConfirm, setAuthConfirm] = useState(false);
-  const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
-  const [authError, setAuthError] = useState('');
-  
+
+  const [filmsCollection, setFilmsCollection] = useLocalStorage([], 'collection');
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
+
+  const [isConfirm, setIsConfirm] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [authError, setAuthError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
 
   useEffect(() => {
     checkAuth();
@@ -29,32 +35,34 @@ function useAuth() {
         })
         .catch(err => {
           setAuthError(err.message);
-          setIsAuthPopupOpen(true);
+          setIsPopupOpen(true);
         })
     }
   }, [loggedIn]);
+
+  //--------------------------------------------------------//
 
   function handleRegister({ username, email, password }) {
     register(username, email, password)
       .then(res => {
         if (res._id) {
-          setAuthConfirm(true);
-          setIsAuthPopupOpen(true);
+          setIsConfirm(true);
+          setIsPopupOpen(true);
           setTimeout(() => {
-            setIsAuthPopupOpen(false);
-            setAuthConfirm(false);
+            setIsPopupOpen(false);
+            setIsConfirm(false);
           }, 2000);
           handleLogin({ email, password });
         }
         else {
-          setAuthConfirm(false);
-          setIsAuthPopupOpen(true);
+          setIsConfirm(false);
+          setIsPopupOpen(true);
         }
       })
       .catch(err => {
         setAuthError(err.message);
-        setAuthConfirm(false);
-        setIsAuthPopupOpen(true);
+        setIsConfirm(false);
+        setIsPopupOpen(true);
       });
   }
 
@@ -64,14 +72,54 @@ function useAuth() {
         if (user.email) {
           localStorage.setItem('email', user.email);
           checkAuth();
+          getFilmsCollection();
           navigate('/movies');
         }
       })
       .catch(err => {
         setAuthError(err.message);
-        setIsAuthPopupOpen(true);
+        setIsPopupOpen(true);
       });
   }
+
+  function handleLogout(email) {
+    logout(email)
+      .then(() => {
+        localStorage.clear();
+        setLoggedIn(false);
+        navigate('/');
+      })
+      .catch(err => {
+        setAuthError(err.message);
+        setIsPopupOpen(true);
+      });
+  }
+
+  //--------------------------------------------------------// 
+
+  function updateUserData({ name, email }) {
+    updateUser(name, email)
+      .then(data => {
+        setCurrentUser({ ...currentUser,
+          username: data.name, 
+          email: data.email
+        });
+        localStorage.setItem('email', data.email);
+        setIsConfirm(true);
+        setIsPopupOpen(true)
+        setTimeout(() => {
+          setIsPopupOpen(false);
+          setIsConfirm(false);
+        }, 2000);
+      })
+      .catch(err => {
+        setAuthError(err.message);
+        setIsConfirm(false);
+        setIsPopupOpen(true);
+      });
+  }
+
+  //--------------------------------------------------------//
 
   function checkAuth() {
     if (localStorage.getItem('email')) {
@@ -82,7 +130,7 @@ function useAuth() {
         })
         .catch(err => {
           setAuthError(err.message);
-          setIsAuthPopupOpen(true);
+          setIsPopupOpen(true);
         })
     } 
   }
@@ -96,48 +144,30 @@ function useAuth() {
     }
   }
 
-  function handleLogout(email) {
-    logout(email)
-      .then(() => {
-        localStorage.clear();
-        setLoggedIn(false);
-        navigate('/');
-      })
-      .catch(err => {
-        setAuthError(err.message);
-        setIsAuthPopupOpen(true);
-      });
-  }
+//--------------------------------------------------------//
 
-  function updateUserData({ name, email }) {
-    updateUser(name, email)
-      .then(data => {
-        setCurrentUser({ ...currentUser,
-          username: data.name, 
-          email: data.email
-        });
-        localStorage.setItem('email', data.email);
-        setAuthConfirm(true);
-        setIsAuthPopupOpen(true)
-        setTimeout(() => {
-          setIsAuthPopupOpen(false);
-          setAuthConfirm(false);
-        }, 2000);
-      })
-      .catch(err => {
-        setAuthError(err.message);
-        setAuthConfirm(false);
-        setIsAuthPopupOpen(true);
-      });
+  function getFilmsCollection() {
+    setIsLoading(true);
+    getAllMovies()
+    .then(data => {
+      setFilmsCollection(data);
+    })
+    .catch(err => {
+      setAuthError(err.message);
+      setIsPopupOpen(true);
+    })
+    .finally(() => setIsLoading(false));
   }
 
   return { 
     loggedIn, 
-    authConfirm, 
-    isAuthPopupOpen, 
+    isConfirm, 
+    isPopupOpen, 
     authError,
-    currentUser, 
-    setIsAuthPopupOpen,
+    currentUser,
+    filmsCollection,
+    isLoading, 
+    setIsPopupOpen,
     handleRegister, 
     handleLogin, 
     handleLogout,

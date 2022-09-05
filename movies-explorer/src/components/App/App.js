@@ -15,20 +15,20 @@ import useAuth from '../../utils/useAuth';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { getAllMovies } from '../../utils/MoviesApi';
+
 import './App.css';
 
 function App() {
-  const [filmsCollection, setFilmsCollection] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const { 
     loggedIn, 
-    authConfirm, 
-    isAuthPopupOpen, 
+    isConfirm, 
+    isPopupOpen, 
     authError,
     currentUser, 
-    setIsAuthPopupOpen, 
+    isLoading,
+    filmsCollection,
+    setIsPopupOpen, 
     handleRegister, 
     handleLogin, 
     handleLogout,
@@ -43,7 +43,6 @@ function App() {
     noResult, 
     isSearched, 
     isUsersFilmsSearched,
-  
     storageWord,
     storageCheckbox,
     setIsUsersFilmsSearched,
@@ -58,31 +57,11 @@ function App() {
     savedMovies, 
     isMoviePopupOpen, 
     movieError, 
-    setMovieError,
     setIsMoviePopupOpen,
     handleSaveMovie, 
     getSavedMovies, 
     handleRemoveMovie 
   } = useSaveMovies();
-
-  function getFilmsCollection() {
-    setIsLoading(true);
-    getAllMovies()
-      .then(data => {
-        setFilmsCollection(data);
-      })
-      .catch(err => {
-        setMovieError(err.message);
-        setIsMoviePopupOpen(true);
-      })
-      .finally(() => setIsLoading(false));
-  }
-
-  useEffect(() => {
-    if (loggedIn) {
-      getFilmsCollection();
-    }
-  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -134,15 +113,15 @@ function App() {
           }/>
         </Route>
    
-        <Route path='/signup' element={<Register isConfirm={authConfirm} onRegister={handleRegister} />} />
+        <Route path='/signup' element={<Register isConfirm={isConfirm} onRegister={handleRegister} />} />
         <Route path='/signin' element={<Login onLogin={handleLogin}/>} />
         <Route path='*' element={<NoMatch />} />
       </Routes>
 
-      <InfoPopup isConfirm={authConfirm} 
+      <InfoPopup isConfirm={isConfirm} 
         error={[authError, movieError]} 
-        isOpen={[isAuthPopupOpen, isMoviePopupOpen]} 
-        onClose={[setIsAuthPopupOpen, setIsMoviePopupOpen]}>
+        isOpen={[isPopupOpen, isMoviePopupOpen]} 
+        onClose={[setIsPopupOpen, setIsMoviePopupOpen]}>
       </InfoPopup>
 
       <Footer />
