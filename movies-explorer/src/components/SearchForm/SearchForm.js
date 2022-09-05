@@ -19,7 +19,7 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
   }, []);
 
   useEffect(() => { 
-    if (value.search || value.search === '') {
+    if (value.search) {
       checkErrors(inputRef.current); 
     } 
   }, [shortMovie, value]);

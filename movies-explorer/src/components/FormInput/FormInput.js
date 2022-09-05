@@ -1,4 +1,5 @@
 import { useState} from 'react';
+import { isEmail } from 'validator';
 import { USER_NAME_REGEX } from '../../constants/config';
 import './FormInput.css';
 
@@ -8,7 +9,11 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
 
   function handleInputValue(e) {
     setValue({ ...value, [e.target.name]: e.target.value });
-    if (e.target.checkValidity()) {
+    if (e.target.type === 'email' && isEmail(e.target.value)) {
+      setIsInputValid(true);
+      setUserData(e.target.name, e.target.value);
+    }
+    else if (e.target.type !== 'email' && e.target.checkValidity()) {
       setIsInputValid(true);
       setUserData(e.target.name, e.target.value);
     }

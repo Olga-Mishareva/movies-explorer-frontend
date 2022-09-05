@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { isEmail } from 'validator';
 
 function useValidation() {
   const [error, setError] = useState({});
@@ -8,7 +9,11 @@ function useValidation() {
     let object;
     object = (e.target) ?  e.target : e;
 
-    if (!object.validity.valid) {
+    if (object.type === 'email' && !isEmail(object.value)) {
+      setError({ ...error, [object.name]: 'Неверный формат электронной почты.' });
+      setIsValid(false);
+    }
+    else if (!object.validity.valid) {
       if (object.validity.patternMismatch) {
         object.name === 'search' ?
           setError({ ...error, [object.name]: 'Нужно ввести ключевое слово.' }) :

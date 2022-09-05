@@ -116,6 +116,7 @@ function useAuth() {
           username: data.name, 
           email: data.email
         });
+        localStorage.setItem('email', data.email);
         setAuthConfirm(true);
         setIsAuthPopupOpen(true)
         setTimeout(() => {
