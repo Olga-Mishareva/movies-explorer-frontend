@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import WithoutResult from '../WithoutResult/WithoutResult';

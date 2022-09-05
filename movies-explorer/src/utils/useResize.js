@@ -1,4 +1,15 @@
 import { useState, useEffect } from 'react';
+import { 
+  FULL_SIZE, 
+  DESCTOP, 
+  TABLET, 
+  FULL_SIZE_COUNT,
+  DESCTOP_COUNT,
+  TABLET_COUNT,
+  MOBILE_COUNT,
+  REGULAR_ROW,
+  MOBILE_ROW 
+} from '../constants/config';
 
 function useResize() {
   const [count, setCount] = useState(0);
@@ -6,24 +17,24 @@ function useResize() {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    if (width > 1023) {
-      setCount(4);
-      setRow(4);
+    if (width >= FULL_SIZE) {
+      setCount(FULL_SIZE_COUNT);
+      setRow(REGULAR_ROW);
       return;
     }
-    else if (1024 > width && width > 800) {
-      setCount(3);
-      setRow(4);
+    else if (FULL_SIZE > width && width > DESCTOP) {
+      setCount(DESCTOP_COUNT);
+      setRow(REGULAR_ROW);
       return
     }
-    else if (801 > width && width > 560) {
-      setCount(2);
-      setRow(4);
+    else if (DESCTOP >= width && width > TABLET) {
+      setCount(TABLET_COUNT);
+      setRow(REGULAR_ROW);
       return
     }
     else  {
-      setCount(1)
-      setRow(5);
+      setCount(MOBILE_COUNT)
+      setRow(MOBILE_ROW);
       return
     }
   }, [width]);

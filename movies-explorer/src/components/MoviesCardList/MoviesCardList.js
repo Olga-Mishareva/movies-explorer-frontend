@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import MoviesCard from "../MoviesCard/MoviesCard";
-import "./MoviesCardList.css";
+import { useLocation } from 'react-router-dom';
+import MoviesCard from '../MoviesCard/MoviesCard';
+import './MoviesCardList.css';
 
 function MoviesCardList({
   matchedMovies,
@@ -16,8 +15,8 @@ function MoviesCardList({
   const { pathname } = useLocation();
 
   return (
-    <div className={`card-list card-list_${noResult ? "invisible" : ""}`}>
-      <ul className="card-list__grid">
+    <div className={`card-list card-list_${noResult ? 'invisible' : ''}`}>
+      <ul className='card-list__grid'>
         {moviesToShow.map((movie) => {
           return (
             <MoviesCard
@@ -32,14 +31,11 @@ function MoviesCardList({
       </ul>
       <button
         className={`card-list__more-btn card-list__more-btn_${
-          pathname === "/saved-movies" ||
-          matchedMovies.length === moviesToShow.length ||
-          noResult ||
-          !isSearched
-            ? "invisible"
-            : ""
-        }`}
-        type="button"
+          pathname === '/saved-movies' 
+          || matchedMovies.length === moviesToShow.length 
+          ? 'invisible' : ''}
+          ${noResult || !isSearched ? 'invisible' : '' }`}
+        type='button'
         onClick={onMore}>
         Ещё
       </button>

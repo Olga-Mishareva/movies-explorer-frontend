@@ -16,6 +16,7 @@ function useMoviesSearch() {
   const [storageMovies, setStorageMovies] = useLocalStorage([], 'movies');
   const [storageCheckbox, setStorageCheckbox] = useLocalStorage('', 'checkbox');
   const [storageWord, setStorageWord] = useLocalStorage('', 'word');
+  // const [storageSearch, setStorageSearch] = useLocalStorage('', 'search');
 
   useEffect(() => {                                                                  
         setMatchedMovies(storageMovies); 
