@@ -28,6 +28,7 @@ function App() {
     currentUser, 
     isLoading,
     filmsCollection,
+    inputIsDisabled,
     setIsPopupOpen, 
     handleRegister, 
     handleLogin, 
@@ -109,12 +110,23 @@ function App() {
             </SavedMovies>
           }/>
           <Route path='/profile' element={
-            <Profile onLogout={handleLogout} onUpdate={updateUserData}/>
-          }/>
+            <Profile 
+              onLogout={handleLogout} 
+              onUpdate={updateUserData}/>
+            }/>
         </Route>
    
-        <Route path='/signup' element={<Register isConfirm={isConfirm} onRegister={handleRegister} />} />
-        <Route path='/signin' element={<Login onLogin={handleLogin}/>} />
+        <Route path='/signup' element={
+          <Register 
+            isConfirm={isConfirm} 
+            isDisabled={inputIsDisabled}
+            onRegister={handleRegister}/>
+          }/>
+        <Route path='/signin' element={
+          <Login 
+          onLogin={handleLogin} 
+          isDisabled={inputIsDisabled}/>
+          }/>
         <Route path='*' element={<NoMatch />} />
       </Routes>
 

@@ -16,6 +16,7 @@ function useAuth() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [inputIsDisabled, setInputIsDisabled] = useState(false);
   
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function useAuth() {
   //--------------------------------------------------------//
 
   function handleRegister({ username, email, password }) {
+    setInputIsDisabled(true);
     register(username, email, password)
       .then(res => {
         if (res._id) {
@@ -63,10 +65,12 @@ function useAuth() {
         setAuthError(err.message);
         setIsConfirm(false);
         setIsPopupOpen(true);
-      });
+      })
+      .finally(() => setInputIsDisabled(false));
   }
 
   function handleLogin({ email, password }) {
+    setInputIsDisabled(true);
     login(email, password) 
       .then(user => {
         if (user.email) {
@@ -79,7 +83,8 @@ function useAuth() {
       .catch(err => {
         setAuthError(err.message);
         setIsPopupOpen(true);
-      });
+      })
+      .finally(() => setInputIsDisabled(false));
   }
 
   function handleLogout(email) {
@@ -98,6 +103,7 @@ function useAuth() {
   //--------------------------------------------------------// 
 
   function updateUserData({ name, email }) {
+    setInputIsDisabled(true);
     updateUser(name, email)
       .then(data => {
         setCurrentUser({ ...currentUser,
@@ -116,7 +122,8 @@ function useAuth() {
         setAuthError(err.message);
         setIsConfirm(false);
         setIsPopupOpen(true);
-      });
+      })
+      .finally(() => setInputIsDisabled(false));
   }
 
   //--------------------------------------------------------//
@@ -167,6 +174,7 @@ function useAuth() {
     currentUser,
     filmsCollection,
     isLoading, 
+    inputIsDisabled,
     setIsPopupOpen,
     handleRegister, 
     handleLogin, 

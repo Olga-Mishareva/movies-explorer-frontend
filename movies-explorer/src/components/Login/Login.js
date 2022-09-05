@@ -5,7 +5,7 @@ import useValidation from '../../utils/useValidation';
 import './Login.css';
 
 function Login({ onLogin }) {
-  const { error, isValid, checkErrors } = useValidation();
+  const { error, isValid, isDisabled, checkErrors } = useValidation();
   const [userData, setUserData] = useState({});
 
   function handleUserData(name, value) {
@@ -21,11 +21,13 @@ function Login({ onLogin }) {
 
       <FormInput name='email' type='email' label='Email' 
         placeholder='Введите ваш email'
+        isDisabled={isDisabled}
         setUserData={handleUserData} />
       <span className='login__error'>{error.email}</span>
 
       <FormInput name='password' type='password' label='Пароль' minLength='4'
         placeholder='Введите ваш пароль'
+        isDisabled={isDisabled}
         setUserData={handleUserData} />
       <span className='login__error'>{error.password}</span>
     </Auth>

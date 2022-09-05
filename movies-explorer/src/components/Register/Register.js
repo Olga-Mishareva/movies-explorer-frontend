@@ -4,7 +4,7 @@ import FormInput from '../FormInput/FormInput';
 import useValidation from '../../utils/useValidation';
 import './Register.css';
 
-function Register({ onRegister, isConfirm }) {
+function Register({ onRegister, isConfirm, isDisabled }) {
   const { error, isValid, checkErrors } = useValidation();
   const [userData, setUserData] = useState({});
 
@@ -21,16 +21,19 @@ function Register({ onRegister, isConfirm }) {
 
       <FormInput name='username' type='text' label='Имя' minLength='2' maxLength='30'
         placeholder='Как вас называть?'
+        isDisabled={isDisabled}
         setUserData={handleUserData}/>
       <span className='register__error'>{error.username}</span>
 
       <FormInput name='email' type='email' label='Email'
         placeholder='Ваша электронная почта'
+        isDisabled={isDisabled}
         setUserData={handleUserData}/>
       <span className='register__error'>{error.email}</span>
 
       <FormInput name='password' type='password' label='Пароль' minLength='4'
         placeholder='Придумайте пароль'
+        isDisabled={isDisabled}
         setUserData={handleUserData}/>
       <span className='register__error'>{error.password}</span>
     </Auth>

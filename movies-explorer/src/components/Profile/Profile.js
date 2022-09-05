@@ -43,8 +43,8 @@ function Profile({ onLogout, onUpdate }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onUpdate({ name: value.username, email: value.email });
     setInputIsDisabled(true);
+    onUpdate({ name: value.username, email: value.email });
   }
 
   function handleCansel() {

@@ -10,6 +10,7 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
   const { pathname } = useLocation();
   const inputRef = useRef();
 
+
   const [value, setValue] = useState({});
 
   useEffect(() => {                         
@@ -23,6 +24,8 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
       checkErrors(inputRef.current); 
     } 
   }, [shortMovie, value]);
+
+
 
   useEffect(() => { 
     if (value.search && isValid) {

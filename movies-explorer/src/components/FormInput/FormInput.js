@@ -3,7 +3,8 @@ import { isEmail } from 'validator';
 import { USER_NAME_REGEX } from '../../constants/config';
 import './FormInput.css';
 
-function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder, setUserData }) { 
+function FormInput({ type, name, sort, label, minLength, maxLength, disabled, isDisabled, placeholder, setUserData }) { 
+  // const [inputIsDisabled, setInputIsDisabled] = useState(false);
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
 
@@ -36,7 +37,7 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
         minLength={minLength} 
         maxLength={maxLength}
         placeholder={placeholder}
-        disabled={disabled} 
+        disabled={isDisabled} 
         onFocus={handleFocus} 
         onChange={handleInputValue}
         value={value[name] || ''}
