@@ -62,6 +62,7 @@ function useAuth() {
     login(email, password) 
       .then(user => {
         if (user.email) {
+          localStorage.setItem('email', user.email);
           checkAuth();
           navigate('/movies');
         }
@@ -73,7 +74,8 @@ function useAuth() {
   }
 
   function checkAuth() {
-    getUser()
+    if (localStorage.getItem('email')) {
+      getUser()
         .then(() => {
           setLoggedIn(true);
           checkPath();
@@ -82,6 +84,7 @@ function useAuth() {
           setAuthError(err.message);
           setIsAuthPopupOpen(true);
         })
+    } 
   }
 
   function checkPath() {
