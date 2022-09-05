@@ -15,7 +15,7 @@ function useAuth() {
   const [isConfirm, setIsConfirm] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [authError, setAuthError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  
   const [inputIsDisabled, setInputIsDisabled] = useState(false);
   
 
@@ -154,7 +154,6 @@ function useAuth() {
 //--------------------------------------------------------//
 
   function getFilmsCollection() {
-    setIsLoading(true);
     getAllMovies()
     .then(data => {
       setFilmsCollection(data);
@@ -162,8 +161,7 @@ function useAuth() {
     .catch(err => {
       setAuthError(err.message);
       setIsPopupOpen(true);
-    })
-    .finally(() => setIsLoading(false));
+    });
   }
 
   return { 
@@ -172,8 +170,7 @@ function useAuth() {
     isPopupOpen, 
     authError,
     currentUser,
-    filmsCollection,
-    isLoading, 
+    filmsCollection, 
     inputIsDisabled,
     setIsPopupOpen,
     handleRegister, 

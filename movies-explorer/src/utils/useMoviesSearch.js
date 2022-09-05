@@ -11,6 +11,7 @@ function useMoviesSearch() {
   const [noResult, setNoResult] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
   const [isUsersFilmsSearched, setIsUsersFilmsSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [storageMovies, setStorageMovies] = useLocalStorage([], 'movies');
   const [storageCheckbox, setStorageCheckbox] = useLocalStorage('', 'checkbox');
@@ -22,6 +23,7 @@ function useMoviesSearch() {
   }, []);
 
   function filterMovies(word, filmsCollection) {
+    setIsLoading(true);
     const searchWord = word.replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '')
     setStorageWord(searchWord);
     const regex = new RegExp(`${searchWord}`, 'i'); 
@@ -91,13 +93,15 @@ function useMoviesSearch() {
   useEffect(() => {
     if (isSearched && !matchedMovies[0]) {
       setNoResult(true);
+      setIsLoading(false);
       return;
     }
     if (isUsersFilmsSearched && !userMatchedMovies[0]) {
-      setNoResult(true);
+      setIsLoading(false);
       return;
     }
     else setNoResult(false);
+    setIsLoading(false);
   }, [isSearched, isUsersFilmsSearched, matchedMovies, userMatchedMovies])
 
   return { 
@@ -108,6 +112,7 @@ function useMoviesSearch() {
     noResult, 
     isSearched, 
     isUsersFilmsSearched,
+    isLoading,
     storageWord,
     storageCheckbox,
     setIsUsersFilmsSearched,
