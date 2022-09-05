@@ -23,7 +23,7 @@ function Movies({
     handleMoreButton,
     onSave, 
     onRemove
-    }) {
+  }) {
 
   useEffect(() => {
     getSavedMovies();

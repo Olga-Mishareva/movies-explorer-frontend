@@ -16,3 +16,4 @@ export const MOBILE_COUNT = 1;
 export const REGULAR_ROW = 4;
 export const MOBILE_ROW = 5;
 
+export const SHORT_FILM = 40;

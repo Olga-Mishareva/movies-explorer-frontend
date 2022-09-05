@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useResize from './useResize';
+import { SHORT_FILM } from '../constants/config';
 import useLocalStorage from './useLocalStorage';
 
 function useMoviesSearch() {
@@ -32,9 +33,9 @@ function useMoviesSearch() {
     if (shortMovie) {
       const shortFilmList = filmsCollection.filter(movie => {
         if (Object.values(movie).every(item => item !== null)) {
-          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) && movie.duration <= 40;
+          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) && movie.duration <= SHORT_FILM;
         }
-      })
+      });
       setMatchedMovies(shortFilmList);
       setStorageMovies(shortFilmList);
       setStorageCheckbox(shortMovie);
@@ -42,9 +43,9 @@ function useMoviesSearch() {
     else {
       const filmList = filmsCollection.filter(movie => {
         if (Object.values(movie).every(item => item !== null)) {
-          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) ;
+          return (movie.nameRU.match(regex) || movie.nameEN.match(regex));
         }    
-      })
+      });
       setMatchedMovies(filmList);
       setStorageMovies(filmList);
       setStorageCheckbox('');
@@ -74,12 +75,7 @@ function useMoviesSearch() {
   }
 
   useEffect(() => {
-    if (showedMovies.length > count * row) {
-      return;
-    }
-    else {
       setShowedMovies(matchedMovies.slice(0, count * row));
-    }
   }, [row, count, matchedMovies]);
 
   function handleMoreButton() {
@@ -103,7 +99,7 @@ function useMoviesSearch() {
     }
     else setNoResult(false);
     setIsLoading(false);
-  }, [isSearched, isUsersFilmsSearched, matchedMovies, userMatchedMovies])
+  }, [isSearched, isUsersFilmsSearched, matchedMovies, userMatchedMovies]);
 
   return { 
     matchedMovies, 
