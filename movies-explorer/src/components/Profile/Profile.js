@@ -64,7 +64,6 @@ function Profile({ onLogout, onUpdate }) {
 
   return (
     <section className='profile'>
-
       <form className='profile__form' 
         name='profile' id='profile'
         onChange={checkErrors} onSubmit={handleSubmit} >
@@ -128,7 +127,6 @@ function Profile({ onLogout, onUpdate }) {
             Выйти из аккаунта
         </button>
       </div>
-
     </section>
   );
 }
