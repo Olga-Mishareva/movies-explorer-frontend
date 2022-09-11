@@ -136,6 +136,7 @@ function useAuth() {
           checkPath();
         })
         .catch(err => {
+          localStorage.removeItem('email');
           setAuthError(err.message);
           setIsPopupOpen(true);
         })
@@ -154,6 +155,7 @@ function useAuth() {
 //--------------------------------------------------------//
 
   function getFilmsCollection() {
+    console.log(filmsCollection)
     getAllMovies()
     .then(data => {
       setFilmsCollection(data);
