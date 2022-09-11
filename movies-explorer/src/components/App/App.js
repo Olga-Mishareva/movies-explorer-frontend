@@ -11,6 +11,7 @@ import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 import InfoPopup from '../InfoPopup/InfoPopup';
 import useAuth from '../../utils/useAuth';
+import useFilmCollection from '../../utils/useFilmCollection';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -18,21 +19,23 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 function App() {
-
   const { 
     loggedIn, 
     isConfirm, 
     isPopupOpen, 
     authError,
     currentUser, 
-    filmsCollection,
+    // filmsCollection,
     inputIsDisabled,
+    setAuthError,
     setIsPopupOpen, 
     handleRegister, 
     handleLogin, 
     handleLogout,
     updateUserData 
   } = useAuth();
+
+  const { filmsCollection } = useFilmCollection(setAuthError, setIsPopupOpen);
 
   const { 
     matchedMovies, 

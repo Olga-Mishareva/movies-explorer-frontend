@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getAllMovies } from './MoviesApi';
-import useLocalStorage from './useLocalStorage';
+import useFilmCollection from "./useFilmCollection";
 import { register, login, logout, getUser, updateUser } from './MainApi';
 
 function useAuth() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const [filmsCollection, setFilmsCollection] = useLocalStorage([], 'collection');
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -17,6 +15,7 @@ function useAuth() {
   const [authError, setAuthError] = useState('');
   
   const [inputIsDisabled, setInputIsDisabled] = useState(false);
+  const { getFilmsCollection } = useFilmCollection(setAuthError, setIsPopupOpen);
   
 
   useEffect(() => {
@@ -152,28 +151,14 @@ function useAuth() {
     }
   }
 
-//--------------------------------------------------------//
-
-  function getFilmsCollection() {
-    console.log(filmsCollection)
-    getAllMovies()
-    .then(data => {
-      setFilmsCollection(data);
-    })
-    .catch(err => {
-      setAuthError(err.message);
-      setIsPopupOpen(true);
-    });
-  }
-
   return { 
     loggedIn, 
     isConfirm, 
     isPopupOpen, 
     authError,
     currentUser,
-    filmsCollection, 
     inputIsDisabled,
+    setAuthError,
     setIsPopupOpen,
     handleRegister, 
     handleLogin, 
