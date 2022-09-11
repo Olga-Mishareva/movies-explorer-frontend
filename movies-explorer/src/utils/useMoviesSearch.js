@@ -25,52 +25,42 @@ function useMoviesSearch() {
 
   function filterMovies(word, filmsCollection) {
     setIsLoading(true);
-    const searchWord = word.replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '')
-    setStorageWord(searchWord);
-    const regex = new RegExp(`${searchWord}`, 'i'); 
+    const regex = handleSearchWord(word);
+    const filmList = handleFilter(filmsCollection, regex);
 
-    if (shortMovie) {
-      const shortFilmList = filmsCollection.filter(movie => {
-        if (Object.values(movie).every(item => item !== null)) {
-          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) && movie.duration <= SHORT_FILM;
-        }
-      });
-      setMatchedMovies(shortFilmList);
-      setStorageMovies(shortFilmList);
-      setStorageCheckbox(shortMovie);
-    }
-    else {
-      const filmList = filmsCollection.filter(movie => {
-        if (Object.values(movie).every(item => item !== null)) {
-          return (movie.nameRU.match(regex) || movie.nameEN.match(regex));
-        }    
-      });
-      setMatchedMovies(filmList);
-      setStorageMovies(filmList);
-      setStorageCheckbox('');
-    }
+    setStorageWord(word);
+    setMatchedMovies(filmList);
+    setStorageMovies(filmList);
+    setStorageCheckbox(shortMovie ? 'true' : '');
     setIsSearched(true);
   }  
 
   function filterSavedMovies(word, usersCollection) {
-    const regex = new RegExp(`${word}`, 'i'); 
-    if (shortMovie) {
-      const shortFilmList = usersCollection.filter(movie => {
-        if(movie.nameEN !== null) {
-          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) && movie.duration <= 40;
-        }
-      })
-      setUserMatchedMovies(shortFilmList);
-    }
-    else {
-      const filmList = usersCollection.filter(movie => {
-        if(movie.nameEN !== null) {
-          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) ;
-        }    
-      })
-      setUserMatchedMovies(filmList);
-    }
+    setIsLoading(true);
+    const regex = handleSearchWord(word);
+    const filmList = handleFilter(usersCollection, regex); 
+
+    setUserMatchedMovies(filmList);
     setIsUsersFilmsSearched(true);
+  }
+
+  function handleFilter(movies, regex) {
+    movies = movies.filter(movie => {
+      if (Object.values(movie).every(item => item !== null)) {
+        if (shortMovie) {
+          return (movie.nameRU.match(regex) || movie.nameEN.match(regex)) && movie.duration <= SHORT_FILM;
+        }
+        else {
+          return (movie.nameRU.match(regex) || movie.nameEN.match(regex));
+        }
+      } 
+    });
+    return movies;
+  }
+
+  function handleSearchWord(word) {
+    const searchWord = word.replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+    return new RegExp(`${searchWord}`, 'i');
   }
 
   useEffect(() => {

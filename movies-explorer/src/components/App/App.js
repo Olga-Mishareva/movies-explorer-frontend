@@ -25,7 +25,6 @@ function App() {
     isPopupOpen, 
     authError,
     currentUser, 
-    // filmsCollection,
     inputIsDisabled,
     setAuthError,
     setIsPopupOpen, 
