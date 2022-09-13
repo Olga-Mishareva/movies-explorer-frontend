@@ -19,8 +19,8 @@ function useMoviesSearch() {
   const [storageWord, setStorageWord] = useLocalStorage('', 'word');
 
   useEffect(() => {                                                                  
-        setMatchedMovies(storageMovies); 
-        setShortMovie(storageCheckbox);
+    setMatchedMovies(storageMovies); 
+    setShortMovie(storageCheckbox);
   }, []);
 
   function filterMovies(word, filmsCollection) {

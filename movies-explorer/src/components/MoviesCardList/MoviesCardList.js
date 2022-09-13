@@ -8,10 +8,9 @@ function MoviesCardList({
   isSearched,
   noResult,
   onMore,
-  savedMovies,
   onSave,
   onRemove,
-}) {
+  }) {
   const { pathname } = useLocation();
 
   return (
@@ -22,7 +21,6 @@ function MoviesCardList({
             <MoviesCard
               key={movie.id || movie.movieId}
               movie={movie}
-              savedMovies={savedMovies}
               onSave={onSave}
               onRemove={onRemove}>
             </MoviesCard>

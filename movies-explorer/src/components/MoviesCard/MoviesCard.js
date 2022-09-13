@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import './MoviesCard.css';
 
-function MoviesCard({ movie, savedMovies, onSave, onRemove }) {
+function MoviesCard({ movie, onSave, onRemove }) {
+  const savedMovies = useContext(SavedMoviesContext);
   const { pathname } = useLocation();
   const [film, setFilm] = useState(movie);
   const [liked, setLiked] = useState(false);

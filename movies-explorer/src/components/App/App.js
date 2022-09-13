@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -67,6 +68,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+    <SavedMoviesContext.Provider value={savedMovies}>
     <div className='page'>
       <Header loggedIn={loggedIn}/>
       
@@ -83,7 +85,6 @@ function App() {
               noResult={noResult}
               isSearched={isSearched}
               isLoading={isLoading}
-              savedMovies={savedMovies}
               storageWord={storageWord}
               storageCheckbox={storageCheckbox}
               setIsUsersFilmsSearched={setIsUsersFilmsSearched}
@@ -97,7 +98,6 @@ function App() {
           }/>
           <Route path='/saved-movies' element={ 
             <SavedMovies 
-              savedMovies={savedMovies}
               userMatchedMovies={userMatchedMovies} 
               shortMovie={shortMovie} 
               noResult={noResult}
@@ -139,6 +139,7 @@ function App() {
 
       <Footer />
     </div>
+    </SavedMoviesContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

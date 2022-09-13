@@ -5,6 +5,7 @@ import Preloader from '../Preloader/Preloader';
 import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
+
 function Movies({ 
     filmsCollection,
     matchedMovies, 
@@ -15,7 +16,6 @@ function Movies({
     isLoading, 
     storageWord,
     storageCheckbox,
-    savedMovies,
     setIsUsersFilmsSearched,
     setShortMovie, 
     filterMovies,
@@ -45,7 +45,6 @@ function Movies({
       <MoviesCardList 
         matchedMovies={matchedMovies}
         moviesToShow={showedMovies}
-        savedMovies={savedMovies}
         noResult={noResult}
         isSearched={isSearched}
         onMore={handleMoreButton}

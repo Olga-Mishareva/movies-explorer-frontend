@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 
 function SavedMovies({ 
-  savedMovies, 
   userMatchedMovies,
   isUsersFilmsSearched, 
   noResult, 
@@ -16,7 +16,9 @@ function SavedMovies({
   filterSavedMovies, 
   getSavedMovies,
   onRemove
-}) {
+  }) {
+
+  const savedMovies = useContext(SavedMoviesContext);
 
   useEffect(() => {
     setIsUsersFilmsSearched(false);
@@ -47,7 +49,6 @@ function SavedMovies({
         {noResult && <WithoutResult />}
       <MoviesCardList 
         noResult={noResult}
-        savedMovies={savedMovies}
         moviesToShow={!isUsersFilmsSearched ? savedMovies : userMatchedMovies}
         onRemove={onRemove}>
       </MoviesCardList>
