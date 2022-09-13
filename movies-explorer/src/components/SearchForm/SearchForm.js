@@ -1,14 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useLocation } from "react-router-dom";
 import { SEARCH_WORD_REGEX } from '../../constants/config';
 import useValidation from '../../utils/useValidation';
-import './SearchForm.css';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import './SearchForm.css';
 
 function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovie }) {
   const { error, isValid, checkErrors, setError} = useValidation();
   const { pathname } = useLocation();
   const inputRef = useRef();
+  const savedMovies = useContext(SavedMoviesContext);
 
   const [value, setValue] = useState({});
 
@@ -17,6 +19,12 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
       setValue({ search: storageWord });
     }
   }, []);
+
+  useEffect(() => {                         
+    if (pathname === '/saved-movies'){
+      setValue({});
+    }
+  }, [savedMovies]);
 
   useEffect(() => { 
     if (value.search) {

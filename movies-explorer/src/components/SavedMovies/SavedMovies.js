@@ -26,6 +26,12 @@ function SavedMovies({
     getSavedMovies();
   }, []);
 
+  
+  useEffect(() => {
+    setIsUsersFilmsSearched(false);
+    setShortMovie(false);
+  }, [savedMovies]);
+
   useEffect(() => {
     let userMatchedList = [];
     userMatchedMovies.map(machedMovie => {
