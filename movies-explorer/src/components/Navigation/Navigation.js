@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from 'react-router-dom';
 import './Navigation.css';
 import userIcon from '../../images/user-icon.svg';
 
-function Navigation({ loggedIn,login }) {
+function Navigation({ loggedIn, login }) {
+  const { pathname } = useLocation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   function handleMenu() {
@@ -11,43 +12,64 @@ function Navigation({ loggedIn,login }) {
   }
 
   return (
-    <div className="nav">
+    <div className='nav'>
 
       <button className={`nav__button nav__button_type_${!menuIsOpen ? 'burger' : 'close'} 
         nav__button_${loggedIn ? '' : 'invisible'}`} 
-        type="button" onClick={handleMenu}></button>    
-      <div className={`nav__overlay nav__overlay_${menuIsOpen ? '' : 'invisible'}`}></div>
+        type='button' onClick={handleMenu}></button>    
+      <div className={`nav__overlay nav__overlay_${!menuIsOpen ? 'invisible' : ''}`}></div>
   
       <nav className={`nav nav__outside nav_${loggedIn ? 'invisible' : ''}`}> 
-        <NavLink to="/signup" className="nav__link nav__link_type_register">
+
+      {/* <form className='nav__form nav__form_outside'> */}
+          <select className='nav__select nav__select_outside' name='lang' autoComplete='true'>
+            <option className='nav__option nav__option_lang_en' value='en'>EN</option>
+            <option className='nav__option nav__option_lang_de' value='de'>DE</option>
+            <option className='nav__option nav__option_lang_ru' value='ru'>RU</option>
+          </select>
+        {/* </form> */}
+
+        <NavLink to='/signup' className='nav__link nav__link_type_register'>
           Регистрация
         </NavLink>
-        <NavLink to="/signin" className="nav__link nav__link_type_login" onClick={login}>
+        <NavLink to='/signin' className='nav__link nav__link_type_login' onClick={login}>
           Войти
         </NavLink>
       </nav>
 
       <nav className={`nav nav__inside nav__inside_${!menuIsOpen ? 'closed' : ''}
         nav_${loggedIn ? '' : 'invisible'}`}> 
-        <div className="nav__container">
-          <NavLink to="/" className='nav__link nav__link_type_home' 
-            onClick={handleMenu}>
+        <div className='nav__container'>
+          <NavLink to='/' className='nav__link nav__link_type_home' 
+            onClick={menuIsOpen ? handleMenu: null}>
               Главная
           </NavLink>
-          <NavLink to="/movies" className="nav__link nav__link_type_movies"
-            onClick={handleMenu}>
+          <NavLink to='/movies' className='nav__link nav__link_type_movies'
+            onClick={menuIsOpen ? handleMenu: null}>
               Фильмы
           </NavLink>
-          <NavLink to="/saved-movies" className="nav__link nav__link_type_saved-movies" 
-            onClick={handleMenu}>
+          <NavLink to='/saved-movies' className='nav__link nav__link_type_saved-movies' 
+            onClick={menuIsOpen ? handleMenu: null}>
               Сохранённые фильмы
           </NavLink>
         </div>
-        <NavLink to="/profile" className="nav__link nav__link_type_profile" 
-          onClick={handleMenu}>
-            Аккаунт
-          <img className="nav__user-icon" src={userIcon} alt="Иконка пользователя"></img>
-        </NavLink>
+        <div className='nav__wrapper'>
+          {/* <form className='nav__form nav__form_inside'> */}
+          <select className='nav__select nav__select_inside' name='lang' autoComplete='true' 
+            style={!loggedIn && pathname === '/' ? {backgroundColor: '#073042'} : menuIsOpen || pathname !== '/' ? {backgroundColor: '#2F2F2F'} : {backgroundColor: '#073042'}}>
+            <option className='nav__option nav__option_lang_en' value='en'>EN</option>
+            <option className='nav__option nav__option_lang_de' value='de'>DE</option>
+            <option className='nav__option nav__option_lang_ru' value='ru'>RU</option>
+          </select>
+          {/* </form> */}
+
+          <NavLink to='/profile' className='nav__link nav__link_type_profile' 
+            onClick={menuIsOpen ? handleMenu: null}>
+              Аккаунт
+            <img className='nav__user-icon' src={userIcon} alt='Иконка пользователя'></img>
+          </NavLink>
+        </div>
+        
       </nav>
 
     </div>
