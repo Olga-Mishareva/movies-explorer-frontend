@@ -1,4 +1,5 @@
 export const EN = {
+  lang: 'en',
   login: 'Log in',
   loginGreeting: 'Nice to see you!',
   logging: 'Logging in...',
@@ -66,6 +67,7 @@ export const EN = {
 }
 
 export const RU = {
+  lang: 'ru',
   login: 'Вход',
   loginGreeting: 'Рады видеть!',
   logging: 'Вход...',

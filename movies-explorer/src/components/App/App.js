@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
@@ -16,7 +17,6 @@ import useFilmCollection from '../../utils/useFilmCollection';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import './App.css';
 
 function App() {
