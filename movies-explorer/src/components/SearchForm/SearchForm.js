@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { SEARCH_WORD_REGEX } from '../../constants/config';
 import useValidation from '../../utils/useValidation';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
@@ -11,6 +12,7 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
   const { pathname } = useLocation();
   const inputRef = useRef();
   const savedMovies = useContext(SavedMoviesContext);
+  const [ lang ] = useContext(LanguageContext);
 
   const [value, setValue] = useState({});
 
@@ -69,7 +71,7 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
               ref={inputRef}
               type='search' 
               name='search' 
-              placeholder='Фильм'
+              placeholder={lang.placeholderMovie}
               required
               pattern={SEARCH_WORD_REGEX}
               value={value.search || ''}

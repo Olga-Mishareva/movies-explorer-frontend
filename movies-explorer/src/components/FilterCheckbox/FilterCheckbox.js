@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import './FilterCheckbox.css';
 
 function FilterCheckbox({ shortMovie, setShortMovie }) {
+  const [ lang ] = useContext(LanguageContext);
 
   function toggleCheckbox(e) {
     if (e.target.checked) {
@@ -17,7 +20,7 @@ function FilterCheckbox({ shortMovie, setShortMovie }) {
         <input className='filter__checkbox' type='checkbox' value='short' 
           checked={!shortMovie ? false : true} 
           onChange={toggleCheckbox}></input>
-            Короткометражки
+            {lang.shortMovies}
       </label>
     </div>
   );

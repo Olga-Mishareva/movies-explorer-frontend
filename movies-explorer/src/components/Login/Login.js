@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { LanguageContext } from '../../contexts/LanguageContext';
 import Auth from '../Auth/Auth';
 import FormInput from '../FormInput/FormInput';
 import useValidation from '../../utils/useValidation';
 import './Login.css';
 
 function Login({ onLogin }) {
+  const [ lang ] = useContext(LanguageContext);
   const { error, isValid, isDisabled, checkErrors } = useValidation();
   const [userData, setUserData] = useState({});
 
@@ -14,19 +16,20 @@ function Login({ onLogin }) {
 
   return (
     <Auth 
-      title='Рады видеть!' name='login' submitBtn='Войти' 
-      question='Еще не зарегистрированы?' path='signup' link='Регистрация'
+      title={lang.loginGreeting} name='login' submitBtn={lang.login} 
+      question={lang.notRegistered} path='signup' link={lang.register}
       isValid={isValid} loginData={userData} 
       onLogin={onLogin} checkErrors={checkErrors}>
 
       <FormInput name='email' type='email' label='Email' 
-        placeholder='Введите ваш email'
+        placeholder={lang.placeholderEmail}
         isDisabled={isDisabled}
         setUserData={handleUserData} />
       <span className='login__error'>{error.email}</span>
 
-      <FormInput name='password' type='password' label='Пароль' minLength='4'
-        placeholder='Введите ваш пароль'
+      <FormInput name='password' type='password' label={lang.password}
+        minLength='4'
+        placeholder={lang.placeholderPassword}
         isDisabled={isDisabled}
         setUserData={handleUserData} />
       <span className='login__error'>{error.password}</span>

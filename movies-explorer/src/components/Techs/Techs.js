@@ -1,12 +1,16 @@
+import { useContext } from 'react';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import './Techs.css';
 
 function Techs() {
+  const [ lang ] = useContext(LanguageContext);
+
   return (
     <section className="techs">
       <div className='techs__container'>
-        <h2 className='section-heading'>Технологии</h2>
-        <h3 className='techs__title'>7 технологий</h3>
-        <p className='techs__subtitle'>На курсе веб-разработки мы освоили технологии, которые применили в&nbsp;дипломном проекте.</p>
+        <h2 className='section-heading'>{lang.technologies}</h2>
+        <h3 className='techs__title'>{lang.techsHeading}</h3>
+        <p className='techs__subtitle'>{lang.techsText}</p>
         <ul className='techs__list page__list'>
           <li className='techs__item'>HTML</li>
           <li className='techs__item'>CSS</li>

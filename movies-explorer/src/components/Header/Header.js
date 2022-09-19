@@ -3,7 +3,7 @@ import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ loggedIn, setLang, login }) {
+function Header({ loggedIn, setPageLang, login }) {
   const location = useLocation();
 
   return (
@@ -14,7 +14,7 @@ function Header({ loggedIn, setLang, login }) {
         </Link>
         <Navigation 
           loggedIn={loggedIn} 
-          setLang={setLang} 
+          setPageLang={setPageLang} 
           login={login}/> 
       </div>
     </header>

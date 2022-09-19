@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
-import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-
+import './Movies.css';
 
 function Movies({ 
     filmsCollection,

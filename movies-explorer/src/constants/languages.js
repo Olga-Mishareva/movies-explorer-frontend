@@ -7,7 +7,8 @@ export const EN = {
   register: 'Register',
   registerGreeting: 'You are welcome!',
   registration: 'Registration...',
-  registered: 'Not registered?',
+  notRegistered: 'Not registered?',
+  registered: 'Already registered?',
   placeholderName: 'Enter your name',
   placeholderEmail: 'Enter your email',
   password: 'Password',
@@ -20,6 +21,7 @@ export const EN = {
   profileNewEmail: 'New email',
   saveBtn: 'Save',
   saving: 'Saving...',
+  editBtn: 'Edit profile',
   canselBtn: 'Cancel',
 
   homePage: 'Homepage',
@@ -27,7 +29,9 @@ export const EN = {
   savedMovies: 'Saved movies',
   placeholderMovie: 'Movie',
   shortMovies: 'Short movies',
+  moreBtn: 'More',
 
+  logo: 'Logo',
   heading: 'Web development student project.',
   knowMore: 'Scroll below to learn more about this project and its creator.',
   knowMoreBtn: 'Find out more',
@@ -47,12 +51,14 @@ export const EN = {
   student: 'Student',
   studentName: 'Olga',
   studentAbout: 'Web developer, 38',
-  studentext: 'I live in Berlin. I have worked with clients for many years and have organized more than 40 events with up to 100 participants. I am passionate about photography and love to travel.',
-  
+  studentText: 'I live in Berlin. I have worked with clients for many years and have organized more than 40 events with up to 100 participants. I am passionate about photography and love to travel.',
+  studentFoto: "Student's foto",
+
   portfolio: 'Portfolio',
-  staticwebsite: 'Static website',
+  staticWebsite: 'Static website',
   responsiveWebsite: 'Responsive website',
   singlePageApp: 'Single-page application',
+  arrow: 'Arrow',
 
   credentials: 'Y.Praktikum x BeatFilm training project.',
 
@@ -76,7 +82,8 @@ export const RU = {
   register: 'Зарегистрироваться',
   registerGreeting: 'Добро пожаловать!',
   registration: 'Регистрация...',
-  registered: 'Еще на зарегистрированы?',
+  notRegistered: 'Еще на зарегистрированы?',
+  registered: 'Уже зарегистрированы?',
   placeholderName: 'Как вас называть?',
   placeholderEmail: 'Введите ваш email',
   password: 'Пароль',
@@ -89,6 +96,7 @@ export const RU = {
   profileNewEmail: 'Новый email',
   saveBtn: 'Сохранить',
   saving: 'Сохранение...',
+  editBtn: 'Редактировать',
   canselBtn: 'Отмена',
 
   homePage: 'Главная',
@@ -96,8 +104,10 @@ export const RU = {
   savedMovies: 'Сохраненные фильмы',
   placeholderMovie: 'Фильм',
   shortMovies: 'Короткометражки',
+  moreBtn: 'Еще',
 
-  heading: 'Учебный проект студента факультета Веб‑разработки.',
+  logo: 'Логотип',
+  heading: 'Учебный проект студента факультета Веб-разработки.',
   knowMore: 'Листайте ниже, чтобы узнать больше про этот проект и его создателя.',
   knowMoreBtn: 'Узнать больше',
 
@@ -116,12 +126,14 @@ export const RU = {
   student: 'Студентка',
   studentName: 'Ольга',
   studentAbout: 'Веб-разработчик, 38 лет',
-  studentext: 'Я сейчас живу в Берлине. Много лет работала с клиентами, а также организовала более 40 мероприятий до 100 участников. Увлекаюсь фотографией и люблю путешествовать.',
+  studentText: 'Я сейчас живу в Берлине. Много лет работала с клиентами, а также организовала более 40 мероприятий до 100 участников. Увлекаюсь фотографией и люблю путешествовать.',
+  studentFoto: 'Фотография студента',
 
   portfolio: 'Портфолио',
-  staticwebsite: 'Статичный сайт',
+  staticWebsite: 'Статичный сайт',
   responsiveWebsite: 'Адаптивный сайт',
   singlePageApp: 'Одностраничное приложение',
+  arrow: 'Arrow',
 
   credentials: 'Учебный проект Y.Praktikum х BeatFilm.',
 
@@ -145,7 +157,8 @@ export const DE = {
   register: 'Register',
   registerGreeting: 'You are welcome!',
   registration: 'Registration...',
-  registered: 'Not registered?',
+  notRegistered: 'Not registered?',
+  registered: 'Already registered?',
   placeholderName: 'Enter your name',
   placeholderEmail: 'Enter your email',
   password: 'Password',
@@ -158,6 +171,7 @@ export const DE = {
   profileNewEmail: 'New email',
   saveBtn: 'Save',
   saving: 'Saving...',
+  editBtn: 'Edit profile',
   canselBtn: 'Cancel',
 
   homePage: 'Homepage',
@@ -165,7 +179,9 @@ export const DE = {
   savedMovies: 'Saved movies',
   placeholderMovie: 'Movie',
   shortMovies: 'Short movies',
+  moreBtn: 'More',
 
+  logo: 'Logo',
   heading: 'Web development student project.',
   knowMore: 'Scroll below to learn more about this project and its creator.',
   knowMoreBtn: 'Find out more',
@@ -185,12 +201,14 @@ export const DE = {
   student: 'Student',
   studentName: 'Olga',
   studentAbout: 'Web developer, 38',
-  studentext: 'I live in Berlin. I have worked with clients for many years and have organized more than 40 events with up to 100 participants. I am passionate about photography and love to travel.',
-  
+  studentText: 'I live in Berlin. I have worked with clients for many years and have organized more than 40 events with up to 100 participants. I am passionate about photography and love to travel.',
+  studentFoto: "Student's foto",
+
   portfolio: 'Portfolio',
-  staticwebsite: 'Static website',
+  staticWebsite: 'Static website',
   responsiveWebsite: 'Responsive website',
   singlePageApp: 'Single-page application',
+  arrow: 'Arrow',
 
   credentials: 'Y.Praktikum x BeatFilm training project.',
 

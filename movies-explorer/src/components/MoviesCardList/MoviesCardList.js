@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import './MoviesCardList.css';
 
 function MoviesCardList({
@@ -12,6 +14,7 @@ function MoviesCardList({
   onRemove,
   }) {
   const { pathname } = useLocation();
+  const [ lang ] = useContext(LanguageContext);
 
   return (
     <div className={`card-list card-list_${noResult ? 'invisible' : ''}`}>
@@ -35,7 +38,7 @@ function MoviesCardList({
           ${noResult || !isSearched ? 'invisible' : '' }`}
         type='button'
         onClick={onMore}>
-        Ещё
+        {lang.moreBtn}
       </button>
     </div>
   );
