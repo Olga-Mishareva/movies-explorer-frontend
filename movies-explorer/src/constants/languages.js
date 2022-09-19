@@ -30,6 +30,7 @@ export const EN = {
   placeholderMovie: 'Movie',
   shortMovies: 'Short movies',
   moreBtn: 'More',
+  noResults: 'No results.',
 
   logo: 'Logo',
   heading: 'Web development student project.',
@@ -62,6 +63,8 @@ export const EN = {
 
   credentials: 'Y.Praktikum x BeatFilm training project.',
 
+  noMatch: 'Page is not found',
+  goBack: 'Back',
   isSignup: 'Registration is successfully!',
   notFoundErr: 'Data not found',
   badRequestErr: 'Invalid data',
@@ -105,6 +108,7 @@ export const RU = {
   placeholderMovie: 'Фильм',
   shortMovies: 'Короткометражки',
   moreBtn: 'Еще',
+  noResults: 'Поиск не дал результатов.',
 
   logo: 'Логотип',
   heading: 'Учебный проект студента факультета Веб-разработки.',
@@ -137,6 +141,8 @@ export const RU = {
 
   credentials: 'Учебный проект Y.Praktikum х BeatFilm.',
 
+  noMatch: 'Страница не найдена',
+  goBack: 'Назад',
   isSignup: 'Вы успешно зарегистрировались!',
   notFoundErr: 'Data not found',
   badRequestErr: 'Данные не найдены',
@@ -180,6 +186,7 @@ export const DE = {
   placeholderMovie: 'Movie',
   shortMovies: 'Short movies',
   moreBtn: 'More',
+  noResults: 'No results.',
 
   logo: 'Logo',
   heading: 'Web development student project.',
@@ -212,6 +219,8 @@ export const DE = {
 
   credentials: 'Y.Praktikum x BeatFilm training project.',
 
+  noMatch: 'Page is not found',
+  goBack: 'Back',
   isSignup: 'Registration is successfully!',
   notFoundErr: 'Data not found',
   badRequestErr: 'Invalid data',

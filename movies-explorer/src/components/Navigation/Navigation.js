@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { LanguageContext } from '../../contexts/LanguageContext';
-// import { EN, RU, DE } from '../../constants/languages';
 import LangSelect from '../LangSelect/LangSelect';
 import userIcon from '../../images/user-icon.svg';
 import './Navigation.css';

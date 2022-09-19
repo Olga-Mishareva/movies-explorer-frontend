@@ -5,7 +5,7 @@ import { EN, RU, DE } from '../../constants/languages';
 import './LangSelect.css';
 
 function LangSelect({ loggedIn, setPageLang, menuIsOpen }) {
-  const [ setLang ] = useContext(LanguageContext);
+  const [ lang, setLang ] = useContext(LanguageContext);
   const { pathname } = useLocation();
 
   function selectLang(e) {
