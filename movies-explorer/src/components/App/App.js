@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import Header from '../Header/Header';
@@ -17,9 +18,12 @@ import useFilmCollection from '../../utils/useFilmCollection';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { EN, RU } from '../../constants/languages';
 import './App.css';
 
 function App() {
+  const [lang, setLang] = useState(EN.language);
+
   const { 
     loggedIn, 
     isConfirm, 
@@ -66,11 +70,15 @@ function App() {
     handleRemoveMovie 
   } = useSaveMovies();
 
+  console.log(lang)
+
   return (
+    <HelmetProvider>
+      <Helmet htmlAttributes={{ lang: lang }}/>
     <CurrentUserContext.Provider value={currentUser}>
     <SavedMoviesContext.Provider value={savedMovies}>
     <div className='page'>
-      <Header loggedIn={loggedIn}/>
+      <Header loggedIn={loggedIn} setLang={setLang}/>
       
       <Routes>
         <Route path='/' element={<Main />} />
@@ -141,6 +149,7 @@ function App() {
     </div>
     </SavedMoviesContext.Provider>
     </CurrentUserContext.Provider>
+    </HelmetProvider>
   );
 }
 

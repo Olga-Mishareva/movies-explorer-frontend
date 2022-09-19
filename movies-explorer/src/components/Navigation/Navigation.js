@@ -3,12 +3,17 @@ import { NavLink, useLocation } from 'react-router-dom';
 import './Navigation.css';
 import userIcon from '../../images/user-icon.svg';
 
-function Navigation({ loggedIn, login }) {
+function Navigation({ loggedIn, setLang, login }) {
   const { pathname } = useLocation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   function handleMenu() {
     setMenuIsOpen(!menuIsOpen);
+  }
+
+  function selectLang(e) {
+    console.log(e.target.value)
+    setLang(e.target.value);
   }
 
   return (
@@ -22,7 +27,7 @@ function Navigation({ loggedIn, login }) {
       <nav className={`nav nav__outside nav_${loggedIn ? 'invisible' : ''}`}> 
 
       {/* <form className='nav__form nav__form_outside'> */}
-          <select className='nav__select nav__select_outside' name='lang' autoComplete='true'>
+          <select className='nav__select nav__select_outside' name='lang' autoComplete='true' onChange={selectLang}>
             <option className='nav__option nav__option_lang_en' value='en'>EN</option>
             <option className='nav__option nav__option_lang_de' value='de'>DE</option>
             <option className='nav__option nav__option_lang_ru' value='ru'>RU</option>
@@ -55,7 +60,7 @@ function Navigation({ loggedIn, login }) {
         </div>
         <div className='nav__wrapper'>
           {/* <form className='nav__form nav__form_inside'> */}
-          <select className='nav__select nav__select_inside' name='lang' autoComplete='true' 
+          <select className='nav__select nav__select_inside' name='lang' autoComplete='true' onChange={selectLang}
             style={!loggedIn && pathname === '/' ? {backgroundColor: '#073042'} : menuIsOpen || pathname !== '/' ? {backgroundColor: '#2F2F2F'} : {backgroundColor: '#073042'}}>
             <option className='nav__option nav__option_lang_en' value='en'>EN</option>
             <option className='nav__option nav__option_lang_de' value='de'>DE</option>

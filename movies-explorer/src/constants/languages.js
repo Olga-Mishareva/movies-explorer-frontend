@@ -1,5 +1,5 @@
 export const EN = {
-  lang: 'en',
+  language: 'en',
   login: 'Log in',
   loginGreeting: 'Nice to see you!',
   logging: 'Logging in...',
@@ -67,7 +67,7 @@ export const EN = {
 }
 
 export const RU = {
-  lang: 'ru',
+  language: 'ru',
   login: 'Вход',
   loginGreeting: 'Рады видеть!',
   logging: 'Вход...',
@@ -132,4 +132,72 @@ export const RU = {
   serverErr: 'Произошла ошибка на сервере',
   pathNotFound: 'Путь не найден',
   unauthorized: 'Необходима авторизация'
+}
+
+export const DE = {
+  language: 'de',
+  login: 'Log in',
+  loginGreeting: 'Nice to see you!',
+  logging: 'Logging in...',
+  logout: 'Log out',
+  register: 'Register',
+  registerGreeting: 'You are welcome!',
+  registration: 'Registration...',
+  registered: 'Not registered?',
+  placeholderName: 'Enter your name',
+  placeholderEmail: 'Enter your email',
+  password: 'Password',
+  placeholderPassword: 'Enter your password',
+
+  profile: 'Profile',
+  profileGreeting: 'Hello',
+  profileName: 'Name',
+  profileNewName: 'New name',
+  profileNewEmail: 'New email',
+  saveBtn: 'Save',
+  saving: 'Saving...',
+  canselBtn: 'Cancel',
+
+  movies: 'Movies',
+  savedMovies: 'Saved movies',
+  placeholderMovie: 'Movie',
+  shortMovies: 'Short movies',
+
+  heading: 'Web development student project.',
+  knowMore: 'Scroll below to learn more about this project and its creator.',
+  knowMoreBtn: 'Find out more',
+
+  aboutProject: 'About Project',
+  stepsHeading: 'The diploma project included 5 stages',
+  stepsText: 'Making a plan, working on the backend, layout, adding functionality and final refinements.',
+  timeHeading: 'The diploma took 5 weeks to complete',
+  timeText: 'Each stage had soft and hard deadlines that had to be met in order to successfully defend themselves.',
+  backendTime: '1 week',
+  frontendTime: '4 weeks',
+
+  technologies: 'Technologies',
+  techsHeading: '7 technologies',
+  techsText: 'On the course of web development, we mastered the technologies that we used in the thesis project.',
+
+  student: 'Student',
+  studentName: 'Olga',
+  studentAbout: 'Web developer, 38',
+  studentext: 'I live in Berlin. I have worked with clients for many years and have organized more than 40 events with up to 100 participants. I am passionate about photography and love to travel.',
+  
+  portfolio: 'Portfolio',
+  staticwebsite: 'Static website',
+  responsiveWebsite: 'Responsive website',
+  singlePageApp: 'Single-page application',
+
+  credentials: 'Y.Praktikum x BeatFilm training project.',
+
+  isSignup: 'Registration is successfully!',
+  notFoundErr: 'Data not found',
+  badRequestErr: 'Invalid data',
+  conflictErr: 'This email already exists',
+  forbiddenErr: 'No rights for this action',
+  authErr: 'Invalid email or password',
+  serverErr: 'Server error',
+  pathNotFound: 'Path not found',
+  unauthorized: 'Authorisation is required'
 }
