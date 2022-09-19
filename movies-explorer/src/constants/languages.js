@@ -22,6 +22,7 @@ export const EN = {
   saving: 'Saving...',
   canselBtn: 'Cancel',
 
+  homePage: 'Homepage',
   movies: 'Movies',
   savedMovies: 'Saved movies',
   placeholderMovie: 'Movie',
@@ -90,6 +91,7 @@ export const RU = {
   saving: 'Сохранение...',
   canselBtn: 'Отмена',
 
+  homePage: 'Главная',
   movies: 'Фильмы',
   savedMovies: 'Сохраненные фильмы',
   placeholderMovie: 'Фильм',
@@ -158,6 +160,7 @@ export const DE = {
   saving: 'Saving...',
   canselBtn: 'Cancel',
 
+  homePage: 'Homepage',
   movies: 'Movies',
   savedMovies: 'Saved movies',
   placeholderMovie: 'Movie',

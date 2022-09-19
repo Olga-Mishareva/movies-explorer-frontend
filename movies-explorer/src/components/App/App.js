@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -18,11 +19,12 @@ import useFilmCollection from '../../utils/useFilmCollection';
 import useMoviesSearch from '../../utils/useMoviesSearch';
 import useSaveMovies from '../../utils/useSaveMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { EN, RU } from '../../constants/languages';
+import { EN, RU, DE } from '../../constants/languages';
 import './App.css';
 
 function App() {
-  const [lang, setLang] = useState(EN.language);
+  const [pageLang, setPageLang] = useState(EN.language);
+  const [lang, setLang] = useState(EN);
 
   const { 
     loggedIn, 
@@ -70,85 +72,87 @@ function App() {
     handleRemoveMovie 
   } = useSaveMovies();
 
-  console.log(lang)
+  // console.log(lang)
 
   return (
     <HelmetProvider>
-      <Helmet htmlAttributes={{ lang: lang }}/>
-    <CurrentUserContext.Provider value={currentUser}>
-    <SavedMoviesContext.Provider value={savedMovies}>
-    <div className='page'>
-      <Header loggedIn={loggedIn} setLang={setLang}/>
-      
-      <Routes>
-        <Route path='/' element={<Main />} />
+      <Helmet htmlAttributes={{ lang: pageLang }}/>
+      <LanguageContext.Provider value={[lang, setLang]}>
+      <CurrentUserContext.Provider value={currentUser}>
+      <SavedMoviesContext.Provider value={savedMovies}>
+      <div className='page'>
+        <Header loggedIn={loggedIn} setPageLang={setPageLang}/>
+        
+        <Routes>
+          <Route path='/' element={<Main />} />
 
-        <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
-          <Route path='/movies' element={
-            <Movies 
-              filmsCollection={filmsCollection} 
-              matchedMovies={matchedMovies} 
-              showedMovies={showedMovies} 
-              shortMovie={shortMovie} 
-              noResult={noResult}
-              isSearched={isSearched}
-              isLoading={isLoading}
-              storageWord={storageWord}
-              storageCheckbox={storageCheckbox}
-              setIsUsersFilmsSearched={setIsUsersFilmsSearched}
-              setShortMovie={setShortMovie}
-              filterMovies={filterMovies}
-              getSavedMovies={getSavedMovies}
-              handleMoreButton={handleMoreButton}
-              onSave={handleSaveMovie} 
-              onRemove={handleRemoveMovie}>
-            </Movies>
-          }/>
-          <Route path='/saved-movies' element={ 
-            <SavedMovies 
-              userMatchedMovies={userMatchedMovies} 
-              shortMovie={shortMovie} 
-              noResult={noResult}
-              isUsersFilmsSearched={isUsersFilmsSearched}
-              setIsUsersFilmsSearched={setIsUsersFilmsSearched}
-              setUserMatchedMovies={setUserMatchedMovies}
-              setShortMovie={setShortMovie}
-              filterSavedMovies={filterSavedMovies}
-              getSavedMovies={getSavedMovies}
-              onRemove={handleRemoveMovie}>
-            </SavedMovies>
-          }/>
-          <Route path='/profile' element={
-            <Profile 
-              onLogout={handleLogout} 
-              onUpdate={updateUserData}/>
+          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+            <Route path='/movies' element={
+              <Movies 
+                filmsCollection={filmsCollection} 
+                matchedMovies={matchedMovies} 
+                showedMovies={showedMovies} 
+                shortMovie={shortMovie} 
+                noResult={noResult}
+                isSearched={isSearched}
+                isLoading={isLoading}
+                storageWord={storageWord}
+                storageCheckbox={storageCheckbox}
+                setIsUsersFilmsSearched={setIsUsersFilmsSearched}
+                setShortMovie={setShortMovie}
+                filterMovies={filterMovies}
+                getSavedMovies={getSavedMovies}
+                handleMoreButton={handleMoreButton}
+                onSave={handleSaveMovie} 
+                onRemove={handleRemoveMovie}>
+              </Movies>
             }/>
-        </Route>
-   
-        <Route path='/signup' element={
-          <Register 
-            isConfirm={isConfirm} 
-            isDisabled={inputIsDisabled}
-            onRegister={handleRegister}/>
-          }/>
-        <Route path='/signin' element={
-          <Login 
-          onLogin={handleLogin} 
-          isDisabled={inputIsDisabled}/>
-          }/>
-        <Route path='*' element={<NoMatch />} />
-      </Routes>
+            <Route path='/saved-movies' element={ 
+              <SavedMovies 
+                userMatchedMovies={userMatchedMovies} 
+                shortMovie={shortMovie} 
+                noResult={noResult}
+                isUsersFilmsSearched={isUsersFilmsSearched}
+                setIsUsersFilmsSearched={setIsUsersFilmsSearched}
+                setUserMatchedMovies={setUserMatchedMovies}
+                setShortMovie={setShortMovie}
+                filterSavedMovies={filterSavedMovies}
+                getSavedMovies={getSavedMovies}
+                onRemove={handleRemoveMovie}>
+              </SavedMovies>
+            }/>
+            <Route path='/profile' element={
+              <Profile 
+                onLogout={handleLogout} 
+                onUpdate={updateUserData}/>
+              }/>
+          </Route>
+    
+          <Route path='/signup' element={
+            <Register 
+              isConfirm={isConfirm} 
+              isDisabled={inputIsDisabled}
+              onRegister={handleRegister}/>
+            }/>
+          <Route path='/signin' element={
+            <Login 
+            onLogin={handleLogin} 
+            isDisabled={inputIsDisabled}/>
+            }/>
+          <Route path='*' element={<NoMatch />} />
+        </Routes>
 
-      <InfoPopup isConfirm={isConfirm} 
-        error={[authError, movieError]} 
-        isOpen={[isPopupOpen, isMoviePopupOpen]} 
-        onClose={[setIsPopupOpen, setIsMoviePopupOpen]}>
-      </InfoPopup>
+        <InfoPopup isConfirm={isConfirm} 
+          error={[authError, movieError]} 
+          isOpen={[isPopupOpen, isMoviePopupOpen]} 
+          onClose={[setIsPopupOpen, setIsMoviePopupOpen]}>
+        </InfoPopup>
 
-      <Footer />
-    </div>
-    </SavedMoviesContext.Provider>
-    </CurrentUserContext.Provider>
+        <Footer />
+      </div>
+      </SavedMoviesContext.Provider>
+      </CurrentUserContext.Provider>
+      </LanguageContext.Provider>
     </HelmetProvider>
   );
 }
