@@ -1,0 +1,43 @@
+.nav__select {
+  width: 42px;
+  height: 26px;
+  border: none;
+  border-radius: 6px;
+  margin-right: 30px;
+  background-color: #073042;
+  font-size: 14px;
+  color: #FFFFFF;
+  transition: opacity .2s ease-in;
+}
+
+@media screen and (max-width: 480px) {
+  .nav__select {
+      font-size: 12px;
+      margin-right: 20px;
+  }
+}
+
+.nav__select:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.nav__select:focus {
+  border: 1px solid #4285F4;
+}
+
+.nav__select_type_color {
+  background-color: #073042;
+}
+
+.nav__select_type_grey {
+  background-color: #2F2F2F;
+}
+
+@media screen and (max-width: 769px) {
+  .nav__select_inside  {
+    position: absolute;
+    top: 22px;
+    left: 30px;
+  }
+}

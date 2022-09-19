@@ -69,7 +69,7 @@ function Profile({ onLogout, onUpdate }) {
       <form className='profile__form' 
         name='profile' id='profile'
         onChange={checkErrors} onSubmit={handleSubmit} >
-        <h2 className='profile__greeting'>{`${lang.profileGreeting}, ${currentUser.username}!`}</h2>
+        <h2 className='profile__greeting'>{`${lang.profileGreeting} ${currentUser.username}!`}</h2>
         <label className='form-input__label form-input__label_type_profile'>{lang.profileName}
           <input className={`form-input__input form-input__input_type_profile
             form-input__input_type_${isInputValid ? '' : 'error'}`} 
