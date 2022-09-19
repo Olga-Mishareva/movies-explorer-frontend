@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import './MoviesCard.css';
 
 function MoviesCard({ movie, onSave, onRemove }) {
   const savedMovies = useContext(SavedMoviesContext);
+  const [ lang ] = useContext(LanguageContext);
   const { pathname } = useLocation();
   const [film, setFilm] = useState(movie);
   const [liked, setLiked] = useState(false);
@@ -50,11 +52,11 @@ function MoviesCard({ movie, onSave, onRemove }) {
       <a className='card__link' href={film.trailerLink} rel='noreferrer' target='_blank'>
         <img className='card__image' 
           src={!film.image.url ? film.image : `https://api.nomoreparties.co/${film.image.url}`} 
-          alt='Изображение к фильму'>
+          alt='Poster of movie'>
         </img>
       </a>
       <div className='card__container'>
-        <h2 className='card__title'>{film.nameRU}</h2>
+        <h2 className='card__title'>{lang.language === 'ru' ? film.nameRU : film.nameEN}</h2>
         <button className={`card__like 
           card__like_type_${pathname === '/saved-movies' ? 'saved' : liked ? 'liked' : ''}`} 
           type='button' onClick={handleLikeState}></button>
