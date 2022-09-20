@@ -65,15 +65,16 @@ export const EN = {
 
   noMatch: 'Page is not found',
   goBack: 'Back',
+  isDataChanged: 'Your data has been successfully changed.',
   isSignup: 'Registration is successfully!',
-  notFoundErr: 'Data not found',
-  badRequestErr: 'Invalid data',
-  conflictErr: 'This email already exists',
-  forbiddenErr: 'No rights for this action',
-  authErr: 'Invalid email or password',
-  serverErr: 'Server error',
-  pathNotFound: 'Path not found',
-  unauthorized: 'Authorisation is required'
+  notFoundErr: 'Data not found.',
+  badRequestErr: 'Invalid data.',
+  conflictErr: 'This email already exists.',
+  forbiddenErr: 'No rights for this action.',
+  authErr: 'Invalid email or password.',
+  serverErr: 'Server error.',
+  pathNotFound: 'Path not found.',
+  unauthorized: 'Authorisation is required.'
 }
 
 export const RU = {
@@ -143,15 +144,16 @@ export const RU = {
 
   noMatch: 'Страница не найдена',
   goBack: 'Назад',
+  isDataChanged: 'Ваши данные успешно изменены.',
   isSignup: 'Вы успешно зарегистрировались!',
-  notFoundErr: 'Data not found',
-  badRequestErr: 'Данные не найдены',
+  notFoundErr: 'Переданные данные не найдены.',
+  badRequestErr: 'Переданы некорректные данные.',
   conflictErr: 'Такой email уже существует',
-  forbiddenErr: 'Нет прав для данного действия',
-  authErr: 'Некорректный email или пароль',
-  serverErr: 'Произошла ошибка на сервере',
-  pathNotFound: 'Путь не найден',
-  unauthorized: 'Необходима авторизация'
+  forbiddenErr: 'Нет прав для данного действия.',
+  authErr: 'Некорректный email или пароль.',
+  serverErr: 'На сервере произошла ошибка.',
+  pathNotFound: 'Путь не найден.',
+  unauthorized: 'Необходима авторизация.'
 }
 
 export const DE = {
@@ -221,13 +223,14 @@ export const DE = {
 
   noMatch: 'Page is not found',
   goBack: 'Back',
+  isDataChanged: 'Your data has been successfully changed.',
   isSignup: 'Registration is successfully!',
-  notFoundErr: 'Data not found',
-  badRequestErr: 'Invalid data',
-  conflictErr: 'This email already exists',
-  forbiddenErr: 'No rights for this action',
-  authErr: 'Invalid email or password',
-  serverErr: 'Server error',
-  pathNotFound: 'Path not found',
-  unauthorized: 'Authorisation is required'
+  notFoundErr: 'Data not found.',
+  badRequestErr: 'Invalid data.',
+  conflictErr: 'This email already exists.',
+  forbiddenErr: 'No rights for this action.',
+  authErr: 'Invalid email or password.',
+  serverErr: 'Server error.',
+  pathNotFound: 'Path not found.',
+  unauthorized: 'Authorisation is required.'
 }
