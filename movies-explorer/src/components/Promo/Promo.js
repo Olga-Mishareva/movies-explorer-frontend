@@ -7,7 +7,7 @@ function Promo({ projectRef }) {
   const [ lang ] = useContext(LanguageContext);
 
   function handleScroll() {
-    projectRef.current.scrollIntoView();
+    projectRef.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
