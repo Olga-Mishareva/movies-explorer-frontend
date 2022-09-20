@@ -1,25 +1,40 @@
-import { useState } from 'react';
+import { useState} from 'react';
+import { isEmail } from 'validator';
+import { USER_NAME_REGEX } from '../../constants/config';
 import './FormInput.css';
 
-function FormInput({ type, name, sort, label, minLength, maxLength, disabled, placeholder }) { 
+function FormInput({
+  type, 
+  name, 
+  sort, 
+  label, 
+  minLength, 
+  maxLength, 
+  isDisabled, 
+  placeholder, 
+  setUserData 
+  }) { 
+    
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
 
   function handleInputValue(e) {
-    setValue({ ...value, [e.target.name]: e.target.value});
-  }
-
-  function handleFocus(e) {
-    e.target.select();
-  }
-
-  function checkInputValidity(e) {
-    if (e.target.checkValidity()) {
+    setValue({ ...value, [e.target.name]: e.target.value });
+    if (e.target.type === 'email' && isEmail(e.target.value)) {
       setIsInputValid(true);
+      setUserData(e.target.name, e.target.value);
+    }
+    else if (e.target.type !== 'email' && e.target.checkValidity()) {
+      setIsInputValid(true);
+      setUserData(e.target.name, e.target.value);
     }
     else {
       setIsInputValid(false);
     }
+  }
+
+  function handleFocus(e) {
+    e.target.select();
   }
 
   return (
@@ -30,13 +45,13 @@ function FormInput({ type, name, sort, label, minLength, maxLength, disabled, pl
         name={name} 
         required 
         minLength={minLength} 
-        maxLength={maxLength} 
+        maxLength={maxLength}
         placeholder={placeholder}
-        disabled={disabled} 
+        disabled={isDisabled} 
         onFocus={handleFocus} 
         onChange={handleInputValue}
-        onInput={checkInputValidity}
-        value={value[name] || ''} > 
+        value={value[name] || ''}
+        pattern={name === 'username' ? USER_NAME_REGEX : null} > 
       </input>
     </label>
   );

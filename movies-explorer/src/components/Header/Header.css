@@ -32,6 +32,7 @@
 
 .header__logo-link {
   height: 38px;
+  transition: opacity .2s ease-in;
 }
 
 .header__logo-link:hover {

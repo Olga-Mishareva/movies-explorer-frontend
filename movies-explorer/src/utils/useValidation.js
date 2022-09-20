@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { isEmail } from 'validator';
 
-function useValidation(input, errorMessage) {
+function useValidation() {
   const [error, setError] = useState({});
   const [isValid, setIsValid] = useState(false);
 
   function checkErrors(e) {
-    if (!e.currentTarget.checkValidity()) {
-      setError({ ...error, [e.target.name]: e.target.validationMessage });
+    let object;
+    object = (e.target) ?  e.target : e;
+
+    if (object.type === 'email' && !isEmail(object.value)) {
+      setError({ ...error, [object.name]: 'Неверный формат электронной почты.' });
+      setIsValid(false);
+    }
+    else if (!object.validity.valid) {
+      if (object.validity.patternMismatch) {
+        object.name === 'search' ?
+          setError({ ...error, [object.name]: 'Нужно ввести ключевое слово.' }) :
+          setError({ ...error, [object.name]: 'Имя может содержать только буквы, пробел или дефис и должно быть не менее двух символов.' });
+      }
+      else {
+        setError({ ...error, [object.name]: object.validationMessage });
+      }
       setIsValid(false);
     }
     else {
@@ -15,7 +30,7 @@ function useValidation(input, errorMessage) {
     }
   }
 
-  return { error, isValid, checkErrors };
+  return { error, isValid, setError, setIsValid, checkErrors };
 }
 
 export default useValidation;

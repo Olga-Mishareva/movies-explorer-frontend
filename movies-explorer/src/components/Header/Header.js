@@ -3,7 +3,7 @@ import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ loggedIn, login }) {
+function Header({ loggedIn, setPageLang, login }) {
   const location = useLocation();
 
   return (
@@ -12,7 +12,10 @@ function Header({ loggedIn, login }) {
         <Link to='/' className="header__logo-link">
           <img className="logo" src={logo} alt="Логотип"></img>
         </Link>
-        <Navigation loggedIn={loggedIn} login={login}/> 
+        <Navigation 
+          loggedIn={loggedIn} 
+          setPageLang={setPageLang} 
+          login={login}/> 
       </div>
     </header>
   );

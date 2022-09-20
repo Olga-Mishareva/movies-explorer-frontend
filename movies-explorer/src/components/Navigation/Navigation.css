@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  
+  align-items: center;
 }
 
 /* ---------------------------------- */
@@ -32,6 +32,7 @@
     background-position: center;
     padding: 0;
     z-index: 2;
+    transition: opacity .2s ease-in;
   }
   .nav__button:hover { 
     opacity: .7;
@@ -106,7 +107,6 @@
   }
 }
 
-
 /* ---------------------------------- */
 
 @media screen and (max-width: 769px) {
@@ -116,6 +116,12 @@
     align-items: center;
     margin-top: 30%;
   }
+}
+
+.nav__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 /* ---------------------------------- */
@@ -254,7 +260,7 @@
 
 @media screen and (max-width: 769px) {
   .nav__link_type_profile {
-    margin: 0 0 9% 0;
+    margin: 0 0 10vh 0;
     font-weight: 500;
   }
 }
