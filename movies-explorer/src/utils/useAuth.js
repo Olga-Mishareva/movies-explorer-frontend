@@ -99,8 +99,6 @@ function useAuth() {
       });
   }
 
-  console.log(authError)
-
   //--------------------------------------------------------// 
 
   function updateUserData({ name, email }) {
