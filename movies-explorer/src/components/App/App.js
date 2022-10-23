@@ -143,7 +143,7 @@ function App() {
         </Routes>
 
         <InfoPopup isConfirm={isConfirm} 
-          error={[authError, movieError]} 
+          errors={[authError, movieError]} 
           isOpen={[isPopupOpen, isMoviePopupOpen]} 
           onClose={[setIsPopupOpen, setIsMoviePopupOpen]}>
         </InfoPopup>

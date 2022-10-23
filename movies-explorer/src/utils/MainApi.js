@@ -1,5 +1,5 @@
-const baseURL = 'https://api.movies.om.nomoredomains.xyz';
-// const baseURL = 'http://localhost:3000';
+// const baseURL = 'https://api.movies.om.nomoredomains.xyz';
+const baseURL = 'http://localhost:3000';
 
 function getResponseData(res) {
   if (res.ok) {
