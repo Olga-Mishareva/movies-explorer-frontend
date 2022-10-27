@@ -17,7 +17,6 @@ function useAuth() {
   const [inputIsDisabled, setInputIsDisabled] = useState(false);
   const { getFilmsCollection } = useFilmCollection(setAuthError, setIsPopupOpen);
   
-
   useEffect(() => {
     checkAuth();
   },[]);
