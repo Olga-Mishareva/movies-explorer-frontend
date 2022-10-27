@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import './AboutProject.css';
 
-function AboutProject({ projectRef }) {
+function AboutProject() {
   const [ lang ] = useContext(LanguageContext);
 
   return (
-    <section className="project" ref={projectRef}>
+    <section className="project">
         <h2 className="section-heading">{lang.aboutProject}</h2>
         <div className="project__description">
           <div className="project__about">

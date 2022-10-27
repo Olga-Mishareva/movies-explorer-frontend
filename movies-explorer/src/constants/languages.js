@@ -35,7 +35,7 @@ export const EN = {
   logo: 'Logo',
   heading: 'Web development student project.',
   knowMore: 'Scroll below to learn more about this project and its creator.',
-  knowMoreBtn: 'Find out more',
+  viewProject: 'View the Project',
 
   aboutProject: 'About Project',
   stepsHeading: 'The diploma project included 5 stages',
@@ -114,7 +114,7 @@ export const RU = {
   logo: 'Логотип',
   heading: 'Учебный проект студента факультета Веб-разработки.',
   knowMore: 'Листайте ниже, чтобы узнать больше про этот проект и его создателя.',
-  knowMoreBtn: 'Узнать больше',
+  viewProject: 'Посмотреть проект',
 
   aboutProject: 'О проекте',
   stepsHeading: 'Дипломный проект включал 5 этапов',
@@ -193,7 +193,7 @@ export const DE = {
   logo: 'Das Logo',
   heading: 'Studentenprojekt zur Web-Entwicklung.',
   knowMore: 'Scrollen Sie nach unten, um mehr über dieses Projekt und seinen Schöpfer zu erfahren.',
-  knowMoreBtn: 'Mehr erfahren',
+  viewProject: 'Das Projekt ansehen',
 
   aboutProject: 'Über das Projekt',
   stepsHeading: 'Das Diplomprojekt umfasste 5 Etappen',
