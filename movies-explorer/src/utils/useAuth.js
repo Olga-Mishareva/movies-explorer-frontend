@@ -143,7 +143,7 @@ function useAuth() {
 
   function checkPath() {
     if (pathname === '/signup' || pathname === '/signin') {
-      navigate('/');
+      navigate('/movies');
     }
     else {
       navigate(pathname);
