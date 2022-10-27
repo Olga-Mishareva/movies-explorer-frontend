@@ -17,7 +17,7 @@ function MoviesCardList({
   const [ lang ] = useContext(LanguageContext);
 
   return (
-    <div className={`card-list card-list_${noResult ? 'invisible' : ''}`}>
+    <div className={`card-list card-list_${noResult && pathname === '/movies' ? 'invisible' : ''}`}>
       <ul className='card-list__grid'>
         {moviesToShow.map((movie) => {
           return (
