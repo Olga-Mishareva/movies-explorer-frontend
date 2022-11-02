@@ -4,12 +4,17 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 import './Promo.css';
 import landingLogo from '../../images/landing-logo.svg';
 
-function Promo() {
+function Promo({ loggedIn }) {
   const [ lang ] = useContext(LanguageContext);
   const navigate = useNavigate();
 
   function viewProject() {
-    navigate('/signup');
+    if (loggedIn) {
+      navigate('/movies');
+    }
+    else {
+      navigate('/signup');
+    }
   }
 
   return (
