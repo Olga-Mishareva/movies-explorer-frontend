@@ -93,7 +93,7 @@ function App() {
         <Header loggedIn={loggedIn} setPageLang={setPageLang}/>
         
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route path='/' element={<Main loggedIn={loggedIn} />} />
 
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path='/movies' element={

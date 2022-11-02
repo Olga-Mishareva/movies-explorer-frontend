@@ -6,11 +6,11 @@ import Portfolio from '../Portfolio/Portfolio';
 import './Main.css';
 
 
-function Main() {
+function Main({ loggedIn }) {
 
   return (
     <main className="main">
-      <Promo />
+      <Promo loggedIn={loggedIn} />
       <AboutProject />
       <Techs />
       <AboutMe />

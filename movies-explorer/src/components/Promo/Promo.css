@@ -11,7 +11,7 @@
   .promo {
     flex-direction: column-reverse;
     align-items: center;
-    padding: 140px 44px 66px;
+    padding: 90px 44px 66px;
   }
 }
 
@@ -109,7 +109,7 @@
 
 @media screen and (max-width: 999px) {
   .promo__button {
-    margin-top: 92px;
+    margin-top: 60px;
   }
 }
 
