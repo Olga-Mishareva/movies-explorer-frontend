@@ -43,7 +43,7 @@ function Movies({
         {noResult && <WithoutResult />}
       <MoviesCardList 
         matchedMovies={matchedMovies}
-        moviesToShow={showedMovies}
+        moviesToShow={showedMovies ?? filmsCollection}
         noResult={noResult}
         isSearched={isSearched}
         onMore={handleMoreButton}

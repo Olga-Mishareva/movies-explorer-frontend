@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
-import WithoutResult from '../WithoutResult/WithoutResult';
+// import WithoutResult from '../WithoutResult/WithoutResult';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 
@@ -52,7 +52,7 @@ function SavedMovies({
         filmsList={savedMovies} 
         onSearch={filterSavedMovies}>
       </SearchForm>
-        {noResult && <WithoutResult />}
+        {/* {noResult && <WithoutResult />} */}
       <MoviesCardList 
         noResult={noResult}
         moviesToShow={!isUsersFilmsSearched ? savedMovies : userMatchedMovies}

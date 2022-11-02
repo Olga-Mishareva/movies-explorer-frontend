@@ -4,8 +4,8 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 import useEscapeClick from '../../utils/useEscapeClick';
 import './InfoPopup.css';
 
-function InfoPopup({ isConfirm, error, isOpen, onClose }) {
-  const [currentError, setCurrentError] = useState('');
+function InfoPopup({ isConfirm, errors, isOpen, onClose }) {
+  const [currentError, setCurrentError] = useState('xcx');
   const [ setIsAuthPopupOpen, setIsMoviePopupOpen ] = onClose;
   const { pathname } = useLocation();
   const popupIsOpen = isOpen.some(item => item);
@@ -14,19 +14,23 @@ function InfoPopup({ isConfirm, error, isOpen, onClose }) {
   useEscapeClick(popupIsOpen, closeInfoPopups);
 
   function handleError() {
-    error.forEach(err => {
-      if (err.includes('400')) return lang.badRequestErr;
-      if (err.includes('403')) return lang.forbiddenErr;
-      if (err.includes('409')) return lang.conflictErr;
-      if (err.includes('400')) return lang.badRequestErr;
-      if (err.includes('401') && pathname === '/singin') return lang.authErr;
-      if (err.includes('401') && pathname !== ('/singin' || '/singup')) return lang.unauthorized;
-    })
+    let error = '';
+    errors.forEach(err => {
+      if (err !== '') {
+        if (err.includes('400')) error = lang.badRequestErr;
+        else if (err.includes('403')) error = lang.forbiddenErr;
+        else if (err.includes('409')) error = lang.conflictErr; 
+        else if (err.includes('400')) error = lang.badRequestErr;
+        else if (err.includes('401') && pathname === '/signin') error = lang.authErr;
+        else if (err.includes('401') && pathname !== ('/signin' || '/signup')) error = lang.unauthorized;
+      } 
+    });
+    return error;
   }
 
   useEffect(() => {
-    setCurrentError(handleError());
-  }, [error]);
+    setCurrentError(handleError());    
+  }, [errors]);
   
   function closeInfoPopups() {
     setIsAuthPopupOpen(false);

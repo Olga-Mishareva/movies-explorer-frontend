@@ -17,7 +17,7 @@ function MoviesCardList({
   const [ lang ] = useContext(LanguageContext);
 
   return (
-    <div className={`card-list card-list_${noResult ? 'invisible' : ''}`}>
+    <div className={`card-list card-list_${noResult && pathname === '/movies' ? 'invisible' : ''}`}>
       <ul className='card-list__grid'>
         {moviesToShow.map((movie) => {
           return (
@@ -34,8 +34,9 @@ function MoviesCardList({
         className={`card-list__more-btn card-list__more-btn_${
           pathname === '/saved-movies' 
           || matchedMovies.length === moviesToShow.length 
-          ? 'invisible' : ''}
-          ${noResult || !isSearched ? 'invisible' : '' }`}
+          || noResult 
+          || !isSearched
+          ? 'invisible' : ''}`}
         type='button'
         onClick={onMore}>
         {lang.moreBtn}

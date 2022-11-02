@@ -1,16 +1,24 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import './FilterCheckbox.css';
 
-function FilterCheckbox({ shortMovie, setShortMovie }) {
+function FilterCheckbox({ shortMovie, setShortMovie, onCheck, value, isValid }) {
   const [ lang ] = useContext(LanguageContext);
 
-  function toggleCheckbox(e) {
-    if (e.target.checked) {
-      setShortMovie(true)
+  useEffect(() => {
+    if (isValid) {
+      onCheck();
     }
-    else {
-      setShortMovie(false);
+  }, [value]);
+
+  function toggleCheckbox(e) {
+    if (isValid) {
+      if (e.target.checked) {
+        setShortMovie(true);
+      }
+      else {
+        setShortMovie(false);
+      }
     }
   }
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import useResize from './useResize';
 import { SHORT_FILM } from '../constants/config';
 import useLocalStorage from './useLocalStorage';
+import useAuth from './useAuth';
 
 function useMoviesSearch() {
   const { width, count, row } = useResize();
@@ -101,6 +102,9 @@ function useMoviesSearch() {
     isLoading,
     storageWord,
     storageCheckbox,
+    setStorageWord,
+    setIsSearched,
+    setShowedMovies,
     setIsUsersFilmsSearched,
     setUserMatchedMovies,
     setShortMovie, 

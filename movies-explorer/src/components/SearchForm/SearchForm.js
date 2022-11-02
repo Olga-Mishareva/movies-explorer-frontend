@@ -8,7 +8,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
 function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovie }) {
-  const { error, isValid, checkErrors, setError} = useValidation();
+  const { error, isValid, setIsValid, checkErrors, setError} = useValidation();
   const { pathname } = useLocation();
   const inputRef = useRef();
   const savedMovies = useContext(SavedMoviesContext);
@@ -17,13 +17,13 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
   const [value, setValue] = useState({});
 
   useEffect(() => {                         
-    if (pathname === '/movies'){
+    if (pathname === '/movies') {
       setValue({ search: storageWord });
     }
   }, []);
 
   useEffect(() => {                         
-    if (pathname === '/saved-movies'){
+    if (pathname === '/saved-movies') {
       setValue({});
     }
   }, [savedMovies]);
@@ -39,6 +39,10 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
       onSearch(value.search, filmsList);
     }
   }, [shortMovie]);
+
+  function checkEmptyInput() {
+    checkErrors(inputRef.current); 
+  }
 
   function handleInputValue(e) {
     setError({});
@@ -81,7 +85,12 @@ function SearchForm({ onSearch, filmsList, shortMovie, storageWord, setShortMovi
             <button className='search__submit-btn' type='submit'></button>
           </div>
           <span className='search__error'>{error.search}</span>
-          <FilterCheckbox shortMovie={shortMovie} setShortMovie={setShortMovie}/>
+          <FilterCheckbox 
+            shortMovie={shortMovie} 
+            setShortMovie={setShortMovie} 
+            isValid={isValid} 
+            value={value} 
+            onCheck={checkEmptyInput}/>
         </form>
       </div> 
     </section>

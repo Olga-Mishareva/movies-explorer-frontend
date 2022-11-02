@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -54,6 +54,9 @@ function App() {
     isUsersFilmsSearched,
     storageWord,
     storageCheckbox,
+    setStorageWord,
+    setShowedMovies,
+    setIsSearched,
     setIsUsersFilmsSearched,
     setUserMatchedMovies,
     setShortMovie, 
@@ -72,7 +75,13 @@ function App() {
     handleRemoveMovie 
   } = useSaveMovies();
 
-  // console.log(lang)
+  useEffect(() => {
+    if (!localStorage.getItem('email')) {
+      setShowedMovies([]);
+      setIsSearched(false);
+      setStorageWord('');
+    }
+  }, [loggedIn]);
 
   return (
     <HelmetProvider>
@@ -143,7 +152,7 @@ function App() {
         </Routes>
 
         <InfoPopup isConfirm={isConfirm} 
-          error={[authError, movieError]} 
+          errors={[authError, movieError]} 
           isOpen={[isPopupOpen, isMoviePopupOpen]} 
           onClose={[setIsPopupOpen, setIsMoviePopupOpen]}>
         </InfoPopup>
